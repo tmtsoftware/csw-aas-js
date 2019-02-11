@@ -13,8 +13,8 @@ object GithubPublishDocs extends AutoPlugin {
   override def projectSettings: Seq[Setting[_]] = Seq(
     ghpagesBranch := "master",
     includeFilter in ghpagesCleanSite := new FileFilter {
-      override def accept(pathname: File): Boolean = pathname.getAbsolutePath.contains(s"/${version.value}")
+      override def accept(pathname: File): Boolean = pathname.getAbsolutePath.contains(s"csw-js/${version.value}")
     },
-    GitKeys.gitRemoteRepo := "git@github.com:tmtsoftware/tmtsoftware.github.io.git"
+    GitKeys.gitRemoteRepo := "git@github.com:kpritam/kpritam.github.io.git" //todo: point to tmtsoftware
   )
 }

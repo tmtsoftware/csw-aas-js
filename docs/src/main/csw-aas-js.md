@@ -28,7 +28,7 @@ yarn
 csw-aas-js exposes react components. 
 
 Javascript
-:   @@snip [Exported Components](../../../../../csw-aas/csw-aas-js/src/aas.js) { #export-components }
+:   @@snip [Exported Components](../../../csw-aas-js/src/aas.js) { #export-components }
 
 
 Importing and usage of those components is explained below:
@@ -37,7 +37,7 @@ Importing and usage of those components is explained below:
 Components can be imported as shown in code snippet below
 
 Javascript
-:   @@snip [Import Components](../../../../../csw-aas/csw-aas-js/example/src/components/NavComponent.jsx) { #import-components }
+:   @@snip [Import Components](../../../csw-aas-js/example/src/components/NavComponent.jsx) { #import-components }
 
 csw-aas-js exposes following react components: 
 
@@ -61,7 +61,7 @@ whenever the AuthContextProvider’s state changes i.e auth. Recommended way is 
 application so that data can be shared anywhere in application via Consumer. 
 
 Javascript
-:   @@snip [AuthContextProvider.jsx](../../../../../csw-aas/csw-aas-js/example/src/components/ExampleApp.jsx) { #AuthContextProvider-component-usage }
+:   @@snip [AuthContextProvider.jsx](../../../csw-aas-js/example/src/components/ExampleApp.jsx) { #AuthContextProvider-component-usage }
 
 ### Source code for RealmRole component
 
@@ -72,7 +72,7 @@ Javascript
 Consumer is similar to consumer from react context api. auth can be accessed using Consumer component 
 
 Javascript
-:   @@snip [Consumer.jsx](../../../../../csw-aas/csw-aas-js/example/src/components/Read.jsx) { #Consumer-component-usage }
+:   @@snip [Consumer.jsx](../../../csw-aas-js/example/src/components/Read.jsx) { #Consumer-component-usage }
 
 ### Source code for RealmRole component
 
@@ -84,7 +84,7 @@ Login component instantiate AAS server with configurations provided. It redirect
 After login auth in context is updated with appropriate values e.g. token, realm & client roles etc.
 
 Javascript
-:   @@snip [Login.jsx](../../../../../csw-aas/csw-aas-js/example/src/components/NavComponent.jsx) { #login-component-usage }
+:   @@snip [Login.jsx](../../../csw-aas-js/example/src/components/NavComponent.jsx) { #login-component-usage }
 
 ### Source code for Login component
 
@@ -95,7 +95,7 @@ Javascript
 Logout component logs out user from AAS server. It clears auth stored in context.
 
 Javascript
-:   @@snip [Logout.jsx](../../../../../csw-aas/csw-aas-js/example/src/components/NavComponent.jsx) { #logout-component-usage }
+:   @@snip [Logout.jsx](../../../csw-aas-js/example/src/components/NavComponent.jsx) { #logout-component-usage }
 
 ### Source code for Logout component
 
@@ -109,7 +109,7 @@ Behaviour is user is not logged in can be defined by html element or react compo
 e.g - ExampleError Component in following snippet
 
 Javascript
-:   @@snip [CheckLogin.jsx](../../../../../csw-aas/csw-aas-js/example/src/components/ExampleApp.jsx) { #checkLogin-component-usage }
+:   @@snip [CheckLogin.jsx](../../../csw-aas-js/example/src/components/ExampleApp.jsx) { #checkLogin-component-usage }
 
 ### Source code for CheckLogin component
 
@@ -123,7 +123,7 @@ Behaviour is user is not logged in can be optionally defined by html element or 
 error prop e.g - ExampleError Component in following snippet.
 
 Javascript
-:   @@snip [RealmRole.jsx](../../../../../csw-aas/csw-aas-js/example/src/components/ExampleApp.jsx) { #realmRole-component-usage }
+:   @@snip [RealmRole.jsx](../../../csw-aas-js/example/src/components/ExampleApp.jsx) { #realmRole-component-usage }
 
 ### Source code for RealmRole component
 
@@ -138,7 +138,7 @@ Behaviour is user is not logged in can be optionally defined by html element or 
 e.g - ExampleError Component in following snippet.
 
 Javascript
-:   @@snip [ClientRole.jsx](../../../../../csw-aas/csw-aas-js/example/src/components/ExampleApp.jsx) { #clientRole-component-usage }
+:   @@snip [ClientRole.jsx](../../../csw-aas-js/example/src/components/ExampleApp.jsx) { #clientRole-component-usage }
 
 ### Source code for ClientRole component
 

@@ -1,17 +1,16 @@
 lazy val aggregatedProjects: Seq[ProjectReference] = Seq(
   `csw-aas-react4s-facade`,
-  `csw-aas-react4s-example`
+  `csw-aas-react4s-example`,
+  `docs`
 )
 
 /* ================= Root Project ============== */
 lazy val `csw-js` = project
   .in(file("."))
-  .enablePlugins(GithubPublishDocs)
   .aggregate(aggregatedProjects: _*)
-  .settings(Settings.mergeSiteWith(docs))
 
 /* ================= Paradox Docs ============== */
-lazy val docs = project.enablePlugins(ParadoxSite)
+lazy val docs = project.enablePlugins(ParadoxSite, GithubPublishDocs)
 
 lazy val `csw-aas-react4s-facade` = project
   .in(file("csw-aas-react4s-facade"))
