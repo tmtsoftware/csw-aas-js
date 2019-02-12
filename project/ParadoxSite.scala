@@ -9,6 +9,8 @@ import sbt._
 
 object ParadoxSite extends AutoPlugin {
 
+  val docsParentDir = "csw-js"
+
   override def requires: Plugins = ParadoxSitePlugin && ParadoxMaterialThemePlugin
 
   override def projectSettings: Seq[Setting[_]] =
@@ -30,8 +32,10 @@ object ParadoxSite extends AutoPlugin {
         val siteMappings = (mappings in makeSite).value
 
         // copy all artifacts inside `js` directory
-        val siteMappingsWithoutVersion = siteMappings.map { case (file, output) => (file, "/js/" + output) }
-        val siteMappingsWithVersion    = siteMappings.map { case (file, output) => (file, "/js/" + cswVersion + output) }
+        val siteMappingsWithoutVersion = siteMappings.map { case (file, output) => (file, s"/$docsParentDir/" + output) }
+        val siteMappingsWithVersion = siteMappings.map {
+          case (file, output) => (file, s"/$docsParentDir/" + cswVersion + output)
+        }
 
         // keep documentation for SNAPSHOT versions in SNAPSHOT directory. (Don't copy SNAPSHOT docs to top level)
         // If not SNAPSHOT version, then copy latest version of documentation to top level as well as inside corresponding version directory

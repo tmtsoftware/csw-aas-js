@@ -38,8 +38,8 @@ object Common extends AutoPlugin {
     javacOptions in (Compile, doc) ++= Seq("-Xdoclint:none"),
     version := {
       sys.props.get("prod.publish") match {
-        case Some("true") => version.value
-        case _            => "0.1-SNAPSHOT"
+        case Some("true") ⇒ version.value
+        case _            ⇒ "0.1-SNAPSHOT"
       }
     },
     isSnapshot := !sys.props.get("prod.publish").contains("true"),
