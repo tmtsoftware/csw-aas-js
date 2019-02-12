@@ -12,14 +12,14 @@ pipeline {
         stage('checkout csw') {
             steps {
                 dir('csw') {
-                    git(url: 'git@github.com:tmtsoftware/csw.git', branch: 'master')
+                    git(url: 'https://github.com/tmtsoftware/csw.git', branch: 'master')
                 }
             }
         }
         stage('checkout csw-js') {
             steps {
                 dir('csw-js') {
-                    git(url: 'git@github.com:tmtsoftware/csw-js.git', branch: 'master')
+                    git(url: 'https://github.com/tmtsoftware/csw-js.git', branch: 'master')
                 }
             }
         }
