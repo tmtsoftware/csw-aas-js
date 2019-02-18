@@ -14,12 +14,14 @@ class GetConfig extends React.Component {
 
   getConfig = async input => {
     console.log(input)
-    this.downloadURI(`http://localhost:5000/config/${input}`)
+    this.downloadURI(`http://localhost:4000/config/${input}`)
   }
 
   render() {
     return (
       <IOOperationComponent
+        txtId='get-config'
+        btnId='get-config'
         componentNameProp='Get Config'
         operation='Get'
         output={this.state.response}

@@ -8,6 +8,16 @@ object Libs {
 
   val `scalatest` = dep("org.scalatest" %%% "scalatest" % "3.0.5") //Apache License 2.0
   val `acyclic`   = "com.lihaoyi" %% "acyclic" % AcyclicVersion % Provided //MIT License
+
+  val `selenium-java`     = "org.seleniumhq.selenium" % "selenium-java"     % "3.141.59"
+  val `embedded-keycloak` = "com.github.tmtsoftware"  % "embedded-keycloak" % "aa531d0c79b64435f6a80bd175dd820a61cf1298"
+}
+
+object CSW {
+  val Version = "master-SNAPSHOT"
+
+  val `csw-location-server` = "com.github.tmtsoftware.csw" %% "csw-location-server" % Version
+  val `csw-config-server`   = "com.github.tmtsoftware.csw" %% "csw-config-server"   % Version
 }
 
 object React4s {

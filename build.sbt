@@ -19,10 +19,7 @@ lazy val `csw-aas-react4s-facade` = project
     fork := false,
     scalacOptions += "-P:scalajs:sjsDefinedByDefault",
     resolvers += Resolver.sonatypeRepo("snapshots"),
-    libraryDependencies ++= Seq(
-      Libs.`scalatest`.value % Test,
-      React4s.`react4s`.value,
-    )
+    libraryDependencies ++= Dependencies.AASReact4s.value
   )
 
 lazy val `csw-aas-react4s-example` = project
@@ -47,4 +44,8 @@ lazy val `csw-aas-react4s-example` = project
     )
   )
 
-
+lazy val `integration` = project
+  .in(file("integration"))
+  .settings(
+    libraryDependencies ++= Dependencies.Integration.value
+  )

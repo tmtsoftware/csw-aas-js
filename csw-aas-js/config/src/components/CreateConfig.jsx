@@ -12,7 +12,7 @@ class CreateConfig extends React.Component {
 
   createConfig = (input, token) => {
     sPost(
-      `http://localhost:5000/config/${input}?comment="Sample commit message"`,
+      `http://localhost:4000/config/${input}?comment="Sample commit message"`,
       this.callBack,
       token,
       this.state.fileContent,
@@ -32,6 +32,8 @@ class CreateConfig extends React.Component {
           return (
             <div className='card-panel hoverable'>
               <IOOperationComponent
+                txtId='file-path'
+                btnId='create-config'
                 token={auth.token}
                 componentNameProp='Create Config'
                 operation='Create Config'
@@ -42,6 +44,7 @@ class CreateConfig extends React.Component {
                 File Content
                 <span>
                   <textarea
+                    id='file-content-txt-area'
                     value={this.state.fileContent}
                     onChange={this.updateFileContent}
                   />

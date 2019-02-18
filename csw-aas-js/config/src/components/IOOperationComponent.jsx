@@ -8,22 +8,28 @@ class IOOperationComponent extends React.Component {
   }
 
   render() {
-    const { componentNameProp, operation, output } = this.props
+    const { txtId, btnId, componentNameProp, operation, output } = this.props
 
     return (
       <div className='card-panel hoverable'>
         <h6>{componentNameProp} Request</h6>
         <div>
           <span>
-            <textarea value={this.state.input} onChange={this.updateInput} />
+            <textarea
+              id={txtId + '-txt-area'}
+              value={this.state.input}
+              onChange={this.updateInput}
+            />
           </span>
         </div>
         <div>
-          <button onClick={this.handleClick}>{operation}</button>
+          <button id={btnId + '-btn'} onClick={this.handleClick}>
+            {operation}
+          </button>
         </div>
         <div>
           <span>
-            <div> {output} </div>
+            <div id={btnId + '-output'}> {output} </div>
           </span>
         </div>
       </div>
@@ -42,6 +48,8 @@ class IOOperationComponent extends React.Component {
 }
 
 IOOperationComponent.propTypes = {
+  txtId: PropTypes.string,
+  btnId: PropTypes.string,
   componentNameProp: PropTypes.string,
   operation: PropTypes.string,
   output: PropTypes.string,
