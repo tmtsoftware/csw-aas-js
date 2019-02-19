@@ -2,6 +2,7 @@
 
 exports[`<Login /> should render login 1`] = `
 <button
+  id="aas-login"
   onClick={[Function]}
 >
   Login
