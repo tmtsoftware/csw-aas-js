@@ -11,6 +11,8 @@ object Libs {
 
   val `selenium-java`     = "org.seleniumhq.selenium" % "selenium-java"     % "3.141.59"
   val `embedded-keycloak` = "com.github.tmtsoftware"  % "embedded-keycloak" % "aa531d0c79b64435f6a80bd175dd820a61cf1298"
+  val `webdrivermanager`  = "io.github.bonigarcia"    % "webdrivermanager"  % "3.3.0"
+
 }
 
 object CSW {

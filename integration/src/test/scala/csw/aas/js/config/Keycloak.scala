@@ -2,7 +2,7 @@ package csw.aas.js.config
 
 import org.tmt.embedded_keycloak.KeycloakData.{ApplicationUser, Client, ClientRole, Realm}
 import org.tmt.embedded_keycloak.impl.StopHandle
-import org.tmt.embedded_keycloak.{EmbeddedKeycloak, KeycloakData}
+import org.tmt.embedded_keycloak.{EmbeddedKeycloak, KeycloakData, Settings ⇒ KeycloakSettings}
 
 import scala.concurrent.duration.{DurationLong, FiniteDuration}
 import scala.concurrent.{Await, ExecutionContext}
@@ -43,7 +43,8 @@ object Keycloak {
             )
           )
         )
-      )
+      ),
+      KeycloakSettings.default.copy(keycloakDirectory = System.getProperty("user.home") + "/.keycloak/embedded-keycloak")
     )
     val stopHandle = Await.result(embeddedKeycloak.startServer(), serverTimeout)
 
