@@ -4,12 +4,15 @@ import java.nio.file.Paths
 
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
+import akka.stream.Materializer
 import csw.aas.core.deployment.AuthServiceLocation
+import csw.aas.js.config.Utils.{await, coordShutdown, terminateHttpServerBinding}
 import csw.config.server.{ServerWiring ⇒ ConfigServerWiring}
-import Utils.{await, coordShutdown, terminateHttpServerBinding}
 import csw.location.server.internal.{ServerWiring ⇒ LocationServerWiring}
 import org.tmt.embedded_keycloak.impl.StopHandle
 import org.tmt.embedded_keycloak.{EmbeddedKeycloak, Settings ⇒ KeycloakSettings}
+
+import scala.concurrent.ExecutionContext
 
 trait CswSetup {
 
@@ -18,10 +21,12 @@ trait CswSetup {
 
   import locationWiring._
   import actorRuntime._
-  implicit val system: ActorSystem = locationWiring.actorSystem
+  implicit val _system: ActorSystem  = locationWiring.actorSystem
+  implicit val _ec: ExecutionContext = ec
+  implicit val _mat: Materializer    = mat
 
   lazy val configWiring: ConfigServerWiring = new ConfigServerWiring {
-    override lazy val actorSystem: ActorSystem = system
+    override lazy val actorSystem: ActorSystem = _system
   }
 
   private var configServer: Option[Http.ServerBinding] = None
@@ -41,7 +46,7 @@ trait CswSetup {
 
   def shutdown(): Unit = {
     deleteServerFiles()
-    await(Http(system).shutdownAllConnectionPools())
+    await(Http(_system).shutdownAllConnectionPools())
     configServer.foreach(terminateHttpServerBinding)
     terminateHttpServerBinding(locationServerBinding)
     coordShutdown(actorRuntime.shutdown)

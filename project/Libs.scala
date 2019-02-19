@@ -10,7 +10,7 @@ object Libs {
   val `acyclic`   = "com.lihaoyi" %% "acyclic" % AcyclicVersion % Provided //MIT License
 
   val `selenium-java`     = "org.seleniumhq.selenium" % "selenium-java"     % "3.141.59"
-  val `embedded-keycloak` = "com.github.tmtsoftware"  % "embedded-keycloak" % "aa531d0c79b64435f6a80bd175dd820a61cf1298"
+  val `embedded-keycloak` = "com.github.tmtsoftware"  % "embedded-keycloak" % "aa531d0c79"
   val `webdrivermanager`  = "io.github.bonigarcia"    % "webdrivermanager"  % "3.3.0"
 
 }
