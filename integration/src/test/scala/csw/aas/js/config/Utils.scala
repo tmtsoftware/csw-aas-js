@@ -12,7 +12,7 @@ import scala.concurrent.{Await, Future}
 
 object Utils {
 
-  val defaultTimeout: FiniteDuration = 30.seconds
+  val defaultTimeout: FiniteDuration = 60.seconds
 
   def await[T](f: Future[T]): T = Await.result(f, defaultTimeout)
 

@@ -35,12 +35,12 @@ trait JsConfigServer {
         minBackoff = 100.millis,
         maxBackoff = 5.seconds,
         randomFactor = 0.2,
-        maxRestarts = 10
+        maxRestarts = 20
       ) { () =>
         val statusF = Http().singleRequest(HttpRequest(uri = url)).map(_.status)
         Source
           .fromFuture(statusF)
-          .collect { case StatusCodes.OK ⇒ true }
+          .collect { case StatusCodes.OK ⇒ println(s"==== Server is up at: [$url] ===="); true }
           .recover { case x ⇒ println("RETRY: probing config node server"); throw x }
       }
       .runWith(Sink.head)

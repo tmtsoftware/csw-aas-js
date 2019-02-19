@@ -1,6 +1,7 @@
 package csw.aas.js.config.pages
 
 import org.openqa.selenium.WebDriver
+import org.openqa.selenium.support.ui.WebDriverWait
 import org.scalatest.selenium.WebBrowser
 
 class ConfigAdminPage(implicit driver: WebDriver) extends WebBrowser {
@@ -17,6 +18,10 @@ class ConfigAdminPage(implicit driver: WebDriver) extends WebBrowser {
     this
   }
 
-  def outputText: Option[String] = find(createConfigOutput).map(_.text)
+  def outputText: String = {
+    new WebDriverWait(driver, 10)
+      .until[Boolean](_ ⇒ find(createConfigOutput).map(_.text).exists(_.length != 0))
 
+    find(createConfigOutput).map(_.text).getOrElse("")
+  }
 }
