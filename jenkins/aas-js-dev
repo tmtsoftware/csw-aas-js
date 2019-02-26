@@ -48,7 +48,6 @@ pipeline {
     post {
         always {
             script {
-                sh "cd csw/target/universal/stage/bin && ./csw-services.sh stop"
                 sendNotification(currentBuild.result)
             }
         }
