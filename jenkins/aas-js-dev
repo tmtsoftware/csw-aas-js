@@ -41,6 +41,8 @@ pipeline {
 
         stage('example') {
             steps {
+                sh "rm -rf csw-aas-js/example/node_modules"
+                sh "rm -rf csw-aas-js/example/package-lock.json"
                 sh "cd csw-aas-js/example && npm install && npm run build"
             }
         }
