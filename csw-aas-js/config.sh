@@ -3,7 +3,7 @@
 script_name=$0
 js_dir=$(dirname "$0")
 
-function run {
+run() {
     case "$1" in
         start)
             cd "$js_dir" && npm run config
@@ -18,7 +18,7 @@ function run {
     esac
 }
 
-function usage {
+usage() {
     echo
     echo -e "usage: $script_name COMMAND"
 

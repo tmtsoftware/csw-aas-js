@@ -8,6 +8,7 @@ import akka.stream.Materializer
 import csw.aas.core.deployment.AuthServiceLocation
 import csw.aas.js.config.Utils.{await, coordShutdown, terminateHttpServerBinding}
 import csw.config.server.{ServerWiring ⇒ ConfigServerWiring}
+import csw.location.server.commons.ClusterAwareSettings
 import csw.location.server.internal.{ServerWiring ⇒ LocationServerWiring}
 import org.tmt.embedded_keycloak.impl.StopHandle
 import org.tmt.embedded_keycloak.{EmbeddedKeycloak, Settings ⇒ KeycloakSettings}
@@ -16,7 +17,7 @@ import scala.concurrent.ExecutionContext
 
 trait CswSetup {
 
-  private val locationWiring        = new LocationServerWiring
+  private val locationWiring        = LocationServerWiring.make(ClusterAwareSettings.onPort(5555).joinLocal(5555))
   private val locationServerBinding = await(locationWiring.locationHttpService.start())
 
   import locationWiring._
