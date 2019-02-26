@@ -1,6 +1,7 @@
 lazy val aggregatedProjects: Seq[ProjectReference] = Seq(
   `csw-aas-react4s-facade`,
   `csw-aas-react4s-example`,
+  `integration`,
   `docs`
 )
 

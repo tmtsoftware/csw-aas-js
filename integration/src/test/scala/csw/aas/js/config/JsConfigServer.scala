@@ -13,7 +13,7 @@ case class StreamFailedAfterMaxRetriesException(msg: String) extends Exception(m
 
 trait JsConfigServer {
 
-  private val jsDir        = os.pwd / "csw-aas-js"
+  private val jsDir        = os.pwd / os.up / "csw-aas-js"
   private val configScript = jsDir / "config.sh"
 
   def startNodeConfigServer()(implicit actorSystem: ActorSystem, ec: ExecutionContext, mat: Materializer): Future[Boolean] =
