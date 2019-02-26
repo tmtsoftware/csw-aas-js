@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
 
 script_name=$0
-js_dir=$(dirname "$0")
+js_dir="$( cd "$(dirname "$0")" || exit ; pwd -P )"
 
 run() {
     case "$1" in
         start)
-            cd "$js_dir" && npm run config
+            clean_install "$js_dir"
+            clean_install "$js_dir"/config
+
+            cd "$js_dir" && ls -la && npm run config
         ;;
         stop)
             cd "$js_dir" && npm run stopConfig
@@ -16,6 +19,14 @@ run() {
             usage
         ;;
     esac
+}
+
+clean_install() {
+    local wd=$1
+
+    rm -rf "$wd"/node_modules
+    rm -rf "$wd"/package-lock.json
+    cd "$wd" && npm install
 }
 
 usage() {

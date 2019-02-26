@@ -13,6 +13,7 @@ trait Chrome extends WebBrowser with Driver {
       .setHeadless(Headless)
       .addArguments("--window-size=1920,1080") // this is required in headless mode
       .addArguments("--start-maximized")
+      .addArguments("--no-sandbox")
     new ChromeDriver(chromeOptions)
   }
 
