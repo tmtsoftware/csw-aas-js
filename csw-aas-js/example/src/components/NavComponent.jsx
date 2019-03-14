@@ -28,8 +28,8 @@ class NavComponent extends React.Component {
                     ) : auth.isAuthenticated() ? (
                       // #logout-component-usage
                       <Logout />
-                    ) : (
                       // #logout-component-usage
+                    ) : (
                       // #login-component-usage
                       <Login />
                       // #login-component-usage
