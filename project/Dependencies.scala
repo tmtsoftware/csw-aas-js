@@ -5,8 +5,7 @@ object Dependencies {
   val AASReact4s = Def.setting(
     Seq(
       Libs.`scalatest`.value % Test,
-      React4s.`react4s`.value,
-      React4s.`router4s`.value
+      React4s.`react4s`.value
     )
   )
 
@@ -21,6 +20,17 @@ object Dependencies {
     "babel-polyfill"       → "6.26.0",
     "babel-preset-stage-0" → "6.24.1",
     "html-webpack-plugin"  → "3.2.0"
+  )
+
+  val Integration = Def.setting(
+    Seq(
+      Libs.`scalatest`.value    % Test,
+      Libs.`selenium-java`      % Test,
+      CSW.`csw-location-server` % Test,
+      CSW.`csw-config-server`   % Test,
+      Libs.`embedded-keycloak`  % Test,
+      Libs.`webdrivermanager`   % Test
+    )
   )
 
 }

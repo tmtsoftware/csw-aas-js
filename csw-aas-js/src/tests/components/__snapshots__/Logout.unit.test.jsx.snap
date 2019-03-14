@@ -2,6 +2,7 @@
 
 exports[`<Logout /> should render logout 1`] = `
 <button
+  id="aas-logout"
   onClick={[Function]}
 >
   Logout

@@ -9,6 +9,7 @@ export class Login extends React.Component {
   render() {
     return (
       <button
+        id='aas-login'
         onClick={async () => {
           // Call to this.props.login method is responsible for resolving and instantiating AAS server
           await this.props.login()

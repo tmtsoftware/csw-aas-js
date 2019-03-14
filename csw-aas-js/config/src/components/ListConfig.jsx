@@ -6,7 +6,7 @@ class ListConfig extends React.Component {
   state = { response: '' }
 
   listConfig = async () => {
-    const response = await fetch(`http://localhost:5000/list`)
+    const response = await fetch(`http://localhost:4000/list`)
     if (response.status === 200) {
       const a = await response.json()
       this.setState({ response: JSON.stringify(a) })
@@ -16,6 +16,8 @@ class ListConfig extends React.Component {
   render() {
     return (
       <IOOperationComponent
+        txtId='list-config'
+        btnId='list-config'
         componentNameProp='List Config'
         operation='List'
         output={this.state.response}

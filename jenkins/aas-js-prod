@@ -4,6 +4,7 @@ pipeline {
     }
 
     options {
+        timeout(time: 2, unit: 'HOURS') 
         timestamps()
     }
 
@@ -14,6 +15,11 @@ pipeline {
             }
         }
 
+        stage('test:it') {
+            steps {
+                sh "sbt test"
+            }
+        }
 
         stage('publish') {
             steps {
