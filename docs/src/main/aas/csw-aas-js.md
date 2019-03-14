@@ -1,13 +1,14 @@
 # Javascript Adapter (csw-aas-js)
 
-csw-aas-js is a npm package which provides react components. UI applications can use these react components which will 
-enable UI application to show or hide components based on authentication and authorization policy.  
+`csw-aas-js` is an npm package which provides React components that integrate with the CSW 
+Authentication and Authorization Service.  UI applications can use these React components to 
+enable the application to show or hide components based on the authentication and authorization policy.  
 
 <!-- introduction to the javascript adapter -->
 
 ## Dependencies
 
-To use the csw-aas-js adapter, run this command from root folder of your application where package.json exists:
+To use the `csw-aas-js` adapter, run this command from root folder of your application where `package.json` exists:
 
 npm
 :   @@@vars
@@ -25,21 +26,7 @@ yarn
     
 ## Components
 
-csw-aas-js exposes react components. 
-
-Javascript
-:   @@snip [Exported Components](../../../../csw-aas-js/src/aas.js) { #export-components }
-
-
-Importing and usage of those components is explained below:
-### Importing components
-
-Components can be imported as shown in code snippet below
-
-Javascript
-:   @@snip [Import Components](../../../../csw-aas-js/example/src/components/NavComponent.jsx) { #import-components }
-
-csw-aas-js exposes following react components: 
+`csw-aas-js` exposes the following React components. 
 
  - [AuthContextProvider](#AuthContextProvider)
  - [Consumer](#consumer)
@@ -49,97 +36,108 @@ csw-aas-js exposes following react components:
  - [RealmRole](#realmrole)
  - [ClientRole](#clientrole)
 
-## AuthContextProvider
+Components can be imported as shown in code snippet below
 
-AuthContextProvider is wrapper over provider from react context API. It expects config json to be passed. This config 
-json is UI application specific AAS server configuration e.g. clientId, realm. When user loges in AAS Server is instantiated 
-by merging UI application specific config and predefined configuration. UI application can choose to override predefined 
-json configuration. Once AAS sever is instantiated, auth object is updated with needed attributes and apis. This auth
-is available to all react components. Auth Context is designed to share data that can be considered “global” for a 
-tree of React components and is available via Consumer. All consumers that are descendants of a Provider will re-render 
-whenever the AuthContextProvider’s state changes i.e auth. Recommended way is use AuthContextProvider to wrap entire 
-application so that data can be shared anywhere in application via Consumer. 
+Javascript
+:   @@snip [Import Components](../../../../csw-aas-js/example/src/components/NavComponent.jsx) { #import-components }
+
+
+### AuthContextProvider
+
+`AuthContextProvider` is wrapper over a React [Context.Provider](https://reactjs.org/docs/context.html#contextprovider). 
+A JSON configuration file must be passed in that contains the application specific AAS server configuration 
+(e.g. clientId, realm). When a user logs in, an AAS Server is instantiated, with the UI application specific
+configuration overriding the predefined configuration. 
+Once the AAS sever is instantiated, an `auth` object is created with the needed attributes and APIs. This `auth` object
+is available to other React components; since `AuthContextProvider` is a `Provider`, its data can be shared with any of 
+the children React components in its tree in a `Consumer` component (see below). All `Consumer`s that are 
+descendants of a `Provider` will re-render whenever the AuthContextProvider’s state changes, e.g. a user authorizes.
+It is recommended to use `AuthContextProvider` to wrap the entire application so that data can be shared anywhere in 
+application via a `Consumer`. 
 
 Javascript
 :   @@snip [AuthContextProvider.jsx](../../../../csw-aas-js/example/src/components/ExampleApp.jsx) { #AuthContextProvider-component-usage }
 
-### Source code for RealmRole component
+#### Source code for RealmRole component
 
 * @github[AuthContextProvider Component](/csw-aas-js/src/components/context/AuthContextProvider.jsx)
 
-## Consumer
+### Consumer
 
-Consumer is similar to consumer from react context api. auth can be accessed using Consumer component 
+`Consumer` is similar to a React [Context.Consumer](https://reactjs.org/docs/context.html#contextconsumer). 
+The shared `auth` object from the `AuthContextProvider` can be accessed using a `Consumer` component 
 
 Javascript
 :   @@snip [Consumer.jsx](../../../../csw-aas-js/example/src/components/Read.jsx) { #Consumer-component-usage }
 
-### Source code for RealmRole component
+#### Source code for RealmRole component
 
 * @github[Consumer Component](/csw-aas-js/src/components/context/AuthContext.jsx)
 
-## Login
+### Login
 
-Login component instantiate AAS server with configurations provided. It redirects to AAS server login page for user to login.
-After login auth in context is updated with appropriate values e.g. token, realm & client roles etc.
+The `Login` component instantiates an AAS server with the configurations provided. It redirects to an AAS server login page
+for the user to login. After login, the `auth` object in the context is updated with the appropriate values,
+e.g. token, realm & client roles etc.
 
 Javascript
 :   @@snip [Login.jsx](../../../../csw-aas-js/example/src/components/NavComponent.jsx) { #login-component-usage }
 
-### Source code for Login component
+#### Source code for Login component
 
 * @github[Login Component](/csw-aas-js/src/components/Login.jsx)
 
-## Logout
+### Logout
 
-Logout component logs out user from AAS server. It clears auth stored in context.
+The `Logout` component logs out the user from the AAS server. It clears the `auth` object stored in the context.
 
 Javascript
 :   @@snip [Logout.jsx](../../../../csw-aas-js/example/src/components/NavComponent.jsx) { #logout-component-usage }
 
-### Source code for Logout component
+#### Source code for Logout component
 
 * @github[Logout Component](/csw-aas-js/src/components/Logout.jsx)
 
-## CheckLogin
+### CheckLogin
 
-CheckLogin components provides ability to show something only if user is logged in. 
-In the following code snippet Write is a react component is shown only if user is logged in.
-Behaviour is user is not logged in can be defined by html element or react component and that can be passed to error prop
-e.g - ExampleError Component in following snippet
+`CheckLogin` components provide ability to show something only if the user is logged in. 
+In the following code snippet, `Write` is a react component that is shown only if the user is logged in.
+The behavior if the user is not logged in can be defined by an HTML element or React component that is 
+passed into the component as an `error` property, shown as an `ExampleError` Component in following snippet.
 
 Javascript
 :   @@snip [CheckLogin.jsx](../../../../csw-aas-js/example/src/components/ExampleApp.jsx) { #checkLogin-component-usage }
 
-### Source code for CheckLogin component
+#### Source code for CheckLogin component
 
 * @github[CheckLogin Component](/csw-aas-js/src/components/authentication/CheckLogin.jsx)
 
-## RealmRole
+### RealmRole
 
-RealmRole components provides ability to show something only if user is logged in and has specified realm role. 
-In the following code snippet div is shown only if user is logged in and has realm role specified in realmRole prop
-Behaviour is user is not logged in can be optionally defined by html element or react component and that can be passed to 
-error prop e.g - ExampleError Component in following snippet.
+`RealmRole` components provide the ability to show something only if the user is logged in and has the specified realm role. 
+In the following code snippet, the contents of the `div` block are shown only if the user is logged in and 
+has the realm role specified in the `realmRole` prop.  Similar to `CheckLogin`,
+the behaviour if the user is not logged in can be optionally defined by an HTML element or React component
+that is passed into the component as an `error` property, shown as an `ExampleError` Component in following snippet.
 
 Javascript
 :   @@snip [RealmRole.jsx](../../../../csw-aas-js/example/src/components/ExampleApp.jsx) { #realmRole-component-usage }
 
-### Source code for RealmRole component
+#### Source code for RealmRole component
 
 * @github[RealmRole Component](/csw-aas-js/src/components/authorization/RealmRole.jsx)
 
-## ClientRole
+### ClientRole
 
-ClientRole components provides ability to show something only if user is logged in and has specified client role for 
-specified client. In the following code snippet div is shown only if user is logged in and has client role specified 
-in clientRole prop for client specified in client prop.
-Behaviour is user is not logged in can be optionally defined by html element or react component and that can be passed to error prop
-e.g - ExampleError Component in following snippet.
+`ClientRole` components provide the ability to show something only if the user is logged in and has the specified client 
+role for the specified client. In the following code snippet, the contents of the `div` block are shown only if
+the user is logged in and has the client role for specified client in the `clientRole` prop.  Similar to `RealmRole`,
+the behaviour if the user is not logged in can be optionally defined by an HTML element or React component
+that is passed into the component as an `error` property, shown as an `ExampleError` Component in following snippet.
 
 Javascript
 :   @@snip [ClientRole.jsx](../../../../csw-aas-js/example/src/components/ExampleApp.jsx) { #clientRole-component-usage }
 
-### Source code for ClientRole component
+#### Source code for ClientRole component
 
 * @github[ClientRole Component](/csw-aas-js/src/components/authorization/ClientRole.jsx)
