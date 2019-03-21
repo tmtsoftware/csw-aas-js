@@ -11,7 +11,7 @@ This module provides statically typed API for the `csw-aas-js` adapter for Scala
 ### Usage
 Add the following dependency to your SBT build:
 
-libraryDependencies += "com.github.tmtsoftware.csw" %%% "csw-aas-react4s-facade" % "$Version"
+`libraryDependencies += "com.github.tmtsoftware.csw" %%% "csw-aas-react4s-facade" % "$Version"`
 
 ### Example
 ```scala
