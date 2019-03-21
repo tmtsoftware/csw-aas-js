@@ -15,11 +15,6 @@ See [csw-aas-js](https://tmtsoftware.github.io/csw-js/0.1-SNAPSHOT/aas/csw-aas-j
 ## csw-aas-react4s-facade
 This module provides statically typed API for the `csw-aas-js` adapter for Scala.js programs.
 
-### Usage
-Add the following dependency to your SBT build:
-
-`libraryDependencies += "com.github.tmtsoftware.csw" %%% "csw-aas-react4s-facade" % "$Version"`
-
 ### Example
 ```scala
     import csw.aas.react4s.facade.context.{AuthContext, AuthContextProvider}
