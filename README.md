@@ -2,12 +2,47 @@
 
 This project includes following sub modules:
 ## csw-aas-js
-This module is published at npm registry as a javascript library 
-which provides re-usable react components for authentication and authorization.
+This module is published at npm registry as a javascript library which provides re-usable react components for authentication and authorization.
+See [csw-aas-js](https://tmtsoftware.github.io/csw-js/0.1-SNAPSHOT/aas/csw-aas-js) docs for details.
 
 ## csw-aas-react4s-facade
-This module is published at bintray so that any scalajs application can depend on it.
-This is a simple scalajs facade written for `csw-aas-js`.
+This module provides statically typed API for the `csw-aas-js` adapter for Scala.js programs.
+
+### Usage
+Add the following dependency to your SBT build:
+
+libraryDependencies += "com.github.tmtsoftware.csw" %%% "csw-aas-react4s-facade" % "$Version"
+
+### Example
+```scala
+    import csw.aas.react4s.facade.context.{AuthContext, AuthContextProvider}
+    import csw.aas.react4s.facade.components._
+
+    AuthContextProvider(
+      Config,
+      CheckLogin(
+        error = Login(),
+        children = Logout()
+      )
+    )
+    
+    object Config extends AuthConfig {
+      override val realm: String    = "example"
+      override val clientId: String = "example-app"
+    }
+```
+Above example shows usage of two components provided by `csw-aas-react4s-facade`.
+1. `AuthContextProvider`: This maps to auth context provided by `csw-aas-js`. This takes following typed parameters, 
+
+    1.1. `AuthConfig`: Keycloak configuration
+    
+    1.2. `Node*`: Nodes which are React components created via [react4s](https://github.com/Ahnfelt/react4s) library which is a facade over javascript react library
+    
+2. `CheckLogin`: Typed component provided by `csw-aas-react4s-facade` which takes two params
+
+    2.1. Error component: Gets rendered if user is not authenticated
+    
+    2.2. Children components: Gets rendered if user is authenticated
 
 ## csw-aas-react4s-example
 This demonstrate usage of `csw-aas-react4s-facade`.
