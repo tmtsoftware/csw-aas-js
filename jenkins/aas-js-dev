@@ -30,7 +30,7 @@ pipeline {
 
         stage('test:it') {
             steps {
-                sh "sbt test"
+                sh "sbt clean compile test"
             }
         }
 
