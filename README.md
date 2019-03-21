@@ -1,5 +1,12 @@
 # csw-js
 
+This project provides javascript and scalajs libraries for Authentication and Authorization Service (AAS) provided by CSW.
+This will help build an browser based applications that enforce authentication & authorization policies for TMT.
+
+The backbone of AAS is the [Keycloak](https://www.keycloak.org/documentation.html). It is where all client and server applications need to be registered and configured.
+We are using javascript adapter called [keycloak-js](https://www.npmjs.com/package/keycloak-js) provided by Keycloak as a underlying mechanism to talk to keycloak.
+As a consumer of this project, you need not to be worried about this. You will always be interacting with libraries provided by `csw` which are just wrapper over keycloak. 
+
 This project includes following sub modules:
 ## csw-aas-js
 This module is published at npm registry as a javascript library which provides re-usable react components for authentication and authorization.
