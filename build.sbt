@@ -15,12 +15,13 @@ lazy val docs = project.enablePlugins(ParadoxSite, GithubPublishDocs)
 
 lazy val `csw-aas-react4s-facade` = project
   .in(file("csw-aas-react4s-facade"))
-  .enablePlugins(ScalaJSPlugin)
+  .enablePlugins(ScalaJSBundlerPlugin)
   .settings(
     fork := false,
     scalacOptions += "-P:scalajs:sjsDefinedByDefault",
     resolvers += Resolver.sonatypeRepo("snapshots"),
-    libraryDependencies ++= Dependencies.AASReact4s.value
+    libraryDependencies ++= Dependencies.AASReact4s.value,
+    npmDependencies in Compile ++= Dependencies.AASReact4sNpmDeps
   )
 
 lazy val `csw-aas-react4s-example` = project
