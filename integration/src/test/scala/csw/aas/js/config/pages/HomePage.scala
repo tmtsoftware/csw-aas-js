@@ -1,7 +1,7 @@
 package csw.aas.js.config.pages
 
 import org.openqa.selenium.WebDriver
-import org.scalatest.selenium.{Page, WebBrowser}
+import org.scalatestplus.selenium.{Page, WebBrowser}
 
 class HomePage(implicit driver: WebDriver) extends WebBrowser with Page {
 

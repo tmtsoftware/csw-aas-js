@@ -1,7 +1,7 @@
 package csw.aas.js.config
 import io.github.bonigarcia.wdm.WebDriverManager
 import org.openqa.selenium.chrome.{ChromeDriver, ChromeOptions}
-import org.scalatest.selenium.{Driver, WebBrowser}
+import org.scalatestplus.selenium.{Driver, WebBrowser}
 
 trait Chrome extends WebBrowser with Driver {
   import Settings._

@@ -6,11 +6,11 @@ object Libs {
   val ScalaVersion   = "2.12.8"
   val AcyclicVersion = "0.1.8"
 
-  val `scalatest` = dep("org.scalatest" %%% "scalatest" % "3.0.5") //Apache License 2.0
+  val `scalatest` = dep("org.scalatest" %%% "scalatest" % "3.0.6") //Apache License 2.0
   val `acyclic`   = "com.lihaoyi" %% "acyclic" % AcyclicVersion % Provided //MIT License
 
   val `selenium-java`     = "org.seleniumhq.selenium" % "selenium-java"     % "3.141.59"
-  val `embedded-keycloak` = "com.github.tmtsoftware"  % "embedded-keycloak" % "aa531d0c79"
+  val `embedded-keycloak` = "com.github.tmtsoftware"  % "embedded-keycloak" % "dfa0076dff6c"
   val `webdrivermanager`  = "io.github.bonigarcia"    % "webdrivermanager"  % "3.3.0"
 
 }

@@ -2,7 +2,7 @@ package csw.aas.js.config.pages
 
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.support.ui.WebDriverWait
-import org.scalatest.selenium.WebBrowser
+import org.scalatestplus.selenium.WebBrowser
 
 class ConfigAdminPage(implicit driver: WebDriver) extends WebBrowser {
 

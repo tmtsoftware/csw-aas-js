@@ -1,7 +1,7 @@
 package csw.aas.js.config.pages
 
 import org.openqa.selenium.WebDriver
-import org.scalatest.selenium.WebBrowser
+import org.scalatestplus.selenium.WebBrowser
 
 class LoginPage(implicit driver: WebDriver) extends WebBrowser {
 
