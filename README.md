@@ -88,3 +88,10 @@ This module includes E2E test which demonstrate following flow which is all auto
 4. Create configuration file
 
 To run this test, execute `sbt test` or `sbt integration/test` command
+
+## Troubleshooting
+
+If `sbt test` fails with an error stating that `http://localhost:3000` is not accessible, it may be this [issue](https://github.com/facebook/create-react-app/issues/2844). 
+The solution is to unset the `HOST` environment variable before running the test.
+
+ 
