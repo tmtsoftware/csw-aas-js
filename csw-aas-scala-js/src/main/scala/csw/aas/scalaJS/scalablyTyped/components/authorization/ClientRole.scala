@@ -1,8 +1,6 @@
 package csw.aas.scalaJS.scalablyTyped.components.authorization
 
-import csw.aas.scalaJS.scalablyTyped.components.context.AuthContext
-import typings.reactLib.dsl.define
-import typings.reactLib.reactMod.{FC, ReactElement, ReactNode}
+import typings.reactLib.reactMod.ReactElement
 
 import scala.scalajs.js
 import scala.scalajs.js.UndefOr

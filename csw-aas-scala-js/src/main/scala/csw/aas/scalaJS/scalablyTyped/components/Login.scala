@@ -1,6 +1,7 @@
 package csw.aas.scalaJS.scalablyTyped.components
+
 import csw.aas.scalaJS.scalablyTyped.components.context.WithContext
-import typings.reactLib.reactMod.{Component, ReactNode, _}
+import typings.reactLib.reactMod._
 
 import scala.scalajs.js
 
@@ -14,7 +15,7 @@ class Login extends Component[Props, js.Any, js.Any] {
     ButtonHTMLAttributes(
       HTMLAttributes(
         id = "aas-login",
-        onClick = _ => props.login
+        onClick = _ => props.login()
       ),
       value = "Login"
     )

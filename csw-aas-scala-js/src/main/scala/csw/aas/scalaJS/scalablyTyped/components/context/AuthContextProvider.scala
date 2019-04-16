@@ -20,5 +20,5 @@ class AuthContextProvider extends Component[Props, State, js.Any] {
     value.cast[ReactNode]
   }
 
-  def instantiateAAS(url: String, redirect: Boolean) = {}
+  def instantiateAAS(url: String, redirect: Boolean): Unit = {}
 }

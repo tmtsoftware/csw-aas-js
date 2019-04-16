@@ -1,4 +1,5 @@
 package csw.aas.scalaJS.scalablyTyped.components
+
 import csw.aas.scalaJS.scalablyTyped.components.context.KeycloakAuth
 import csw.aas.scalaJS.scalablyTyped.config.Constants._
 import typings.keycloakDashJsLib.keycloakDashJsLibStrings.{`check-sso`, `login-required`, hybrid}
@@ -7,7 +8,6 @@ import typings.keycloakDashJsLib.keycloakDashJsMod.{
   KeycloakInitOptions,
   KeycloakInstance,
   KeycloakPromise,
-  KeycloakPromiseCallback,
   ^ => Keycloak
 }
 import typings.stdLib.^.console
@@ -29,23 +29,21 @@ class Auth() {
     )
   }
 
-  def authenticate(config: String,
-                   url: String,
-                   redirect: Boolean): (KeycloakInstance, KeycloakPromise[Boolean, KeycloakError]) = {
+  def authenticate(
+      config: String,
+      url: String,
+      redirect: Boolean
+  ): (KeycloakInstance, KeycloakPromise[Boolean, KeycloakError]) = {
     console.info("instantiating AAS")
     val urlMap = Map("url" -> url)
     import js.JSConverters._
     val keycloak: KeycloakInstance = Keycloak((AASConfig ++ Config ++ urlMap).toJSDictionary.asInstanceOf[js.Object])
 
-    val onSuccess: KeycloakPromiseCallback[Boolean] = _ => console.info("token refreshed successfully")
-    val onError: KeycloakPromiseCallback[Boolean]   = _ => console.info("Failed to refresh the token, or the session has expired")
     keycloak.onTokenExpired = { () =>
-      {
-        keycloak
-          .updateToken(0)
-          .success(onSuccess)
-          .error(onError)
-      }
+      keycloak
+        .updateToken(0)
+        .success(_ => console.info("token refreshed successfully"))
+        .error(_ => console.info("Failed to refresh the token, or the session has expired"))
     }: js.Function0[Unit]
 
     val authenticated: KeycloakPromise[Boolean, KeycloakError] = keycloak.init(
