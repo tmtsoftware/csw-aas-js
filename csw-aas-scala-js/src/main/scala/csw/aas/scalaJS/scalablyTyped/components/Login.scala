@@ -22,6 +22,8 @@ class Login extends Component[Props, js.Any, js.Any] {
 }
 
 object Login {
-  val login: Login                             = new Login()
-  def withContextLogin: ReactElement[Seq[Any]] = WithContext.withContext(login.asInstanceOf[ReactElement[Seq[Any]]])
+  val login: Login = new Login()
+  private val loginReactComponentElement: ReactComponentElement[Any, Seq[Any]] =
+    login.asInstanceOf[ReactComponentElement[Any, Seq[Any]]]
+  def withContextLogin: ComponentClass[Seq[Any], Any] = WithContext.withContext(loginReactComponentElement)
 }
