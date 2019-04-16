@@ -9,5 +9,8 @@ addSbtPlugin("ch.epfl.scala"    % "sbt-web-scalajs-bundler"    % "0.14.0")
 addSbtPlugin("ch.epfl.scala"    % "sbt-scalajs-bundler"        % "0.14.0")
 addSbtPlugin("com.timushev.sbt" % "sbt-updates"                % "0.4.0")
 
+resolvers += Resolver.bintrayRepo("oyvindberg", "ScalablyTyped")
+addSbtPlugin("org.scalablytyped" % "sbt-scalablytyped" % "201904150530")
+
 addSbtCoursier
 classpathTypes += "maven-plugin"

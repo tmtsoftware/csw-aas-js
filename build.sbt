@@ -46,6 +46,28 @@ lazy val `csw-aas-react4s-example` = project
     )
   )
 
+lazy val `csw-aas-scala-js` = project
+  .in(file("csw-aas-scala-js"))
+  .enablePlugins(ScalaJSBundlerPlugin)
+  .settings(
+    resolvers += Resolver.bintrayRepo("oyvindberg", "ScalablyTyped"),
+    webpackBundlingMode := BundlingMode.LibraryOnly(),
+    fork := false,
+    scalacOptions += "-P:scalajs:sjsDefinedByDefault",
+    resolvers += Resolver.sonatypeRepo("snapshots"),
+    libraryDependencies ++= Dependencies.AasScalaJS.value,
+    npmDependencies in Compile ++= Dependencies.AasScalaJSNpmDeps,
+    npmDevDependencies in Compile ++= Dependencies.AasScalaJSNpmDevDeps,
+    version in webpack := "4.28.4",
+    version in startWebpackDevServer := "3.1.14",
+    webpackConfigFile := Some(baseDirectory.value / "aas.webpack.config.js"),
+    webpackResources := webpackResources.value +++ PathFinder(Seq(baseDirectory.value / "index.html")) ** "*.*",
+    webpackDevServerExtraArgs in fastOptJS ++= Seq(
+      "--content-base",
+      baseDirectory.value.getAbsolutePath
+    )
+  )
+
 lazy val `integration` = project
   .in(file("integration"))
   .settings(
