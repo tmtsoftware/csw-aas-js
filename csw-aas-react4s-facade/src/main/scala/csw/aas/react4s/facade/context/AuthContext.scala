@@ -10,7 +10,7 @@ object AuthContext extends JsContext[AuthContext](JsAuthComponents.AuthContext)
 
 @js.native
 trait AuthContext extends js.Object {
-  val auth: Auth        = js.native
-  def login(): Boolean  = js.native // fixme: refer AuthContext.jsx
-  def logout(): Boolean = js.native // fixme: refer AuthContext.jsx
+  val auth: Auth     = js.native
+  def login(): Void  = js.native // fixme: refer AuthContext.jsx
+  def logout(): Void = js.native // fixme: refer AuthContext.jsx
 }

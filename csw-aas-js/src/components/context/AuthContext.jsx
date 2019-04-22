@@ -6,9 +6,8 @@ import React from 'react'
  */
 const AuthContextDefaultState = {
   auth: undefined,
-  // fixme: Why do we need login and logout, types correct?
-  login: () => true,
-  logout: () => true,
+  login: () => {},
+  logout: () => {},
 }
 
 const AuthContext = React.createContext(AuthContextDefaultState)
