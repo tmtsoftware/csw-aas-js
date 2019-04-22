@@ -32,7 +32,9 @@ export default {
     svgr(),
     babel({
       exclude: 'node_modules/**',
-      plugins: ['external-helpers'],
+      runtimeHelpers: true,
+
+      plugins: ['@babel/plugin-proposal-class-properties'],
     }),
     json(),
     resolve({
