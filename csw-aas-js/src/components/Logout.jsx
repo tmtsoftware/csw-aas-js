@@ -10,10 +10,10 @@ export class Logout extends React.Component {
     return (
       <button
         id='aas-logout'
-        onClick={async () => {
+        onClick={
           // Call to this.props.logout method is responsible for logging out.
-          await this.props.logout()
-        }}>
+          this.props.logout
+        }>
         Logout
       </button>
     )
