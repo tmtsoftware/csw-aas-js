@@ -1,6 +1,6 @@
-import React from 'react'
+import { useContext } from 'react'
 import PropTypes from 'prop-types'
-import { Consumer } from '../context/AuthContext'
+import { AuthContext } from '../context/AuthContext'
 
 /**
  * React component which renders if user is authenticated and has specified client role
@@ -12,16 +12,14 @@ import { Consumer } from '../context/AuthContext'
  * if user is not authenticated or does not have specified client role
  * @returns React component
  */
-const ClientRole = ({ clientRole, client, children, error }) => (
-  <Consumer>
-    {({ auth }) => {
-      if (!auth) return error
-      return auth.isAuthenticated() && auth.hasResourceRole(clientRole, client)
-        ? children
-        : error || null
-    }}
-  </Consumer>
-)
+const ClientRole = ({ clientRole, client, children, error }) => {
+  const { auth } = useContext(AuthContext)
+
+  if (!auth) return error
+  return auth.isAuthenticated() && auth.hasResourceRole(clientRole, client)
+    ? children
+    : error || null
+}
 
 ClientRole.propTypes = {
   clientRole: PropTypes.string.isRequired,

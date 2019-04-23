@@ -5,7 +5,7 @@
     "es6": true,
     "jest": true
   },
-  "plugins": ["react"],
+  "plugins": ["react", "react-hooks"],
   "parserOptions": {
     "sourceType": "module"
   },
@@ -13,6 +13,8 @@
     "jsx-quotes": ["error", "prefer-single"],
     "comma-dangle": "off",
     "space-before-function-paren": "off",
-    "react/jsx-boolean-value": 0
+    "react/jsx-boolean-value": 0,
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   }
 }

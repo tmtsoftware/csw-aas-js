@@ -1,6 +1,6 @@
-import React from 'react'
+import { useContext } from 'react'
 import PropTypes from 'prop-types'
-import { Consumer } from '../context/AuthContext'
+import { AuthContext } from '../context/AuthContext'
 
 /**
  * React component which renders if user is authenticated and has specified realm role
@@ -11,16 +11,13 @@ import { Consumer } from '../context/AuthContext'
  * if user is not authenticated or does not have specified realm role
  * @returns React component
  */
-const RealmRole = ({ realmRole, children, error }) => (
-  <Consumer>
-    {({ auth }) => {
-      if (!auth) return error
-      return auth.isAuthenticated() && auth.hasRealmRole(realmRole)
-        ? children
-        : error || null
-    }}
-  </Consumer>
-)
+const RealmRole = ({ realmRole, children, error }) => {
+  const { auth } = useContext(AuthContext)
+  if (!auth) return error
+  return auth.isAuthenticated() && auth.hasRealmRole(realmRole)
+    ? children
+    : error || null
+}
 
 RealmRole.propTypes = {
   realmRole: PropTypes.string.isRequired,

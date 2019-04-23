@@ -1,5 +1,5 @@
-import React from 'react'
-import { AuthContextDefaultState, Provider } from './AuthContext'
+import React, { useState, useEffect } from 'react'
+import { Provider } from './AuthContext'
 import PropTypes from 'prop-types'
 import { Auth } from '../Auth'
 
@@ -11,68 +11,61 @@ import { Auth } from '../Auth'
  * children - react component or html element which can have consumer to access
  * context provided
  */
-class AuthContextProvider extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      ...AuthContextDefaultState,
-      login: this.login,
-      logout: this.logout,
-    }
-  }
+const AuthContextProvider = props => {
+  const [auth, setauth] = useState(undefined)
 
-  async componentDidMount() {
-    await this.loginWithoutRedirect()
-  }
-
-  render() {
-    return <Provider value={this.state}>{this.props.children}</Provider>
-  }
+  useEffect(() => {
+    loginWithoutRedirect()
+  }, [])
 
   /**
    * Instantiate keycloak and sets TMTAuthStore instance in state. This state can be provided
    * as a context
    */
-  instantiateAAS = async (url, redirect) => {
+  const instantiateAAS = async (url, redirect) => {
     const { keycloak, authenticated } = await Auth.authenticate(
-      this.props.config,
+      props.config,
       url,
       redirect,
     )
     authenticated
       .success(() => {
-        const auth = Auth.from(keycloak)
-        this.setState({
-          auth: auth,
-        })
+        const _auth = Auth.from(keycloak)
+        setauth(_auth)
       })
       .error(() => {
-        this.setState({ auth: null })
+        setauth(null)
       })
   }
 
   /**
    * Resolves AAS server and instantiate keycloak in check-sso mode
    */
-  loginWithoutRedirect = async () => {
+  const loginWithoutRedirect = async () => {
     const url = await Auth.getAASUrl()
-    await this.instantiateAAS({ url: url }, false)
+    await instantiateAAS({ url: url }, false)
   }
 
   /**
    * Resolves AAS server and instantiate keycloak in login-required mode
    */
-  login = async () => {
+  const login = async () => {
     const url = await Auth.getAASUrl()
-    await this.instantiateAAS({ url: url }, true)
+    await instantiateAAS({ url: url }, true)
   }
 
-  logout = async () => {
-    const logoutPromise = await this.state.auth.logout()
+  const logout = async () => {
+    const logoutPromise = await auth.logout()
     logoutPromise.success(() => {
-      this.setState({ auth: null })
+      setauth(null)
     })
   }
+
+  return (
+    <Provider value={{ auth: auth, login: login, logout: logout }}>
+      {props.children}
+    </Provider>
+  )
 }
 
 AuthContextProvider.propTypes = {
