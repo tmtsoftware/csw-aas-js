@@ -29,16 +29,12 @@
   },
   "peerDependencies": {
     "prop-types": "^15.7.2",
-    "react": "^15.0.0 || ^16.0.0",
-    "react-dom": "^15.0.0 || ^16.0.0"
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "dependencies": {
-    "es6-promise": "^4.2.6",
     "isomorphic-fetch": "^2.2.1",
-    "keycloak-js": "5.0.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-router-dom": "^5.0.0"
+    "keycloak-js": "5.0.0"
   },
   "devDependencies": {
     "@babel/plugin-external-helpers": "^7.2.0",
@@ -47,6 +43,7 @@
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-stage-0": "^7.0.0",
+    "@babel/runtime": "^7.4.3",
     "@svgr/rollup": "^4.2.0",
     "babel-core": "^6.26.3",
     "cross-env": "^5.2.0",
