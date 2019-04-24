@@ -2,6 +2,8 @@ import React from 'react'
 import Enzyme, { mount } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import renderer from 'react-test-renderer'
+import ClientRole from '../../../components/authorization/ClientRole'
+import { AuthContext } from '../../../components/context/AuthContext'
 
 // DEOPSCSW-630 - Javascript adapter for AAS
 // DEOPSCSW-636 - JS adapter support  for Authorization
@@ -13,30 +15,16 @@ describe('<ClientRole />', () => {
   })
 
   it('should render children elements if authentication is true and with valid Client role', () => {
-    const getClientRoleWithMockContext = () => {
-      const mockContext = {
-        auth: {
-          hasResourceRole: jest.fn().mockImplementation(() => {
-            return true
-          }),
-          isAuthenticated: jest.fn().mockImplementation(() => {
-            return true
-          }),
-        },
-        login: () => true,
-        logout: () => true,
-      }
-      jest.mock('../../../components/context/AuthContext', () => {
-        return {
-          Consumer: jest.fn().mockImplementation(props => {
-            return props.children(mockContext)
-          }),
-        }
-      })
-      return require('../../../components/authorization/ClientRole').default
+    const authContext = {
+      auth: {
+        hasResourceRole: jest.fn().mockImplementation(() => {
+          return true
+        }),
+        isAuthenticated: jest.fn().mockImplementation(() => {
+          return true
+        }),
+      },
     }
-
-    const ClientRoleComponent = getClientRoleWithMockContext()
 
     const props = {
       children: <div className='client-role'>Authentication successful</div>,
@@ -45,37 +33,27 @@ describe('<ClientRole />', () => {
       client: 'test-client',
     }
 
-    const wrapper = mount(<ClientRoleComponent {...props} />)
+    const wrapper = mount(
+      <AuthContext.Provider value={{ ...authContext }}>
+        <ClientRole {...props} />
+      </AuthContext.Provider>,
+    )
 
     expect(wrapper.find('div.client-role').length).toBe(1)
     expect(wrapper.find('div.error').length).toBe(0)
   })
 
   it('should not render children elements if authentication is true but invalid Client role', () => {
-    const getClientRoleWithMockContext = () => {
-      const mockContext = {
-        auth: {
-          hasResourceRole: jest.fn().mockImplementation(() => {
-            return false
-          }),
-          isAuthenticated: jest.fn().mockImplementation(() => {
-            return true
-          }),
-        },
-        login: () => true,
-        logout: () => true,
-      }
-      jest.mock('../../../components/context/AuthContext', () => {
-        return {
-          Consumer: jest.fn().mockImplementation(props => {
-            return props.children(mockContext)
-          }),
-        }
-      })
-      return require('../../../components/authorization/ClientRole').default
+    const authContext = {
+      auth: {
+        hasResourceRole: jest.fn().mockImplementation(() => {
+          return false
+        }),
+        isAuthenticated: jest.fn().mockImplementation(() => {
+          return true
+        }),
+      },
     }
-
-    const ClientRoleComponent = getClientRoleWithMockContext()
 
     const props = {
       children: <div className='client-role'>Authentication successful</div>,
@@ -84,37 +62,27 @@ describe('<ClientRole />', () => {
       client: 'invalid-client',
     }
 
-    const wrapper = mount(<ClientRoleComponent {...props} />)
+    const wrapper = mount(
+      <AuthContext.Provider value={{ ...authContext }}>
+        <ClientRole {...props} />
+      </AuthContext.Provider>,
+    )
 
     expect(wrapper.find('div.client-role').length).toBe(0)
     expect(wrapper.find('div.error').length).toBe(1)
   })
 
   it('should not render children elements if authentication is false ', () => {
-    const getClientRoleWithMockContext = () => {
-      const mockContext = {
-        auth: {
-          hasResourceRole: jest.fn().mockImplementation(() => {
-            return true
-          }),
-          isAuthenticated: jest.fn().mockImplementation(() => {
-            return false
-          }),
-        },
-        login: () => true,
-        logout: () => true,
-      }
-      jest.mock('../../../components/context/AuthContext', () => {
-        return {
-          Consumer: jest.fn().mockImplementation(props => {
-            return props.children(mockContext)
-          }),
-        }
-      })
-      return require('../../../components/authorization/ClientRole').default
+    const authContext = {
+      auth: {
+        hasResourceRole: jest.fn().mockImplementation(() => {
+          return true
+        }),
+        isAuthenticated: jest.fn().mockImplementation(() => {
+          return false
+        }),
+      },
     }
-
-    const CLientRoleComponent = getClientRoleWithMockContext()
 
     const props = {
       children: <div className='client-role'>Authentication successful</div>,
@@ -123,37 +91,27 @@ describe('<ClientRole />', () => {
       client: 'invalid-client',
     }
 
-    const wrapper = mount(<CLientRoleComponent {...props} />)
+    const wrapper = mount(
+      <AuthContext.Provider value={{ ...authContext }}>
+        <ClientRole {...props} />
+      </AuthContext.Provider>,
+    )
 
     expect(wrapper.find('div.client-role').length).toBe(0)
     expect(wrapper.find('div.error').length).toBe(1)
   })
 
   it('should render ClientRole if authentication is true and with valid Client role', () => {
-    const getClientRoleWithMockContext = () => {
-      const mockContext = {
-        auth: {
-          hasResourceRole: jest.fn().mockImplementation(() => {
-            return true
-          }),
-          isAuthenticated: jest.fn().mockImplementation(() => {
-            return true
-          }),
-        },
-        login: () => true,
-        logout: () => true,
-      }
-      jest.mock('../../../components/context/AuthContext', () => {
-        return {
-          Consumer: jest.fn().mockImplementation(props => {
-            return props.children(mockContext)
-          }),
-        }
-      })
-      return require('../../../components/authorization/ClientRole').default
+    const authContext = {
+      auth: {
+        hasResourceRole: jest.fn().mockImplementation(() => {
+          return true
+        }),
+        isAuthenticated: jest.fn().mockImplementation(() => {
+          return true
+        }),
+      },
     }
-
-    const ClientRoleComponent = getClientRoleWithMockContext()
 
     const props = {
       children: <div className='client-role'>Authentication successful</div>,
@@ -163,36 +121,26 @@ describe('<ClientRole />', () => {
     }
 
     const component = renderer
-      .create(<ClientRoleComponent {...props} />)
+      .create(
+        <AuthContext.Provider value={{ ...authContext }}>
+          <ClientRole {...props} />
+        </AuthContext.Provider>,
+      )
       .toJSON()
     expect(component).toMatchSnapshot()
   })
 
   it('should not render ClientRole if authentication is true but invalid Client role', () => {
-    const getClientRoleWithMockContext = () => {
-      const mockContext = {
-        auth: {
-          hasResourceRole: jest.fn().mockImplementation(() => {
-            return false
-          }),
-          isAuthenticated: jest.fn().mockImplementation(() => {
-            return true
-          }),
-        },
-        login: () => true,
-        logout: () => true,
-      }
-      jest.mock('../../../components/context/AuthContext', () => {
-        return {
-          Consumer: jest.fn().mockImplementation(props => {
-            return props.children(mockContext)
-          }),
-        }
-      })
-      return require('../../../components/authorization/ClientRole').default
+    const authContext = {
+      auth: {
+        hasResourceRole: jest.fn().mockImplementation(() => {
+          return false
+        }),
+        isAuthenticated: jest.fn().mockImplementation(() => {
+          return true
+        }),
+      },
     }
-
-    const ClientRoleComponent = getClientRoleWithMockContext()
 
     const props = {
       children: <div className='client-role'>Authentication successful</div>,
@@ -202,36 +150,26 @@ describe('<ClientRole />', () => {
     }
 
     const component = renderer
-      .create(<ClientRoleComponent {...props} />)
+      .create(
+        <AuthContext.Provider value={{ ...authContext }}>
+          <ClientRole {...props} />
+        </AuthContext.Provider>,
+      )
       .toJSON()
     expect(component).toMatchSnapshot()
   })
 
   it('should not render ClientRole if authentication is false ', () => {
-    const getCleintRoleWithMockContext = () => {
-      const mockContext = {
-        auth: {
-          hasResourceRole: jest.fn().mockImplementation(() => {
-            return true
-          }),
-          isAuthenticated: jest.fn().mockImplementation(() => {
-            return false
-          }),
-        },
-        login: () => true,
-        logout: () => true,
-      }
-      jest.mock('../../../components/context/AuthContext', () => {
-        return {
-          Consumer: jest.fn().mockImplementation(props => {
-            return props.children(mockContext)
-          }),
-        }
-      })
-      return require('../../../components/authorization/ClientRole').default
+    const authContext = {
+      auth: {
+        hasResourceRole: jest.fn().mockImplementation(() => {
+          return true
+        }),
+        isAuthenticated: jest.fn().mockImplementation(() => {
+          return false
+        }),
+      },
     }
-
-    const ClientRoleComponent = getCleintRoleWithMockContext()
 
     const props = {
       children: <div className='client-role'>Authentication successful</div>,
@@ -241,36 +179,26 @@ describe('<ClientRole />', () => {
     }
 
     const component = renderer
-      .create(<ClientRoleComponent {...props} />)
+      .create(
+        <AuthContext.Provider value={{ ...authContext }}>
+          <ClientRole {...props} />
+        </AuthContext.Provider>,
+      )
       .toJSON()
     expect(component).toMatchSnapshot()
   })
 
   it('should render nothing if authentication is false and error component is not provided', () => {
-    const getClientRoleWithMockContext = () => {
-      const mockContext = {
-        auth: {
-          hasResourceRole: jest.fn().mockImplementation(() => {
-            return true
-          }),
-          isAuthenticated: jest.fn().mockImplementation(() => {
-            return false
-          }),
-        },
-        login: () => true,
-        logout: () => true,
-      }
-      jest.mock('../../../components/context/AuthContext', () => {
-        return {
-          Consumer: jest.fn().mockImplementation(props => {
-            return props.children(mockContext)
-          }),
-        }
-      })
-      return require('../../../components/authorization/ClientRole').default
+    const authContext = {
+      auth: {
+        hasResourceRole: jest.fn().mockImplementation(() => {
+          return true
+        }),
+        isAuthenticated: jest.fn().mockImplementation(() => {
+          return false
+        }),
+      },
     }
-
-    const ClientRoleComponent = getClientRoleWithMockContext()
 
     const props = {
       children: <div className='client-role'>Authentication successful</div>,
@@ -279,7 +207,11 @@ describe('<ClientRole />', () => {
     }
 
     const component = renderer
-      .create(<ClientRoleComponent {...props} />)
+      .create(
+        <AuthContext.Provider value={{ ...authContext }}>
+          <ClientRole {...props} />
+        </AuthContext.Provider>,
+      )
       .toJSON()
     expect(component).toMatchSnapshot()
   })

@@ -4,7 +4,7 @@ import { AuthContext } from './context/AuthContext'
 /**
  * React component which renders Login button.
  */
-export const Login = props => {
+const Login = () => {
   const { login } = useContext(AuthContext)
   return (
     <button
