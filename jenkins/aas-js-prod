@@ -4,7 +4,7 @@ pipeline {
     }
 
     options {
-        timeout(time: 2, unit: 'HOURS') 
+        timeout(time: 2, unit: 'HOURS')
         timestamps()
     }
 
@@ -18,6 +18,20 @@ pipeline {
         stage('test:it') {
             steps {
                 sh "sbt test"
+            }
+        }
+
+        stage('build config') {
+            steps {
+               sh "rm -rf csw-aas-js/config/node_modules csw-aas-js/config/package-lock.json"
+               sh "cd csw-aas-js && npm run config"
+            }
+        }
+
+        stage('build example') {
+            steps {
+                sh "rm -rf csw-aas-js/example/node_modules csw-aas-js/example/package-lock.json"
+                sh "cd csw-aas-js && npm run example"
             }
         }
 

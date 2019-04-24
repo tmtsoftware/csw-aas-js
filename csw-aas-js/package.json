@@ -23,7 +23,8 @@
     "build": "rollup -c",
     "start": "rollup -c -w",
     "example": "cd example && npm install && npm run build",
-    "config": "npm run build && cd config && BROWSER=none pm2 start node_modules/react-scripts/scripts/start.js --name config",
+    "config": "cd config && npm install && npm run build",
+    "startConfig": "npm run build && cd config && BROWSER=none pm2 start node_modules/react-scripts/scripts/start.js --name config",
     "stopConfig": "pm2 delete config",
     "prepublishOnly": "npm install && npm test"
   },

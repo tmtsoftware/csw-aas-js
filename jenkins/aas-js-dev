@@ -4,7 +4,7 @@ pipeline {
     }
 
     options {
-        timeout(time: 2, unit: 'HOURS') 
+        timeout(time: 2, unit: 'HOURS')
         timestamps()
     }
 
@@ -28,23 +28,29 @@ pipeline {
             }
         }
 
-        stage('test:it') {
-            steps {
-                sh "sbt clean compile test"
-            }
-        }
-
         stage('build') {
             steps {
                 sh "cd csw-aas-js && npm run build"
             }
         }
 
-        stage('example') {
+        stage('build config') {
             steps {
-                sh "rm -rf csw-aas-js/example/node_modules"
-                sh "rm -rf csw-aas-js/example/package-lock.json"
-                sh "cd csw-aas-js/example && npm install && npm run build"
+               sh "rm -rf csw-aas-js/config/node_modules csw-aas-js/config/package-lock.json"
+               sh "cd csw-aas-js && npm run config"
+            }
+        }
+
+        stage('build example') {
+            steps {
+                sh "rm -rf csw-aas-js/example/node_modules csw-aas-js/example/package-lock.json"
+                sh "cd csw-aas-js && npm run example"
+            }
+        }
+
+        stage('test:it') {
+            steps {
+                sh "sbt clean compile test"
             }
         }
     }

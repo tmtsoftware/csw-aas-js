@@ -9,7 +9,7 @@ run() {
             clean_install "$js_dir"
             clean_install "$js_dir"/config
 
-            cd "$js_dir" && ls -la && npm run config
+            cd "$js_dir" && ls -la && npm run startConfig
         ;;
         stop)
             cd "$js_dir" && npm run stopConfig
