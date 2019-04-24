@@ -26,6 +26,13 @@ pipeline {
                 sh "cd csw-aas-js && npm publish"
             }
         }
+
+        stage('Git Tag') {
+            steps {
+                sh "git tag v$VERSION"
+                sh "git push origin v$VERSION"
+            }
+        }
     }
     post {
         always {
