@@ -3,7 +3,7 @@
 exports[`<Login /> should render login 1`] = `
 <button
   id="aas-login"
-  onClick={[MockFunction]}
+  onClick={[Function]}
 >
   Login
 </button>
