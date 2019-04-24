@@ -1,30 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react'
 import IOOperationComponent from './IOOperationComponent'
 import fetch from 'isomorphic-fetch'
 
-class ListConfig extends React.Component {
-  state = { response: '' }
+const ListConfig = () => {
+  const [response, setResponse] = useState('')
 
-  listConfig = async () => {
+  const listConfig = async () => {
     const response = await fetch(`http://localhost:4000/list`)
     if (response.status === 200) {
       const a = await response.json()
-      this.setState({ response: JSON.stringify(a) })
+      setResponse(JSON.stringify(a))
     }
   }
 
-  render() {
-    return (
-      <IOOperationComponent
-        txtId='list-config'
-        btnId='list-config'
-        componentNameProp='List Config'
-        operation='List'
-        output={this.state.response}
-        api={this.listConfig}
-      />
-    )
-  }
+  return (
+    <IOOperationComponent
+      txtId='list-config'
+      btnId='list-config'
+      componentNameProp='List Config'
+      operation='List'
+      output={response}
+      api={listConfig}
+    />
+  )
 }
 
 export default ListConfig

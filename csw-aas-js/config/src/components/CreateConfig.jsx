@@ -1,61 +1,50 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
 import IOOperationComponent from './IOOperationComponent'
 import { sPost } from './Client'
-import { Consumer } from 'csw-aas-js'
+import { AuthContext } from 'csw-aas-js'
 
-class CreateConfig extends React.Component {
-  state = { response: null, token: null, fileContent: '' }
+const CreateConfig = () => {
+  const [response, setResponse] = useState(null)
+  const [fileContent, setsetFileContent] = useState('')
 
-  callBack = res => {
-    this.setState({ response: res })
-  }
+  const { auth } = useContext(AuthContext)
 
-  createConfig = (input, token) => {
+  const callBack = res => setResponse(res)
+
+  const createConfig = (input, token) => {
     sPost(
       `http://localhost:4000/config/${input}?comment="Sample commit message"`,
-      this.callBack,
+      callBack,
       token,
-      this.state.fileContent,
+      fileContent,
     )
   }
 
-  updateFileContent = event => {
-    this.setState({
-      fileContent: event.target.value,
-    })
-  }
+  const updateFileContent = event => setsetFileContent(event.target.value)
 
-  render() {
-    return (
-      <Consumer>
-        {({ auth }) => {
-          return (
-            <div className='card-panel hoverable'>
-              <IOOperationComponent
-                txtId='file-path'
-                btnId='create-config'
-                token={auth.token}
-                componentNameProp='Create Config'
-                operation='Create Config'
-                output={this.state.response}
-                api={this.createConfig}
-              />
-              <div className='card-panel hoverable'>
-                File Content
-                <span>
-                  <textarea
-                    id='file-content-txt-area'
-                    value={this.state.fileContent}
-                    onChange={this.updateFileContent}
-                  />
-                </span>
-              </div>
-            </div>
-          )
-        }}
-      </Consumer>
-    )
-  }
+  return (
+    <div className='card-panel hoverable'>
+      <IOOperationComponent
+        txtId='file-path'
+        btnId='create-config'
+        token={auth.token}
+        componentNameProp='Create Config'
+        operation='Create Config'
+        output={response}
+        api={createConfig}
+      />
+      <div className='card-panel hoverable'>
+        File Content
+        <span>
+          <textarea
+            id='file-content-txt-area'
+            value={fileContent}
+            onChange={updateFileContent}
+          />
+        </span>
+      </div>
+    </div>
+  )
 }
 
 export default CreateConfig

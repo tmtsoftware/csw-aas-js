@@ -19,7 +19,7 @@ const ExampleApp = () => {
     <div className='row card col s12 m7'>
       {
         // #AuthContextProvider-component-usage
-        <AuthContextProvider config={{ ...AppConfig }}>
+        <AuthContextProvider config={AppConfig}>
           <BrowserRouter>
             <div>
               <NavComponent />

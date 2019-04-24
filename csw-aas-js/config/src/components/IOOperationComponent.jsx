@@ -1,50 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-class IOOperationComponent extends React.Component {
-  constructor() {
-    super()
-    this.state = { input: '' }
-  }
+const IOOperationComponent = props => {
+  const [input, setInput] = useState('')
+  const { txtId, btnId, componentNameProp, operation, output } = props
 
-  render() {
-    const { txtId, btnId, componentNameProp, operation, output } = this.props
+  const updateInput = event => setInput(event.target.value)
+  const handleClick = () => props.api(input, props.token)
 
-    return (
-      <div className='card-panel hoverable'>
-        <h6>{componentNameProp} Request</h6>
-        <div>
-          <span>
-            <textarea
-              id={txtId + '-txt-area'}
-              value={this.state.input}
-              onChange={this.updateInput}
-            />
-          </span>
-        </div>
-        <div>
-          <button id={btnId + '-btn'} onClick={this.handleClick}>
-            {operation}
-          </button>
-        </div>
-        <div>
-          <span>
-            <div id={btnId + '-output'}> {output} </div>
-          </span>
-        </div>
+  return (
+    <div className='card-panel hoverable'>
+      <h6>{componentNameProp} Request</h6>
+      <div>
+        <span>
+          <textarea
+            id={txtId + '-txt-area'}
+            value={input}
+            onChange={updateInput}
+          />
+        </span>
       </div>
-    )
-  }
-
-  updateInput = event => {
-    this.setState({
-      input: event.target.value,
-    })
-  }
-
-  handleClick = event => {
-    this.props.api(this.state.input, this.props.token)
-  }
+      <div>
+        <button id={btnId + '-btn'} onClick={handleClick}>
+          {operation}
+        </button>
+      </div>
+      <div>
+        <span>
+          <div id={btnId + '-output'}> {output} </div>
+        </span>
+      </div>
+    </div>
+  )
 }
 
 IOOperationComponent.propTypes = {
@@ -54,7 +41,6 @@ IOOperationComponent.propTypes = {
   operation: PropTypes.string,
   output: PropTypes.string,
   api: PropTypes.func,
-  token: PropTypes.func,
 }
 
 export default IOOperationComponent
