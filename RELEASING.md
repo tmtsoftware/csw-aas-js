@@ -13,6 +13,4 @@
 1. Check if `csw-aas-js-dev` pipeline is green
 2. Check keycloak version of `csw` and `csw-aas-js` is same
 3. Update `VERSION` number in `package.json`
-4. Run `csw-aas-js-prod` pipeline by providing compatible `CSW_VERSION` number. 
-
-
+4. Run `csw-aas-js-prod` pipeline by providing `VERSION` number and compatible `CSW_VERSION` number.
