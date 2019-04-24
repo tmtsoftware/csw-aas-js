@@ -33,6 +33,12 @@ pipeline {
                 sh "git push origin v$VERSION"
             }
         }
+
+        stage('Docs Publish') {
+            steps {
+                sh "sbt -Dprod.publish=true clean ghpagesPushSite"
+            }
+        }
     }
     post {
         always {
