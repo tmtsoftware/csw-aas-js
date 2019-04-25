@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-                git 'https://github.com/tmtsoftware/csw-js.git'
+                git 'git@github.com:tmtsoftware/csw-js.git'
             }
         }
 
