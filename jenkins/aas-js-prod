@@ -35,12 +35,6 @@ pipeline {
             }
         }
 
-        stage('publish') {
-            steps {
-                sh "cd csw-aas-js && npm publish"
-            }
-        }
-
         stage('Git Tag') {
             steps {
                 sh "git tag v$VERSION"
@@ -51,6 +45,12 @@ pipeline {
         stage('Docs Publish') {
             steps {
                 sh "sbt -Dprod.publish=true clean ghpagesPushSite"
+            }
+        }
+
+        stage('publish') {
+            steps {
+                sh "cd csw-aas-js && npm publish"
             }
         }
     }
