@@ -1,7 +1,4 @@
-import fetch from 'isomorphic-fetch'
 import { resolveAAS } from '../../components/AASResolver'
-
-jest.mock('isomorphic-fetch')
 
 // DEOPSCSW-630 - Javascript adapter for AAS
 // DEOPSCSW-631 - React layer for javascript adapter for AAS
@@ -14,10 +11,13 @@ describe('<AASResolver />', () => {
         return { uri: 'http://somehost:someport' }
       }),
     }
-    fetch.mockReturnValue(Promise.resolve(mockResponse))
+
+    window.fetch = jest.fn().mockImplementation(() =>
+      Promise.resolve(mockResponse)
+    );
 
     const url = await resolveAAS()
-
+    expect(window.fetch).toHaveBeenCalledTimes(1)
     expect(url).toBe('http://somehost:someport')
   })
 })

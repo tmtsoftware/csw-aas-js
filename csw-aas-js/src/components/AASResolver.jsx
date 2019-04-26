@@ -1,4 +1,3 @@
-import fetch from 'isomorphic-fetch'
 import { Config } from '../config/configs'
 
 /*
@@ -15,7 +14,7 @@ const URL = `${Config['location-server-url']}/location/resolve/${
  * @returns AAS url if resolved from location service else return null
  */
 export const resolveAAS = async function(url = URL) {
-  const response = await fetch(url)
+  const response = await window.fetch(url)
   if (response.status === 200) {
     const a = await response.json()
     return a.uri
