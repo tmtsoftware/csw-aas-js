@@ -17,7 +17,7 @@ const useStyles = makeStyles({
     position: 'absolute',
     bottom: '20px',
     right: '20px'
-  },
+  }
 });
 
 const AddButton = () => {
@@ -27,7 +27,7 @@ const AddButton = () => {
   const {auth} = useContext(AuthContext);
   const openModal = () => setOpen(true);
 
-  const [data,setData] = useState({
+  const [data, setData] = useState({
     path: '',
     text: '',
     message: ''
@@ -47,7 +47,7 @@ const AddButton = () => {
     /*******************************************************************************/
 
     const url = `http://localhost:5000/config/${data.path}?comment=${data.message}`;
-    const payload= data.text;
+    const payload = data.text;
     const token = auth.token();
 
     request
@@ -71,65 +71,66 @@ const AddButton = () => {
   };
 
   return (
-      <ClientRole clientRole={'admin'} client='csw-config-server' error={<span className={classes.fab} >Please login as admin to add new configurations</span>}>
-        <Fab color="primary" aria-label="Add" className={classes.fab} >
-          <AddIcon onClick={openModal} />
-        </Fab>
-        <Dialog
-          open={open}
-          onClose={closeModal}
-          aria-labelledby="form-dialog-title"
-          fullWidth
-        >
-          <DialogTitle id="form-dialog-title">Add new configuration</DialogTitle>
-          <DialogContent>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="path"
-              label="Path"
-              type="text"
-              fullWidth
-              value={data.path}
-              multiline
-              onChange={(e) => setData({...data, path:e.target.value})}
-            />
-            <TextField
-              margin="dense"
-              id="config_text"
-              label="Configuration Text"
-              type="text"
-              multiline={true}
-              value={data.text}
-              fullWidth
-              onChange={(e) => setData({...data, text:e.target.value})}
-            />
-            <TextField
-              margin="dense"
-              id="commit_message"
-              label="Commit Message"
-              type="text"
-              value={data.message}
-              multiline={true}
-              fullWidth
-              onChange={(e) => setData({...data, message:e.target.value})}
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={closeModal} color="secondary">
-              Cancel
-            </Button>
-            <Button onClick={saveConfig} color="primary">
-              Save
-            </Button>
-          </DialogActions>
-        </Dialog>
-      </ClientRole>
+    <ClientRole clientRole={'admin'} client='csw-config-server'
+                error={<span className={classes.fab}>Please login as admin to add new configurations</span>}>
+      <Fab color="primary" aria-label="Add" className={classes.fab}>
+        <AddIcon onClick={openModal}/>
+      </Fab>
+      <Dialog
+        open={open}
+        onClose={closeModal}
+        aria-labelledby="form-dialog-title"
+        fullWidth
+      >
+        <DialogTitle id="form-dialog-title">Add new configuration</DialogTitle>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="path"
+            label="Path"
+            type="text"
+            fullWidth
+            value={data.path}
+            multiline
+            onChange={(e) => setData({...data, path: e.target.value})}
+          />
+          <TextField
+            margin="dense"
+            id="commit_message"
+            label="Commit Message"
+            type="text"
+            value={data.message}
+            multiline={true}
+            fullWidth
+            onChange={(e) => setData({...data, message: e.target.value})}
+          />
+          <TextField
+            margin="dense"
+            id="config_text"
+            label="Configuration Text"
+            type="text"
+            multiline={true}
+            value={data.text}
+            fullWidth
+            rows={4}
+            variant={'outlined'}
+            onChange={(e) => setData({...data, text: e.target.value})}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={closeModal} color="secondary">
+            Cancel
+          </Button>
+          <Button onClick={saveConfig} color="primary">
+            Save
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </ClientRole>
   );
 };
 
-AddButton.propTypes = {
-
-};
+AddButton.propTypes = {};
 
 export default AddButton;
