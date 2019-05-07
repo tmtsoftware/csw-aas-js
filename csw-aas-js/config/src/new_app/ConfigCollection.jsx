@@ -6,7 +6,7 @@ import {makeStyles} from "@material-ui/styles";
 
 const useStyles = makeStyles({
   list: {
-    marginTop: "10px"
+    padding: "10px"
   }
 });
 
@@ -15,7 +15,7 @@ const ConfigCollection = props => {
   const {configs} = props;
   const classes = useStyles();
   return (
-    <Grid className={classes.list} container justify="center" spacing={2} >
+    <Grid className={classes.list} container justify="flex-start" spacing={2} >
       {configs.map(value => (
         <Grid item key={value.id} >
           <ConfigPreview config={value}/>
