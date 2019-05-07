@@ -6,6 +6,9 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from "@material-ui/styles";
+import DeleteIcon from '@material-ui/icons/Delete';
+import DownloadIcon from '@material-ui/icons/CloudDownload';
+import {ClientRole} from 'csw-aas-js'
 
 const useStyles = makeStyles({
   card: {
@@ -25,7 +28,7 @@ const useStyles = makeStyles({
 });
 
 const ConfigPreview = props => {
-  const { config } = props;
+  const {config} = props;
 
   const classes = useStyles();
 
@@ -40,7 +43,14 @@ const ConfigPreview = props => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button color={'primary'} href={`http://localhost:5000/config/${config.path}`} size="small">Download</Button>
+        <Button color={'primary'} href={`http://localhost:5000/config/${config.path}`} size="small">
+          <DownloadIcon /> &nbsp;Download
+        </Button>
+        <ClientRole clientRole={'admin'} error={null} client='csw-config-server'>
+          <Button color={'secondary'}>
+            <DeleteIcon /> Delete
+          </Button>
+        </ClientRole>
       </CardActions>
     </Card>
   );
