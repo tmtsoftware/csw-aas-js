@@ -23,6 +23,21 @@ yarn
         yarn add csw-aas-js@$version$
     ```
     @@@
+
+## Application Configuration
+
+Web application needs following configurations in order to get access token from keycloak server. This application specific
+config object should be passed in AuthContextProvider component. There are two configurations needed for a web application 
+i.e. `realm`, `clientId`
+
+`realm` is a mandatory configuration which specified in keycloak server under which client for your application is registered.
+
+`clientId` is a mandatory configuration which specifies the client id of the app as per registration
+in keycloak server.
+
+Javascript
+:   @@snip [App-config](../../../../csw-aas-js/example/src/config/AppConfig.js) { #app-config }
+
     
 ## Components
 
