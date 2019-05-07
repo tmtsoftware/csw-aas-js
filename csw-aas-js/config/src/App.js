@@ -1,9 +1,7 @@
 import React from 'react'
+import {ConfigsContextProvider} from "./new_app/context/ConfigsContext";
+import {ConfigApp} from "./new_app/ConfigApp";
 
-import ConfigApp from './components/ConfigApp'
-
-export default () => (
-  <div>
-    <ConfigApp text='Modern React component module' />
-  </div>
-)
+export default () => <ConfigsContextProvider>
+  <ConfigApp />
+</ConfigsContextProvider>
