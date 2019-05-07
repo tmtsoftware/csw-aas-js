@@ -9,6 +9,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import ConfigsContext from "./context/ConfigsContext";
+import { ClientRole } from 'csw-aas-js'
 
 const useStyles = makeStyles({
   fab: {
@@ -25,54 +26,54 @@ const AddButton = () => {
   const openModal = () => setOpen(true);
   const closeModal = () => setOpen(false);
   return (
-    <div>
-      <Fab color="primary" aria-label="Add" className={classes.fab} >
-        <AddIcon onClick={openModal} />
-      </Fab>
-      <Dialog
-        open={open}
-        onClose={closeModal}
-        aria-labelledby="form-dialog-title"
-        fullWidth
-      >
-        <DialogTitle id="form-dialog-title">Add new configuration</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="path"
-            label="Path"
-            type="text"
-            fullWidth
-            multiline
-          />
-          <TextField
-            margin="dense"
-            id="config_text"
-            label="Configuration Text"
-            type="text"
-            multiline={true}
-            fullWidth
-          />
-          <TextField
-            margin="dense"
-            id="commit_message"
-            label="Commit Message"
-            type="text"
-            multiline={true}
-            fullWidth
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={closeModal} color="secondary">
-            Cancel
-          </Button>
-          <Button onClick={closeModal} color="primary">
-            Save
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
+      <ClientRole clientRole={'admin'} client='csw-config-server' error={<span className={classes.fab} >Please login as admin to add new configurations</span>}>
+        <Fab color="primary" aria-label="Add" className={classes.fab} >
+          <AddIcon onClick={openModal} />
+        </Fab>
+        <Dialog
+          open={open}
+          onClose={closeModal}
+          aria-labelledby="form-dialog-title"
+          fullWidth
+        >
+          <DialogTitle id="form-dialog-title">Add new configuration</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="path"
+              label="Path"
+              type="text"
+              fullWidth
+              multiline
+            />
+            <TextField
+              margin="dense"
+              id="config_text"
+              label="Configuration Text"
+              type="text"
+              multiline={true}
+              fullWidth
+            />
+            <TextField
+              margin="dense"
+              id="commit_message"
+              label="Commit Message"
+              type="text"
+              multiline={true}
+              fullWidth
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={closeModal} color="secondary">
+              Cancel
+            </Button>
+            <Button onClick={closeModal} color="primary">
+              Save
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </ClientRole>
   );
 };
 

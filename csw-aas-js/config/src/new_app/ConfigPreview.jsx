@@ -40,7 +40,7 @@ const ConfigPreview = props => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button color={'primary'} href={undefined} size="small">Download</Button>
+        <Button color={'primary'} href={`http://localhost:5000/config/${config.path}`} size="small">Download</Button>
       </CardActions>
     </Card>
   );
