@@ -2,8 +2,8 @@ import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import {makeStyles} from "@material-ui/styles";
+import AuthButton from "./AuthButton";
 
 const useStyles = makeStyles({
   root: {
@@ -20,6 +20,7 @@ const useStyles = makeStyles({
 
 function TMTTitleBar() {
   const classes = useStyles();
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -30,7 +31,7 @@ function TMTTitleBar() {
           <Typography variant="h6" color="inherit" className={classes.grow}>
             TMT CSW Configurations
           </Typography>
-          <Button color="inherit">Login</Button>
+          <AuthButton />
         </Toolbar>
       </AppBar>
     </div>
