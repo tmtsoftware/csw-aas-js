@@ -25,7 +25,8 @@ object ParadoxSite extends AutoPlugin {
       paradoxProperties in Paradox ++= Map(
         "version"             → version.value,
         "scala.binaryVersion" → scalaBinaryVersion.value,
-        "github.base_url"     → githubBaseUrl(version.value)
+        "github.base_url"     → githubBaseUrl(version.value),
+        "extref.csw.base_url" → s"https://tmtsoftware.github.io/csw/$cswVersion/%s"
       ),
       (mappings in makeSite) := {
         val cswVersion   = version.value
@@ -43,6 +44,13 @@ object ParadoxSite extends AutoPlugin {
         else siteMappingsWithoutVersion ++ siteMappingsWithVersion
       }
     )
+
+  // export CSW_VERSION env variable which is compatible with csw
+  // this represents version number of javascript docs maintained at https://github.com/tmtsoftware/csw-js
+  private def cswVersion: String = (sys.env ++ sys.props).get("CSW_VERSION") match {
+    case Some(v) ⇒ v
+    case None    ⇒ "0.1-SNAPSHOT"
+  }
 
   private def githubBaseUrl(version: String) = {
     val baseRepoUrl = "https://github.com/tmtsoftware/csw-js/tree"

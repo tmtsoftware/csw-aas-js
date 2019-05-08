@@ -7,7 +7,9 @@ const CreateConfig = () => {
   const [response, setResponse] = useState(null)
   const [fileContent, setsetFileContent] = useState('')
 
+  // #use-auth-context
   const { auth } = useContext(AuthContext)
+  // #use-auth-context
 
   const callBack = res => setResponse(res)
 

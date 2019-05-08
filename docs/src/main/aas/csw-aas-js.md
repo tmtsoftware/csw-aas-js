@@ -156,3 +156,6 @@ Javascript
 #### Source code for ClientRole component
 
 * @github[ClientRole Component](/csw-aas-js/src/components/authorization/ClientRole.jsx)
+
+## Technical Description
+See @ref:[csw-aas-js Technical Description](../technical/csw-aas-js.md).

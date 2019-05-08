@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { ClientRole, AuthContextProvider } from 'csw-aas-js'
 import NavComponent from './NavComponent'
 import { AppConfig } from '../config/AppConfig'
-import WriteConfig from './CreateConfig'
+import CreateConfig from './CreateConfig'
 import ConfigError from './ConfigError'
 import ListConfig from './ListConfig'
 import GetConfig from './GetConfig'
@@ -19,12 +19,15 @@ const ConfigApp = () => {
         </BrowserRouter>
         <ListConfig />
         <GetConfig />
+        {// #create-config-component
         <ClientRole
           clientRole='admin'
           client='csw-config-server'
           error={<ConfigError />}>
-          <WriteConfig />
+          <CreateConfig />
         </ClientRole>
+        // #create-config-component
+        }
       </AuthContextProvider>
     </div>
   )
