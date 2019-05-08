@@ -4,16 +4,17 @@
   "license": "Apache License, Version 2.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "4.0.0-beta.1",
+    "@material-ui/icons": "latest",
+    "@material-ui/styles": "4.0.0-beta.1",
+    "csw-aas-js": "file:..",
     "prop-types": "^15.7.2",
     "react": "file:../node_modules/react",
     "react-dom": "file:../node_modules/react-dom",
-    "react-scripts": "^2.1.8",
     "react-router-dom": "^5.0.0",
+    "react-scripts": "^2.1.8",
     "superagent": "^4.1.0",
-    "csw-aas-js": "file:..",
-    "@material-ui/icons": "latest",
-    "@material-ui/core": "4.0.0-beta.1",
-    "@material-ui/styles": "4.0.0-beta.1"
+    "typeface-roboto": "0.0.54"
   },
   "scripts": {
     "start": "react-scripts start",
