@@ -8,26 +8,40 @@ import Dialog from "@material-ui/core/Dialog";
 import UiContext from "./context/UiContext";
 import {addConfig} from "./configServerApi";
 import {AuthContext} from 'csw-aas-js';
+import ConfigsContext from "./context/ConfigsContext";
 
 export const AddConfigModal = () => {
 
   const {addModalOpen, closeAddModal} = useContext(UiContext);
   const {auth} = useContext(AuthContext);
+  const {setError} = useContext(UiContext);
+  const {addItem} = useContext(ConfigsContext);
 
-  const [data, setData] = useState({
-    path: '',
-    text: '',
-    message: ''
-  });
+  const [data, setData] = useState({});
 
-  const saveConfig = () => {
-    addConfig(data.path, data.message, auth.token(), data.text);
-    closeAddModal()
+  const clearData = () => {
+    setData({})
+  };
+
+  const clearDataAndClose = () => {
+    clearData();
+    closeAddModal();
+  };
+
+  const saveConfig = async () => {
+    try{
+      await addConfig(data.path, data.message, auth.token(), data.text);
+      addItem({id: data.path, path: data.path, author: auth && auth.tokenParsed() && auth.tokenParsed().preferred_username});
+      clearDataAndClose()
+    }
+    catch (e) {
+      setError(e.toString())
+    }
   };
 
   return <Dialog
     open={addModalOpen}
-    onClose={closeAddModal}
+    onClose={clearDataAndClose}
     aria-labelledby="form-dialog-title"
     fullWidth
   >
@@ -68,10 +82,10 @@ export const AddConfigModal = () => {
       />
     </DialogContent>
     <DialogActions>
-      <Button onClick={closeAddModal} color="secondary">
+      <Button onClick={clearDataAndClose} color="secondary">
         Cancel
       </Button>
-      <Button onClick={saveConfig} color="primary">
+      <Button onClick={async () => await saveConfig()} color="primary">
         Save
       </Button>
     </DialogActions>

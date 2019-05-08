@@ -11,7 +11,6 @@ const useStyles = makeStyles({
 });
 
 const ConfigCollection = props => {
-  console.info("ConfigCollection render")
   const {configs} = props;
   const classes = useStyles();
   return (

@@ -4,12 +4,18 @@ const e = () => {
 };
 
 export const UiContext = React.createContext({
-  addModalOpen: false
+  addModalOpen: false,
+  error: false,
+  openAddModal: e,
+  closeAddModal: e,
+  setError: e,
+  removeError: e
 });
 
 export const UiContextProvider = (props) => {
   const [uiState, setUIState] = useState({
-    addModalOpen: false
+    addModalOpen: false,
+    error: false
   });
 
   const openAddModal = () => {
@@ -20,7 +26,15 @@ export const UiContextProvider = (props) => {
     setUIState({...uiState, addModalOpen: false});
   };
 
-  return <UiContext.Provider value={{addModalOpen: uiState.addModalOpen, openAddModal, closeAddModal}}>
+  const setError = (text) => {
+    setUIState({...uiState, error: text? text:"Something went wrong"});
+  };
+
+  const removeError = () => {
+    setUIState({...uiState, error: false});
+  };
+
+  return <UiContext.Provider value={{addModalOpen: uiState.addModalOpen, error : uiState.error,  openAddModal, closeAddModal, setError, removeError}}>
     {props.children}
   </UiContext.Provider>
 };

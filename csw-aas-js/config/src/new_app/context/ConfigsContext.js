@@ -1,9 +1,13 @@
 import React, {useState} from "react";
 
-// const e = () => {
-// }
+const e = () => {};
 
-const ConfigsContext = React.createContext([]);
+const ConfigsContext = React.createContext({
+  items: [],
+  addItem: e,
+  removeItem: e,
+  setItems: e
+});
 
 export const ConfigsContextProvider = (props) => {
   const [items, setItems] = useState([]);
@@ -12,8 +16,11 @@ export const ConfigsContextProvider = (props) => {
     setItems(items.concat(item))
   };
 
-  return <ConfigsContext.Provider value={{items, addItem, setItems}}>
+  const removeItem = (path) => setItems(items.filter(item => item.path !== path));
+
+  return <ConfigsContext.Provider value={{items, addItem, removeItem, setItems}}>
     {props.children}
   </ConfigsContext.Provider>
 };
+
 export default ConfigsContext

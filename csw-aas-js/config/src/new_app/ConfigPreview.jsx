@@ -10,6 +10,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import DownloadIcon from '@material-ui/icons/CloudDownload';
 import {AuthContext, ClientRole} from 'csw-aas-js'
 import {deleteConfig} from "./configServerApi";
+import UiContext from "./context/UiContext";
+import ConfigsContext from "./context/ConfigsContext";
 
 const useStyles = makeStyles({
   card: {
@@ -32,6 +34,8 @@ const ConfigPreview = props => {
   const {config} = props;
   const classes = useStyles();
   const {auth} = useContext(AuthContext);
+  const {setError} = useContext(UiContext);
+  const {removeItem} = useContext(ConfigsContext);
 
   return (
     <Card className={classes.card}>
@@ -48,8 +52,14 @@ const ConfigPreview = props => {
           <DownloadIcon /> &nbsp;Download
         </Button>
         <ClientRole clientRole={'admin'} error={null} client='csw-config-server'>
-          <Button color={'secondary'} onClick={() => {
-            deleteConfig(config.path, auth.token());
+          <Button color={'secondary'} onClick={async () => {
+            try{
+              await deleteConfig(config.path, auth.token());
+              removeItem(config.path);
+            }
+            catch (e) {
+              setError(e.toString())
+            }
           }}>
             <DeleteIcon /> Delete
           </Button>

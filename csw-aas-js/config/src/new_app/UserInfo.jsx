@@ -11,7 +11,6 @@ const useStyles = makeStyles({
 export const UserInfo = () => {
   const {auth} = useContext(AuthContext);
   const classes = useStyles();
-  console.info(auth && auth.tokenParsed())
   return <CheckLogin error={null}>
     <span className={classes.userInfo}>
       Hello, {auth && auth.tokenParsed() && auth.tokenParsed().preferred_username}
