@@ -4,7 +4,7 @@ import { AuthContext } from './context/AuthContext'
 /**
  * React component which renders Logout button.
  */
-const Logout = props => {
+const Logout = () => {
   const { logout } = useContext(AuthContext)
   return (
     <button
