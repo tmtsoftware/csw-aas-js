@@ -8,6 +8,7 @@ import svgr from '@svgr/rollup'
 import json from 'rollup-plugin-json'
 
 import pkg from './package.json'
+import copy from 'rollup-plugin-copy'
 
 export default {
   input: 'src/aas.js',
@@ -42,5 +43,11 @@ export default {
       extensions: ['.js', '.jsx'],
     }),
     commonjs(),
+    copy({
+      targets: [
+        'src/typings/csw-aas-js.d.ts'
+      ],
+      outputFolder: 'dist'
+    })
   ],
 }
