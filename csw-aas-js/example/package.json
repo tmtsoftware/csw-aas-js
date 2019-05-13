@@ -4,8 +4,8 @@
   "license": "Apache License, Version 2.0",
   "private": true,
   "dependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "react": "file:../node_modules/react",
+    "react-dom": "file:../node_modules/react-dom",
     "react-scripts": "^2.1.8",
     "csw-aas-js": "file:.."
   },

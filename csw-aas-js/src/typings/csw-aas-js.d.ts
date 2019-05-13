@@ -1,33 +1,34 @@
 import * as React from 'react'
 import {
-  KeycloakPromise,
-  KeycloakTokenParsed,
-  KeycloakRoles,
-  KeycloakResourceAccess,
   KeycloakProfile,
+  KeycloakPromise,
+  KeycloakResourceAccess,
+  KeycloakRoles,
+  KeycloakTokenParsed,
 } from 'keycloak-js'
 
 
 export interface Auth {
-  logout?:  KeycloakPromise<void, void>,
-  token?: () => string,
-  tokenParsed?: () => KeycloakTokenParsed,
-  realmAccess?: () => KeycloakRoles, // todo: should this be called realmRoles?
-  resourceAccess?: () => KeycloakResourceAccess, // todo: should this be called resourceRoles?
-  loadUserProfile?: KeycloakPromise<KeycloakProfile, void>,
-  isAuthenticated?: () => boolean,
+  logout?: (options?: any) => KeycloakPromise<void, void>,
+  token?: () => string | undefined,
+  tokenParsed?: () => KeycloakTokenParsed | undefined ,
+  realmAccess?: () => KeycloakRoles | undefined , // todo: should this be called realmRoles?
+  resourceAccess?: () => KeycloakResourceAccess | undefined, // todo: should this be called resourceRoles?
+  loadUserProfile?: () => KeycloakPromise<KeycloakProfile, void>,
+  isAuthenticated?: () => boolean | undefined,
   hasRealmRole?: (role: string) => boolean,
   hasResourceRole: (role: string, resource?: string) => boolean,
 }
 
-
-export interface AuthContext {
-  auth: Auth,
+interface IAuthContext {
+  auth: Auth | null,
   login: () => void,
   logout: () => void
 }
 
-export const Consumer: React.Consumer<AuthContext>
+export const AuthContext: React.Context<IAuthContext>
+
+export const Consumer: React.Consumer<IAuthContext>
 
 export interface AuthConfig {
   realm: string,
