@@ -6,9 +6,10 @@ import resolve from 'rollup-plugin-node-resolve'
 import url from 'rollup-plugin-url'
 import svgr from '@svgr/rollup'
 import json from 'rollup-plugin-json'
+import typescript from 'rollup-plugin-typescript2'
 
-import pkg from './package.json'
-import copy from 'rollup-plugin-copy'
+const pkg = require('./package.json')
+const extensions = ['.js', '.jsx', '.tsx', '.ts']
 
 export default {
   input: 'src/aas.js',
@@ -31,18 +32,17 @@ export default {
       runtimeHelpers: true,
 
       plugins: ['@babel/plugin-proposal-class-properties'],
+      extensions,
     }),
     json(),
     resolve({
       browser: true,
-      extensions: ['.js', '.jsx'],
+      extensions,
     }),
     commonjs(),
-    copy({
-      targets: [
-        'src/typings/csw-aas-js.d.ts'
-      ],
-      outputFolder: 'dist'
-    })
+    typescript({ useTsconfigDeclarationDir: true,
+      objectHashIgnoreUnknownHack: true,
+      clean: true
+    }),
   ],
 }
