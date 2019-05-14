@@ -5,7 +5,7 @@ const ListConfig = () => {
   const [response, setResponse] = useState('')
 
   const listConfig = async () => {
-    const response = await window.fetch(`http://localhost:4000/list`)
+    const response = await window.fetch(`http://localhost:5000/list`)
     if (response.status === 200) {
       const a = await response.json()
       setResponse(JSON.stringify(a))

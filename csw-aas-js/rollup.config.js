@@ -14,11 +14,6 @@ export default {
   input: 'src/aas.js',
   output: [
     {
-      file: pkg.main,
-      format: 'cjs',
-      sourcemap: true,
-    },
-    {
       file: pkg.module,
       format: 'es',
       sourcemap: true,

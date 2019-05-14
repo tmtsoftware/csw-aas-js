@@ -15,7 +15,7 @@ const CreateConfig = () => {
 
   const createConfig = (input, token) => {
     sPost(
-      `http://localhost:4000/config/${input}?comment="Sample commit message"`,
+      `http://localhost:5000/config/${input}?comment="Sample commit message"`,
       callBack,
       token,
       fileContent,

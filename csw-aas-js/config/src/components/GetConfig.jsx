@@ -12,7 +12,7 @@ const GetConfig = () => {
 
   const getConfig = async input => {
     console.log(input)
-    downloadURI(`http://localhost:4000/config/${input}`)
+    downloadURI(`http://localhost:5000/config/${input}`)
   }
 
   return (
