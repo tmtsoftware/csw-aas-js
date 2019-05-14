@@ -7,11 +7,11 @@ import akka.http.scaladsl.Http
 import akka.stream.Materializer
 import csw.aas.core.deployment.AuthServiceLocation
 import csw.aas.js.config.Utils.{await, coordShutdown, terminateHttpServerBinding}
-import csw.config.server.{ServerWiring ⇒ ConfigServerWiring}
+import csw.config.server.{Settings, ServerWiring => ConfigServerWiring}
 import csw.location.server.commons.ClusterAwareSettings
-import csw.location.server.internal.{ServerWiring ⇒ LocationServerWiring}
+import csw.location.server.internal.{ServerWiring => LocationServerWiring}
 import org.tmt.embedded_keycloak.impl.StopHandle
-import org.tmt.embedded_keycloak.{EmbeddedKeycloak, Settings ⇒ KeycloakSettings}
+import org.tmt.embedded_keycloak.{EmbeddedKeycloak, Settings => KeycloakSettings}
 
 import scala.concurrent.ExecutionContext
 
@@ -28,6 +28,9 @@ trait CswSetup {
 
   lazy val configWiring: ConfigServerWiring = new ConfigServerWiring {
     override lazy val actorSystem: ActorSystem = _system
+    override lazy val settings: Settings = new Settings(config) {
+      override val `service-port`: Int = 5000
+    }
   }
 
   private var configServer: Option[Http.ServerBinding] = None
