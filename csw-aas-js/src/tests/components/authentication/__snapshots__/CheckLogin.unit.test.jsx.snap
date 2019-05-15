@@ -1,19 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<CheckLogin /> should not render CheckLogin if authentication is false 1`] = `
-<div
-  className="error"
->
-  Authentication unsuccessful
+<div>
+  <div
+    className="error"
+  >
+    Authentication unsuccessful
+  </div>
 </div>
 `;
 
 exports[`<CheckLogin /> should render CheckLogin if authentication is true 1`] = `
-<div
-  className="auth"
->
-  Authentication successful
+<div>
+  <div
+    className="auth"
+  >
+    Authentication successful
+  </div>
 </div>
 `;
 
-exports[`<CheckLogin /> should render nothing if CheckLogin if authentication is false and error component is not provided 1`] = `null`;
+exports[`<CheckLogin /> should render nothing if CheckLogin if authentication is false and error component is not provided 1`] = `<div />`;

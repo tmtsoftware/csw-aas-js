@@ -22,8 +22,8 @@
     "testAll": "npm run test && npm run test:it",
     "lint": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "prebuild": "rimraf dist",
-    "build": "rollup -c",
-    "start": "rollup -c -w",
+    "build": "tsc && rollup -c",
+    "start": "tsc && rollup -c -w",
     "example": "cd example && npm install && npm run build",
     "config": "cd config && npm install && npm run build",
     "startConfig": "npm run build && cd config && BROWSER=none pm2 start node_modules/react-scripts/scripts/start.js --name config",
@@ -31,15 +31,11 @@
     "prepublishOnly": "npm install && npm test"
   },
   "peerDependencies": {
-    "prop-types": "^15.7.2",
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
   },
   "dependencies": {
-    "eslint-config-prettier": "^4.2.0",
-    "eslint-plugin-prettier": "^3.1.0",
-    "keycloak-js": "5.0.0",
-    "prettier": "^1.17.1"
+    "keycloak-js": "5.0.0"
   },
   "devDependencies": {
     "@babel/plugin-external-helpers": "^7.2.0",
@@ -82,7 +78,10 @@
     "rollup-plugin-postcss": "^2.0.3",
     "rollup-plugin-typescript2": "^0.21.0",
     "rollup-plugin-url": "^2.2.1",
-    "typescript": "3.2.1"
+    "typescript": "3.2.1",
+    "eslint-config-prettier": "^4.2.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "prettier": "^1.17.1"
   },
   "files": [
     "dist"

@@ -1,17 +1,38 @@
 import { AASConfig, Config } from '../config/configs'
-import KeyCloak from 'keycloak-js'
+import KeyCloak, {
+  KeycloakError,
+  KeycloakInstance,
+  KeycloakProfile,
+  KeycloakPromise,
+  KeycloakResourceAccess,
+  KeycloakRoles,
+  KeycloakTokenParsed,
+} from 'keycloak-js'
 import { resolveAAS } from './AASResolver'
+import { AuthContextProps } from './context/AuthContextProvider'
+
+export interface Auth {
+  logout: (options?: any) => KeycloakPromise<void, void>
+  token: () => string | undefined
+  tokenParsed: () => KeycloakTokenParsed | undefined
+  realmAccess: () => KeycloakRoles | undefined
+  resourceAccess: () => KeycloakResourceAccess | undefined
+  loadUserProfile: () => KeycloakPromise<KeycloakProfile, void>
+  isAuthenticated: () => boolean | undefined
+  hasRealmRole: (role: string) => boolean
+  hasResourceRole: (role: string, resource?: string) => boolean
+}
 
 /**
  * Adapter for authentication and authorization service
  */
 class AuthStore {
   /**
-   * Create instance of AuthStore from keycloak.
+   * Create instance of TMTAuth from keycloak.
    *
    * @param keycloak keycloak instance instantiated using keyclok-js
    */
-  from = keycloak => ({
+  public from: (keycloak: KeycloakInstance) => Auth = keycloak => ({
     logout: keycloak.logout,
     token: () => keycloak.token,
     tokenParsed: () => keycloak.tokenParsed,
@@ -35,7 +56,14 @@ class AuthStore {
    * @return {{ keycloak, authenticated }} json which contains keycloak instance and authenticated which is promise after
    * initializing keycloak
    */
-  authenticate = (config, url, redirect) => {
+  public authenticate = (
+    config: AuthContextProps['config'],
+    url: { url: string },
+    redirect: boolean,
+  ): {
+    keycloak: KeycloakInstance
+    authenticated: KeycloakPromise<boolean, KeycloakError>
+  } => {
     console.info('instantiating AAS')
     const keycloakConfig = { ...AASConfig, ...config, ...url }
     const keycloak = KeyCloak(keycloakConfig)
@@ -67,10 +95,10 @@ class AuthStore {
    *
    * @return url string which is AAS server url
    */
-  getAASUrl = async () => {
+  public getAASUrl: () => Promise<string> = async () => {
     let url = await resolveAAS()
     return url || Config['AAS-server-url']
   }
 }
 
-export const Auth = new AuthStore()
+export const TMTAuth = new AuthStore()

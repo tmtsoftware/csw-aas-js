@@ -71,11 +71,11 @@ It is recommended to use `AuthContextProvider` to wrap the entire application so
 application via a `Consumer`. 
 
 Javascript
-:   @@snip [AuthContextProvider.jsx](../../../../csw-aas-js/example/src/components/ExampleApp.jsx) { #AuthContextProvider-component-usage }
+:   @@snip [AuthContextProvider.tsx](../../../../csw-aas-js/example/src/components/ExampleApp.jsx) { #AuthContextProvider-component-usage }
 
 #### Source code for RealmRole component
 
-* @github[AuthContextProvider Component](/csw-aas-js/src/components/context/AuthContextProvider.jsx)
+* @github[AuthContextProvider Component](/csw-aas-js/src/components/context/AuthContextProvider.tsx)
 
 ### Consumer
 
@@ -87,7 +87,7 @@ Javascript
 
 #### Source code for RealmRole component
 
-* @github[Consumer Component](/csw-aas-js/src/components/context/AuthContext.jsx)
+* @github[Consumer Component](/csw-aas-js/src/components/context/AuthContext.ts)
 
 ### Login
 
@@ -96,22 +96,22 @@ for the user to login. After login, the `auth` object in the context is updated 
 e.g. token, realm & client roles etc.
 
 Javascript
-:   @@snip [Login.jsx](../../../../csw-aas-js/example/src/components/NavComponent.jsx) { #login-component-usage }
+:   @@snip [Login.tsx](../../../../csw-aas-js/example/src/components/NavComponent.jsx) { #login-component-usage }
 
 #### Source code for Login component
 
-* @github[Login Component](/csw-aas-js/src/components/Login.jsx)
+* @github[Login Component](/csw-aas-js/src/components/Login.tsx)
 
 ### Logout
 
 The `Logout` component logs out the user from the AAS server. It clears the `auth` object stored in the context.
 
 Javascript
-:   @@snip [Logout.jsx](../../../../csw-aas-js/example/src/components/NavComponent.jsx) { #logout-component-usage }
+:   @@snip [Logout.tsx](../../../../csw-aas-js/example/src/components/NavComponent.jsx) { #logout-component-usage }
 
 #### Source code for Logout component
 
-* @github[Logout Component](/csw-aas-js/src/components/Logout.jsx)
+* @github[Logout Component](/csw-aas-js/src/components/Logout.tsx)
 
 ### CheckLogin
 
@@ -121,11 +121,11 @@ The behavior if the user is not logged in can be defined by an HTML element or R
 passed into the component as an `error` property, shown as an `ExampleError` Component in following snippet.
 
 Javascript
-:   @@snip [CheckLogin.jsx](../../../../csw-aas-js/example/src/components/ExampleApp.jsx) { #checkLogin-component-usage }
+:   @@snip [CheckLogin.tsx](../../../../csw-aas-js/example/src/components/ExampleApp.jsx) { #checkLogin-component-usage }
 
 #### Source code for CheckLogin component
 
-* @github[CheckLogin Component](/csw-aas-js/src/components/authentication/CheckLogin.jsx)
+* @github[CheckLogin Component](/csw-aas-js/src/components/authentication/CheckLogin.tsx)
 
 ### RealmRole
 
@@ -136,11 +136,11 @@ the behaviour if the user is not logged in can be optionally defined by an HTML 
 that is passed into the component as an `error` property, shown as an `ExampleError` Component in following snippet.
 
 Javascript
-:   @@snip [RealmRole.jsx](../../../../csw-aas-js/example/src/components/ExampleApp.jsx) { #realmRole-component-usage }
+:   @@snip [RealmRole.tsx](../../../../csw-aas-js/example/src/components/ExampleApp.jsx) { #realmRole-component-usage }
 
 #### Source code for RealmRole component
 
-* @github[RealmRole Component](/csw-aas-js/src/components/authorization/RealmRole.jsx)
+* @github[RealmRole Component](/csw-aas-js/src/components/authorization/RealmRole.tsx)
 
 ### ClientRole
 
@@ -151,11 +151,11 @@ the behaviour if the user is not logged in can be optionally defined by an HTML 
 that is passed into the component as an `error` property, shown as an `ExampleError` Component in following snippet.
 
 Javascript
-:   @@snip [ClientRole.jsx](../../../../csw-aas-js/example/src/components/ExampleApp.jsx) { #clientRole-component-usage }
+:   @@snip [ClientRole.tsx](../../../../csw-aas-js/example/src/components/ExampleApp.jsx) { #clientRole-component-usage }
 
 #### Source code for ClientRole component
 
-* @github[ClientRole Component](/csw-aas-js/src/components/authorization/ClientRole.jsx)
+* @github[ClientRole Component](/csw-aas-js/src/components/authorization/ClientRole.tsx)
 
 ## Technical Description
 See @ref:[csw-aas-js Technical Description](../technical/csw-aas-js.md).

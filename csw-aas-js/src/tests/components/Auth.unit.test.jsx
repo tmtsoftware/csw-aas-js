@@ -1,4 +1,4 @@
-import { Auth } from '../../components/Auth'
+import { TMTAuth } from '../../components/Auth'
 import KeyCloak from 'keycloak-js'
 import { resolveAAS } from '../../components/AASResolver'
 
@@ -7,12 +7,12 @@ jest.mock('keycloak-js')
 jest.mock('../../components/AASResolver')
 
 // DEOPSCSW-630 - Javascript adapter for AAS
-describe('<Auth />', () => {
+describe('<TMTAuth />', () => {
   beforeEach(() => {
     resolveAAS.mockClear()
   })
 
-  it('should create Auth instance', () => {
+  it('should create TMTAuth instance', () => {
     const mockKeycloak = {
       logout: jest.fn(),
       token: 'token string',
@@ -23,7 +23,7 @@ describe('<Auth />', () => {
       authenticated: false,
     }
 
-    const auth = Auth.from(mockKeycloak)
+    const auth = TMTAuth.from(mockKeycloak)
 
     expect(auth.logout).toBe(mockKeycloak.logout)
     expect(auth.token()).toBe(mockKeycloak.token)
@@ -51,7 +51,7 @@ describe('<Auth />', () => {
 
     KeyCloak.mockReturnValue(mockKeycloak)
 
-    const { keycloak, authenticated } = Auth.authenticate(
+    const { keycloak, authenticated } = TMTAuth.authenticate(
       {
         realm: 'example',
         clientId: 'example-app',
@@ -72,7 +72,7 @@ describe('<Auth />', () => {
   it('should getAASUrl from location service', async () => {
     resolveAAS.mockReturnValue(Promise.resolve('http://AAS_IP:AAS_Port/auth'))
 
-    const url = await Auth.getAASUrl()
+    const url = await TMTAuth.getAASUrl()
 
     expect(resolveAAS).toHaveBeenCalledTimes(1)
     expect(url).toBe('http://AAS_IP:AAS_Port/auth')
@@ -81,7 +81,7 @@ describe('<Auth />', () => {
   it('should getAASUrl from config', async () => {
     resolveAAS.mockReturnValue(Promise.resolve(null))
 
-    const url = await Auth.getAASUrl()
+    const url = await TMTAuth.getAASUrl()
 
     expect(resolveAAS).toHaveBeenCalledTimes(1)
     expect(url).toBe('http://localhost:8081/auth')
