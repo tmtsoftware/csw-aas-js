@@ -23,15 +23,15 @@ pipeline {
 
         stage('build config') {
             steps {
-               sh "rm -rf csw-aas-js/config/node_modules csw-aas-js/config/package-lock.json"
-               sh "cd csw-aas-js && npm run config"
+                sh "rm -rf csw-aas-js-examples/config-app/node_modules csw-aas-js-examples/config-app/package-lock.json"
+                sh "cd csw-aas-js-examples/config-app && npm run config"
             }
         }
 
         stage('build example') {
             steps {
-                sh "rm -rf csw-aas-js/example/node_modules csw-aas-js/example/package-lock.json"
-                sh "cd csw-aas-js && npm run example"
+                sh "rm -rf csw-aas-js-examples/example-app/node_modules csw-aas-js-examples/example-app/package-lock.json"
+                sh "cd csw-aas-js-examples/example-app && npm run example"
             }
         }
 

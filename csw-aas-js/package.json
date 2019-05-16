@@ -23,10 +23,6 @@
     "prebuild": "rimraf dist",
     "build": "tsc && rollup -c rollup.config.ts",
     "start": "tsc && rollup -c rollup.config.ts -w",
-    "example": "cd example && npm install && npm run build",
-    "config": "cd config && npm install && npm run build",
-    "startConfig": "npm run build && cd config && BROWSER=none pm2 start node_modules/react-scripts/scripts/start.js --name config",
-    "stopConfig": "pm2 delete config",
     "prepublishOnly": "npm install && npm test"
   },
   "peerDependencies": {
@@ -61,11 +57,11 @@
     "eslint-plugin-react-hooks": "^1.6.0",
     "eslint-plugin-standard": "^4.0.0",
     "jest": "^24.7.1",
-    "pm2": "^3.5.0",
     "prettier-eslint-cli": "^4.7.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-test-renderer": "^16.8.6",
+    "pm2": "^3.5.0",
     "rimraf": "^2.6.3",
     "rollup": "^1.10.0",
     "rollup-plugin-babel": "^4.3.2",
