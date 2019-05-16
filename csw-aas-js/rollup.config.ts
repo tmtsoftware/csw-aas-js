@@ -12,7 +12,7 @@ const pkg = require('./package.json')
 const extensions = ['.js', '.jsx', '.tsx', '.ts']
 
 export default {
-  input: 'src/aas.ts',
+  input: 'src/index.ts',
   output: [
     {
       file: pkg.module,
