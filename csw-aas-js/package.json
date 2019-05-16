@@ -9,7 +9,6 @@
     "url": "https://github.com/tmtsoftware/csw-js.git"
   },
   "main": "dist/index.js",
-  "types": "dist/csw-aas-js.d.ts",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
   "engines": {
@@ -22,8 +21,8 @@
     "testAll": "npm run test && npm run test:it",
     "lint": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "prebuild": "rimraf dist",
-    "build": "tsc && rollup -c",
-    "start": "tsc && rollup -c -w",
+    "build": "tsc && rollup -c rollup.config.ts",
+    "start": "tsc && rollup -c rollup.config.ts -w",
     "example": "cd example && npm install && npm run build",
     "config": "cd config && npm install && npm run build",
     "startConfig": "npm run build && cd config && BROWSER=none pm2 start node_modules/react-scripts/scripts/start.js --name config",

@@ -21,5 +21,6 @@
     "noImplicitThis": false,
     "noImplicitAny": false,
     "noEmit": true
-  }
+  },
+  "include": ["src"]
 }
