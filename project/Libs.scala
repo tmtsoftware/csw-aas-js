@@ -1,4 +1,5 @@
 import org.portablescala.sbtplatformdeps.PlatformDepsPlugin.autoImport._
+import org.scalablytyped.sbt.ScalablyTypedPlugin.autoImport.ScalablyTyped
 import sbt.Def.{setting ⇒ dep}
 import sbt._
 
@@ -13,6 +14,15 @@ object Libs {
   val `embedded-keycloak` = "com.github.tmtsoftware"  % "embedded-keycloak" % "0.1.2"
   val `webdrivermanager`  = "io.github.bonigarcia"    % "webdrivermanager"  % "3.4.0"
 
+  val `scala-async` = dep("org.scala-lang.modules" %% "scala-async"  % "0.10.0")
+  val `scalajs-dom` = dep("org.scala-js"           %%% "scalajs-dom" % "0.9.7")
+}
+
+object Sjs {
+  val `keycloak`     = ScalablyTyped.K.`keycloak-js`
+  val `react-facade` = ScalablyTyped.R.`react-facade`
+  val `react`        = ScalablyTyped.R.`react`
+  val `react-dom`    = ScalablyTyped.R.`react-dom`
 }
 
 object CSW {

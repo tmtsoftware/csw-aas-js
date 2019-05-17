@@ -2,6 +2,24 @@ import sbt._
 
 object Dependencies {
 
+  val AASSjs = Def.setting(
+    Seq(
+      Sjs.`keycloak`,
+      Sjs.`react`,
+      Sjs.`react-facade`,
+      Sjs.`react-dom`,
+      Libs.`scala-async`.value,
+      Libs.`scalajs-dom`.value,
+      Libs.`scalatest`.value % Test
+    )
+  )
+  
+  val AASSjsNpmDeps: Seq[(String, String)] = Seq(
+    "react"       → "16.8.6",
+    "react-dom"   → "16.8.6",
+    "keycloak-js" → "5.0.0"
+  )
+
   val AASReact4s = Def.setting(
     Seq(
       Libs.`scalatest`.value % Test,
