@@ -8,8 +8,23 @@ on top of [keycloak-js](https://www.keycloak.org/docs/latest/securing_apps/index
 Core implementation of csw-aas-js uses
 
 - [keycloak-js](https://www.keycloak.org/docs/latest/securing_apps/index.html#_javascript_adapter) - keycloak javascript adapter
-- [React](https://reactjs.org/) - javascript library for building user interfaces
+- [React](https://reactjs.org/) - JavaScript library for building user interfaces
+- [Typescript](https://www.typescriptlang.org/) - Types superset of JavaScript which compiles to JavaScript
 - @extref[csw-location-service](csw:services/location) - resolve keycloak using location service http endpoint
+
+## Project setup
+
+`csw-aas-js` is a library written in [Typescript](https://www.typescriptlang.org/). `tsc` is a command line compiler of 
+Typescript which compiles typescrit files to JavaScript. `tsc` picks up configurations from `tsconfig.json` file which 
+is at root level of project. `tsconfig.json` allows to configure multiple compiler options. Please refer 
+[this](https://www.typescriptlang.org/docs/handbook/compiler-options.html) for details of compiler options. 
+`csw-aas-js` is bundled as ES6 module using [rollup bundler](https://rollupjs.org/guide/en). Rollup statically analyzes 
+the code being imported, and will exclude anything that isn't actually used. It bundles small pieces of code and creates
+one javascript module in specifies format. In case of `csw-aas-js` it creates `index.es.js` ES6 module. Along with `index.es.js`,
+`csw-aas-js` also bundles type declaration files which provide typings for react components exported by library. `package.json`
+points to `index.es.js` as a entry point for library and `index.d.ts` as types. This will help `csw-aas-js` library users
+to know type signatures of components. e.g. type signature for react component props, api signatures. `csw-aas-js` can be
+seamlessly consumed by applications written ES6 or Typescript. 
 
 ## Keycloak
 
@@ -100,7 +115,3 @@ make it available to consumers of AuthContext. Protected react components can be
 For example, CreateConfig component can be shown only to users having `config admin` role. After the user is authenticated 
 the application can make requests to RESTful services secured by Keycloak by including the bearer token in the Authorization header.
 This completed workflow for web application calling secure http endpoint. 
-
-
-
-
