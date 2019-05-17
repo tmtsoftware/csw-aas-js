@@ -58,14 +58,14 @@ class AuthStore {
    */
   public authenticate = (
     config: AuthContextProps['config'],
-    url: { url: string },
+    url: string ,
     redirect: boolean,
   ): {
     keycloak: KeycloakInstance
     authenticated: KeycloakPromise<boolean, KeycloakError>
   } => {
     console.info('instantiating AAS')
-    const keycloakConfig = { ...AASConfig, ...config, ...url }
+    const keycloakConfig = { ...AASConfig, ...config, url }
     const keycloak = KeyCloak(keycloakConfig)
 
     keycloak.onTokenExpired = () => {

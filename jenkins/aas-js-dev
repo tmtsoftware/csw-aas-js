@@ -22,6 +22,12 @@ pipeline {
             }
         }
 
+        stage('lint') {
+            steps {
+                sh "cd csw-aas-js && npm run lint"
+            }
+        }
+
         stage('test') {
             steps {
                 sh "cd csw-aas-js && npm test"

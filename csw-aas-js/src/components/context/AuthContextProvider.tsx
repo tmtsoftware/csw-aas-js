@@ -25,7 +25,7 @@ const AuthContextProvider = (props: AuthContextProps) => {
    * Instantiate keycloak and sets TMTAuthStore instance in state. This state can be provided
    * as a context
    */
-  const instantiateAAS = async (url: { url: string }, redirect: boolean) => {
+  const instantiateAAS = async ( url: string , redirect: boolean) => {
     const { keycloak, authenticated } = await TMTAuth.authenticate(
       props.config,
       url,
@@ -46,7 +46,7 @@ const AuthContextProvider = (props: AuthContextProps) => {
    */
   const loginWithoutRedirect = async () => {
     const url = await TMTAuth.getAASUrl()
-    await instantiateAAS({ url: url }, false)
+    await instantiateAAS(url , false)
   }
 
   useEffect(() => {
@@ -58,7 +58,7 @@ const AuthContextProvider = (props: AuthContextProps) => {
    */
   const login = async () => {
     const url = await TMTAuth.getAASUrl()
-    await instantiateAAS({ url: url }, true)
+    await instantiateAAS( url , true)
   }
 
   const logout = async () => {

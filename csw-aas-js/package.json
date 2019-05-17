@@ -19,7 +19,7 @@
     "test": "jest unit --coverage ",
     "test:it": "jest int --coverage",
     "testAll": "npm run test && npm run test:it",
-    "lint": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
+    "lint": "tsc && eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "prebuild": "rimraf dist",
     "build": "tsc && rollup -c rollup.config.ts",
     "start": "tsc && rollup -c rollup.config.ts -w",
