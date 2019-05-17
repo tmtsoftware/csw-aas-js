@@ -56,7 +56,7 @@ react context api. AuthContext gives handle to token, realm and resource roles, 
 this information can become consumer of AuthContext. For example
 
 Javascript
-:   @@snip [use auth context](../../../../csw-aas-js/config/src/components/CreateConfig.jsx) { #use-auth-context }
+:   @@snip [use auth context](../../../../csw-aas-js-examples/config-app/src/components/CreateConfig.jsx) { #use-auth-context }
 
 Access token can be extracted from `auth` and it can be sent in `Authorization` header for calling secure api
 
