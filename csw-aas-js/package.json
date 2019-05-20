@@ -30,7 +30,7 @@
     "react-dom": "^16.8.0"
   },
   "dependencies": {
-    "keycloak-js": "5.0.0"
+    "keycloak-js": "6.0.1"
   },
   "devDependencies": {
     "@babel/plugin-external-helpers": "^7.2.0",
