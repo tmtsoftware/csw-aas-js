@@ -1,7 +1,8 @@
 # csw-aas-js - Javascript adapter
 
-csw-aas-js is a npm package which exposes react components to enable authentication and authorization. csw-aas-js is built
-on top of [keycloak-js](https://www.keycloak.org/docs/latest/securing_apps/index.html#_javascript_adapter)
+csw-aas-js is a npm package which exposes react components to enable authentication and authorization. 
+csw-aas-js is built in typescript on top of [keycloak-js](https://www.keycloak.org/docs/latest/securing_apps/index.html#_javascript_adapter)
+which is javascript adapter provided by keycloak.
 
 ## csw-aas-js Implementation
 
