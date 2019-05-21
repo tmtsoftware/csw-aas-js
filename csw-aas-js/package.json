@@ -1,6 +1,6 @@
 {
   "name": "csw-aas-js",
-  "version": "0.4.10",
+  "version": "0.4.11",
   "description": "This library is a javascript adapter for csw-aas. This is a wrapper over keycloak.js. It provides react components which can be used by UI applications to incarporate authorization and authentication using configured auth server url",
   "author": "TMT Software",
   "license": "Apache License 2.0",
@@ -21,7 +21,8 @@
     "testAll": "npm run test && npm run test:it",
     "lint": "tsc && eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "prebuild": "rimraf dist",
-    "build": "tsc && rollup -c rollup.config.ts",
+    "build": "tsc --noEmit && rollup -c rollup.config.ts && npm run typings",
+    "typings": "tsc -d --emitDeclarationOnly",
     "start": "tsc && rollup -c rollup.config.ts -w",
     "prepublishOnly": "npm install && npm test"
   },

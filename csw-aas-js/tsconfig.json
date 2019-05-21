@@ -15,12 +15,9 @@
     "module": "es6",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "declaration": true,
-    "declarationDir": "./dist",
     "strict": true,
     "noImplicitThis": false,
-    "noImplicitAny": false,
-    "noEmit": true
+    "noImplicitAny": false
   },
   "include": ["src"]
 }
