@@ -35,13 +35,6 @@ pipeline {
             }
         }
 
-         stage('build config material app') {
-            steps {
-               sh "rm -rf csw-aas-js-examples/config-material-app/node_modules csw-aas-js-examples/config-material-app/package-lock.json"
-               sh "cd csw-aas-js-examples/config-material-app && npm install && npm run build"
-            }
-         }
-
         stage('Git Tag') {
             steps {
                 sh "git tag v$VERSION"
