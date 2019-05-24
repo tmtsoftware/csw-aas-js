@@ -10,11 +10,14 @@ import { Auth, TMTAuth } from '../Auth'
  * children - react component or html element which can have consumer to access
  * context provided
  */
+
+export interface AuthContextConfig{
+  realm: string
+  clientId: string
+}
+
 export interface AuthContextProps {
-  config: {
-    realm: string
-    clientId: string
-  }
+  config: AuthContextConfig
   children: React.ReactNode
 }
 

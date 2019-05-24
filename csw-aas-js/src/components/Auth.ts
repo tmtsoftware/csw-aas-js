@@ -1,4 +1,4 @@
-import { AASConfig, Config } from '../config/configs'
+import {AASConfig, Config} from '../config/configs'
 import KeyCloak, {
   KeycloakError,
   KeycloakInstance,
@@ -8,8 +8,8 @@ import KeyCloak, {
   KeycloakRoles,
   KeycloakTokenParsed,
 } from 'keycloak-js'
-import { resolveAAS } from './AASResolver'
-import { AuthContextProps } from './context/AuthContextProvider'
+import {resolveAAS} from './AASResolver'
+import {AuthContextConfig} from './context/AuthContextProvider'
 
 export interface Auth {
   logout: (options?: any) => KeycloakPromise<void, void>
@@ -21,6 +21,11 @@ export interface Auth {
   isAuthenticated: () => boolean | undefined
   hasRealmRole: (role: string) => boolean
   hasResourceRole: (role: string, resource?: string) => boolean
+}
+
+export interface AuthenticateResult {
+  keycloak: KeycloakInstance
+  authenticated: KeycloakPromise<boolean, KeycloakError>
 }
 
 /**
@@ -57,13 +62,10 @@ class AuthStore {
    * initializing keycloak
    */
   public authenticate = (
-    config: AuthContextProps['config'],
+    config: AuthContextConfig,
     url: string ,
     redirect: boolean,
-  ): {
-    keycloak: KeycloakInstance
-    authenticated: KeycloakPromise<boolean, KeycloakError>
-  } => {
+  ): AuthenticateResult => {
     console.info('instantiating AAS')
     const keycloakConfig = { ...AASConfig, ...config, url }
     const keycloak = KeyCloak(keycloakConfig)
