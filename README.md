@@ -7,6 +7,11 @@ The backbone of AAS is the [Keycloak](https://www.keycloak.org/documentation.htm
 We are using javascript adapter called [keycloak-js](https://www.npmjs.com/package/keycloak-js) provided by Keycloak as a underlying mechanism to talk to keycloak.
 As a consumer of this project, you need not to be worried about this. You will always be interacting with libraries provided by `csw` which are just wrapper over keycloak. 
 
+
+## Version compatibility
+
+csw-js 0.5.0 version is compatible with 0.7.0 of csw.
+
 This project includes following sub modules:
 ## csw-aas-js
 This module is published at npm registry as a javascript library which provides re-usable react components for authentication and authorization.
@@ -94,4 +99,3 @@ To run this test, execute `sbt test` or `sbt integration/test` command
 If `sbt test` fails with an error stating that `http://localhost:3000` is not accessible, it may be this [issue](https://github.com/facebook/create-react-app/issues/2844). 
 The solution is to unset the `HOST` environment variable before running the test.
 
- 
