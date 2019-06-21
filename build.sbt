@@ -16,17 +16,6 @@ lazy val `csw-js` = project
 /* ================= Paradox Docs ============== */
 lazy val docs = project.enablePlugins(ParadoxSite, GithubPublishDocs)
 
-lazy val `csw-aas-sjs` = project
-  .enablePlugins(ScalaJSBundlerPlugin)
-  .settings(
-    fork := false,
-    scalacOptions += "-P:scalajs:sjsDefinedByDefault",
-    resolvers += Resolver.bintrayRepo("oyvindberg", "ScalablyTyped"),
-    resolvers += Resolver.sonatypeRepo("snapshots"),
-    libraryDependencies ++= Dependencies.AASSjs.value,
-    npmDependencies in Compile ++= Dependencies.AASSjsNpmDeps
-  )
-
 lazy val `csw-aas-react4s-facade` = project
   .in(file("csw-aas-react4s-facade"))
   .enablePlugins(ScalaJSBundlerPlugin)

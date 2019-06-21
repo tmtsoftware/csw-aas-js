@@ -11,7 +11,3 @@ addSbtPlugin("com.timushev.sbt" % "sbt-updates"                % "0.4.0")
 
 addSbtCoursier
 classpathTypes += "maven-plugin"
-
-
-resolvers += Resolver.bintrayRepo("oyvindberg", "ScalablyTyped")
-addSbtPlugin("org.scalablytyped" % "sbt-scalablytyped" % "201905150530")
