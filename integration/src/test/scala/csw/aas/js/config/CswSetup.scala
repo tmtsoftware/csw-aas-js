@@ -2,7 +2,9 @@ package csw.aas.js.config
 
 import java.nio.file.Paths
 
-import akka.actor.ActorSystem
+import akka.actor
+import akka.actor.typed.{ActorSystem, SpawnProtocol}
+import akka.actor.typed.scaladsl.adapter.TypedActorSystemOps
 import akka.http.scaladsl.Http
 import akka.stream.Materializer
 import csw.aas.core.deployment.AuthServiceLocation
@@ -22,12 +24,13 @@ trait CswSetup {
 
   import locationWiring._
   import actorRuntime._
-  implicit val _system: ActorSystem  = locationWiring.actorSystem
-  implicit val _ec: ExecutionContext = ec
-  implicit val _mat: Materializer    = mat
+  implicit val _system: ActorSystem[SpawnProtocol] = locationWiring.actorSystem
+  implicit val unTypedSystem: actor.ActorSystem    = locationWiring.actorSystem.toUntyped
+  implicit val _ec: ExecutionContext               = ec
+  implicit val _mat: Materializer                  = mat
 
   lazy val configWiring: ConfigServerWiring = new ConfigServerWiring {
-    override lazy val actorSystem: ActorSystem = _system
+    override lazy val actorSystem: ActorSystem[SpawnProtocol] = _system
     override lazy val settings: Settings = new Settings(config) {
       override val `service-port`: Int = 5000
     }
@@ -50,7 +53,7 @@ trait CswSetup {
 
   def shutdown(): Unit = {
     deleteServerFiles()
-    await(Http(_system).shutdownAllConnectionPools())
+    await(Http(_system.toUntyped).shutdownAllConnectionPools())
     configServer.foreach(terminateHttpServerBinding)
     terminateHttpServerBinding(locationServerBinding)
     coordShutdown(actorRuntime.shutdown)
