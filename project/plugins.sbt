@@ -9,5 +9,9 @@ addSbtPlugin("ch.epfl.scala"    % "sbt-web-scalajs-bundler"    % "0.14.0")
 addSbtPlugin("ch.epfl.scala"    % "sbt-scalajs-bundler"        % "0.14.0")
 addSbtPlugin("com.timushev.sbt" % "sbt-updates"                % "0.4.0")
 
+addSbtPlugin("ohnosequences" % "sbt-github-release" % "0.7.0")
+
+libraryDependencies += "com.sun.activation"   % "javax.activation" % "1.2.0"
+
 addSbtCoursier
 classpathTypes += "maven-plugin"
