@@ -1,6 +1,6 @@
 ## csw-aas-js - Typescript adapter for authentication and authorization v0.5.1
 
-This is release v0.5.1 of the csw-aas-js npm module
+This is release v0.5.2 of the csw-aas-js npm module
 
 See [CHANGELOG.md](CHANGELOG.md) for details of all releases.
 
@@ -8,4 +8,4 @@ csw-aas-js is a library written in typescript. It provides react components whic
 authentication and authorization for javascript react application.
 
 ### Documentation
-- Reference paradox documentation: https://tmtsoftware.github.io/csw-js/0.5.1/
+- Reference paradox documentation: https://tmtsoftware.github.io/csw-js/0.5.2/
