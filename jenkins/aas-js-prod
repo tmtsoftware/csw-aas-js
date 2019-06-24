@@ -42,6 +42,12 @@ pipeline {
             }
         }
 
+        stage('Github Release') {
+             steps {
+                sh "sbt -Dprod.publish=true githubRelease"
+             }
+        }
+
         stage('Docs Publish') {
             steps {
                 sh "sbt -Dprod.publish=true clean ghpagesPushSite"

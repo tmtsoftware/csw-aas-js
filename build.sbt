@@ -18,10 +18,13 @@ lazy val `csw-js` = project
   .aggregate(aggregatedProjects: _*)
 
 /* ================= Paradox Docs ============== */
-lazy val docs = project.enablePlugins(ParadoxSite, GithubPublishDocs).disablePlugins(SbtGithubReleasePlugin)
+lazy val docs = project
+  .enablePlugins(ParadoxSite, GithubPublishDocs)
+  .disablePlugins(SbtGithubReleasePlugin)
 
 lazy val `integration` = project
   .in(file("integration"))
   .settings(
     libraryDependencies ++= Dependencies.Integration.value
-  ).disablePlugins(SbtGithubReleasePlugin)
+  )
+  .disablePlugins(SbtGithubReleasePlugin)
