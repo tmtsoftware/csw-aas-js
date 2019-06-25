@@ -10,7 +10,7 @@ As a consumer of this project, you need not to be worried about this. You will a
 
 ## Version compatibility
 
-csw-js 0.5.0 version is compatible with 0.7.0 of csw.
+csw-js 0.5.3 version is compatible with 0.7.0 of csw.
 
 This project includes following sub modules:
 ## csw-aas-js
