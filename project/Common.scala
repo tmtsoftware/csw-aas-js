@@ -30,7 +30,7 @@ object Common extends AutoPlugin {
       "-unchecked",
       "-deprecation",
       "-Xlint",
-      "-Yno-adapted-args",
+//      "-Yno-adapted-args",
       "-Ywarn-dead-code",
       "-Xfuture",
       if (cycleCheckEnabled && detectCycles.value) "-P:acyclic:force" else ""

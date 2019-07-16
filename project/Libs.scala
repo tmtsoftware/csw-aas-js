@@ -3,15 +3,15 @@ import sbt.Def.{setting ⇒ dep}
 import sbt._
 
 object Libs {
-  val ScalaVersion   = "2.12.8"
-  val AcyclicVersion = "0.1.8"
+  val ScalaVersion   = "2.13.0"
+  val AcyclicVersion = "0.2.0"
 
-  val `scalatest` = dep("org.scalatest" %%% "scalatest" % "3.0.6") //Apache License 2.0
+  val `scalatest` = dep("org.scalatest" %%% "scalatest" % "3.0.8") //Apache License 2.0
   val `acyclic`   = "com.lihaoyi" %% "acyclic" % AcyclicVersion % Provided //MIT License
 
-  val `selenium-java`     = "org.seleniumhq.selenium" % "selenium-java"     % "3.141.59"
-  val `embedded-keycloak` = "com.github.tmtsoftware"  % "embedded-keycloak" % "0.1.2"
-  val `webdrivermanager`  = "io.github.bonigarcia"    % "webdrivermanager"  % "3.4.0"
+  val `selenium-java`     = "org.seleniumhq.selenium"                  % "selenium-java"      % "3.141.59"
+  val `embedded-keycloak` = "com.github.tmtsoftware.embedded-keycloak" %% "embedded-keycloak" % "0.1.4"
+  val `webdrivermanager`  = "io.github.bonigarcia"                     % "webdrivermanager"   % "3.4.0"
 
   val `scala-async` = dep("org.scala-lang.modules" %% "scala-async"  % "0.10.0")
   val `scalajs-dom` = dep("org.scala-js"           %%% "scalajs-dom" % "0.9.7")
