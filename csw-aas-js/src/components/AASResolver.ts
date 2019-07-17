@@ -14,7 +14,7 @@ export const resolveAAS: () => Promise<string | null> = async () => {
   const response = await window.fetch(URL)
   if (response.status === 200) {
     const jsonResponse = await response.json()
-    return jsonResponse.uri
+    return jsonResponse.HttpLocation.uri
   }
   return null
 }
