@@ -8,7 +8,11 @@ describe('<AASResolver />', () => {
     const mockResponse = {
       status: 200,
       json: jest.fn().mockImplementation(() => {
-        return { uri: 'http://somehost:someport' }
+        return {
+          HttpLocation: {
+            uri: "http://somehost:someport"
+          }
+        }
       }),
     }
 
