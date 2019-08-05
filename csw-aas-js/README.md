@@ -7,7 +7,7 @@
 ## Install
 
 ```bash
-npm install
+npm install csw-aas-js
 ```
 
 ## Usage
