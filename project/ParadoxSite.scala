@@ -48,8 +48,8 @@ object ParadoxSite extends AutoPlugin {
   // export CSW_VERSION env variable which is compatible with csw
   // this represents version number of javascript docs maintained at https://github.com/tmtsoftware/csw-js
   private def cswVersion: String = (sys.env ++ sys.props).get("CSW_VERSION") match {
-    case Some(v) ⇒ v
-    case None    ⇒ "0.1-SNAPSHOT"
+    case Some(v) => v
+    case None    => "0.1-SNAPSHOT"
   }
 
   private def githubBaseUrl(version: String) = {

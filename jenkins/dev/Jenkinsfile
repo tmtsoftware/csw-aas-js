@@ -12,7 +12,7 @@ pipeline {
 
         stage('checkout') {
             steps {
-                git 'https://github.com/tmtsoftware/csw-js.git'
+                git 'git@github.com:tmtsoftware/csw-js.git'
             }
         }
 
@@ -42,8 +42,8 @@ pipeline {
 
         stage('build config app') {
             steps {
-               sh "rm -rf csw-aas-js-examples/config-app/node_modules csw-aas-js-examples/config-app/package-lock.json"
-               sh "cd csw-aas-js-examples/config-app && npm run config"
+                sh "rm -rf csw-aas-js-examples/config-app/node_modules csw-aas-js-examples/config-app/package-lock.json"
+                sh "cd csw-aas-js-examples/config-app && npm run config"
             }
         }
 

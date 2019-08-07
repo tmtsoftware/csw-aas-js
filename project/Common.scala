@@ -32,14 +32,13 @@ object Common extends AutoPlugin {
       "-Xlint",
 //      "-Yno-adapted-args",
       "-Ywarn-dead-code",
-      "-Xfuture",
       if (cycleCheckEnabled && detectCycles.value) "-P:acyclic:force" else ""
     ),
     javacOptions in (Compile, doc) ++= Seq("-Xdoclint:none"),
     version := {
       sys.props.get("prod.publish") match {
-        case Some("true") ⇒ version.value
-        case _            ⇒ "0.1-SNAPSHOT"
+        case Some("true") => version.value
+        case _            => "0.1-SNAPSHOT"
       }
     },
     isSnapshot := !sys.props.get("prod.publish").contains("true"),
@@ -53,12 +52,12 @@ object Common extends AutoPlugin {
   )
 
   private def formatOnCompile = sys.props.get("format.on.compile") match {
-    case Some("false") ⇒ false
-    case _             ⇒ true
+    case Some("false") => false
+    case _             => true
   }
 
   private def cycleCheckEnabled = sys.props.get("check.cycles") match {
-    case Some("false") ⇒ false
-    case _             ⇒ true
+    case Some("false") => false
+    case _             => true
   }
 }

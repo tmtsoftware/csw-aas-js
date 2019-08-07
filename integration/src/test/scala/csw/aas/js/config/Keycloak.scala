@@ -2,7 +2,7 @@ package csw.aas.js.config
 
 import org.tmt.embedded_keycloak.KeycloakData.{ApplicationUser, Client, ClientRole, Realm}
 import org.tmt.embedded_keycloak.impl.StopHandle
-import org.tmt.embedded_keycloak.{EmbeddedKeycloak, KeycloakData, Settings ⇒ KeycloakSettings}
+import org.tmt.embedded_keycloak.{EmbeddedKeycloak, KeycloakData, Settings => KeycloakSettings}
 
 import scala.concurrent.duration.{DurationLong, FiniteDuration}
 import scala.concurrent.{Await, ExecutionContext}
