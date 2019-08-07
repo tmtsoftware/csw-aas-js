@@ -5,6 +5,12 @@ This source code is in github repository: [csw-js](https://github.com/tmtsoftwar
 Npm module published for csw-aas-js can be found [here](https://www.npmjs.com/package/csw-aas-js)
 
 All notable changes to this project will be documented in this file.
+
+## [CSW-AAS-JS v1.0.0-RC1] - 2019-08-07
+
+### csw-aas-js - Typescript adapter for authentication and authorization v1.0.0-RC1
+This is release candidate of `First` major release of the csw-aas-js npm module version v1.0.0
+This version is compatible with `CSW` version v1.0.0-RC1
  
 ## [CSW-AAS-JS v0.5.2] - 2019-06-24
 
