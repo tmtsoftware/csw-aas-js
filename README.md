@@ -10,12 +10,12 @@ As a consumer of this project, you need not to be worried about this. You will a
 
 ## Version compatibility
 
-csw-js 0.5.3 version is compatible with 0.7.0 of csw.
+csw-js v1.0.0 version is compatible with v1.0.0 of csw.
 
 This project includes following sub modules:
 ## csw-aas-js
 This module is published at npm registry as a javascript library which provides re-usable react components for authentication and authorization.
-See [csw-aas-js](https://tmtsoftware.github.io/csw-js/0.1-SNAPSHOT/aas/csw-aas-js) docs for details.
+See [csw-aas-js](https://tmtsoftware.github.io/csw-js/1.0.0/aas/csw-aas-js) docs for details.
 
 ## csw-aas-react4s-facade
 This module provides statically typed API for the `csw-aas-js` adapter for Scala.js programs.
