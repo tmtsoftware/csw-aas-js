@@ -6,7 +6,7 @@ Npm module published for csw-aas-js can be found [here](https://www.npmjs.com/pa
 
 All notable changes to this project will be documented in this file.
 
-## [CSW-AAS-JS v1.0.0] - 2019-08-09
+## [CSW-AAS-JS v1.0.0] - 2019-08-30
 
 ### csw-aas-js - Typescript adapter for authentication and authorization v1.0.0
 This is the `First` major release of the csw-aas-js npm module version v1.0.0
