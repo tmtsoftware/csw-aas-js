@@ -9,8 +9,8 @@ import scala.concurrent.{Await, ExecutionContext}
 
 object Keycloak {
 
-  val configUser     = "kevin"
-  val configPassword = "abcd"
+  val configUser     = "config-admin"
+  val configPassword = "config-admin"
 
   private val serverTimeout: FiniteDuration = 30.minutes
 
