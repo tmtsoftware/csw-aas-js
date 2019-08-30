@@ -1,4 +1,4 @@
-addSbtPlugin("com.geirsson"     % "sbt-scalafmt"               % "1.5.1")
+addSbtPlugin("org.scalameta"     % "sbt-scalafmt"               % "2.0.0")
 addSbtPlugin("com.dwijnand"     % "sbt-dynver"                 % "3.1.0")
 addSbtPlugin("com.typesafe.sbt" % "sbt-ghpages"                % "0.6.2")
 addSbtPlugin("com.typesafe.sbt" % "sbt-site"                   % "1.3.2")
