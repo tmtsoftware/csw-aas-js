@@ -19,8 +19,13 @@ lazy val `csw-js` = project
 
 /* ================= Paradox Docs ============== */
 lazy val docs = project
-  .enablePlugins(ParadoxSite, GithubPublishDocs)
+  .enablePlugins(DocsPlugin)
   .disablePlugins(SbtGithubReleasePlugin)
+  .settings(
+    docsRepo := "git@github.com:tmtsoftware/tmtsoftware.github.io.git",
+    docsParentDir := "csw-js",
+    gitCurrentRepo := "https://github.com/tmtsoftware/csw-js"
+  )
 
 lazy val `integration` = project
   .in(file("integration"))
