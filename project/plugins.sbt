@@ -7,7 +7,7 @@ addSbtPlugin("io.spray"         % "sbt-revolver"               % "0.9.1")
 addSbtPlugin("org.scala-js"     % "sbt-scalajs"                % "0.6.27")
 addSbtPlugin("ch.epfl.scala"    % "sbt-web-scalajs-bundler"    % "0.14.0")
 addSbtPlugin("ch.epfl.scala"    % "sbt-scalajs-bundler"        % "0.14.0")
-addSbtPlugin("com.timushev.sbt" % "sbt-updates"                % "0.4.0")
+addSbtPlugin("com.timushev.sbt" % "sbt-updates"                % "0.4.3")
 
 addSbtPlugin("ohnosequences" % "sbt-github-release" % "0.7.0")
 
