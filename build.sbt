@@ -1,5 +1,6 @@
 import ohnosequences.sbt.GithubRelease.keys.ghreleaseAssets
 import ohnosequences.sbt.SbtGithubReleasePlugin
+import org.tmt.sbt.docs.DocKeys._
 
 lazy val aggregatedProjects: Seq[ProjectReference] = Seq(
   `integration`,
