@@ -2,15 +2,15 @@ package csw.aas.js.config
 
 import org.tmt.embedded_keycloak.KeycloakData.{ApplicationUser, Client, ClientRole, Realm}
 import org.tmt.embedded_keycloak.impl.StopHandle
-import org.tmt.embedded_keycloak.{EmbeddedKeycloak, KeycloakData, Settings ⇒ KeycloakSettings}
+import org.tmt.embedded_keycloak.{EmbeddedKeycloak, KeycloakData, Settings => KeycloakSettings}
 
 import scala.concurrent.duration.{DurationLong, FiniteDuration}
 import scala.concurrent.{Await, ExecutionContext}
 
 object Keycloak {
 
-  val configUser     = "kevin"
-  val configPassword = "abcd"
+  val configUser     = "config-admin"
+  val configPassword = "config-admin"
 
   private val serverTimeout: FiniteDuration = 30.minutes
 

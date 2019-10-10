@@ -16,7 +16,7 @@ object Utils {
 
   def await[T](f: Future[T]): T = Await.result(f, defaultTimeout)
 
-  def coordShutdown(f: Reason ⇒ Future[Done]): Done = await(f.apply(UnknownReason))
+  def coordShutdown(f: Reason => Future[Done]): Done = await(f.apply(UnknownReason))
 
   def terminateHttpServerBinding(binding: ServerBinding): Http.HttpTerminated = await(binding.terminate(defaultTimeout))
 

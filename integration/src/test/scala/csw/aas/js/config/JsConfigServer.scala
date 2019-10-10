@@ -40,10 +40,10 @@ trait JsConfigServer {
         val statusF = Http().singleRequest(HttpRequest(uri = url)).map(_.status)
         Source
           .fromFuture(statusF)
-          .collect { case StatusCodes.OK ⇒ println(s"==== Server is up at: [$url] ===="); true }
-          .recover { case x ⇒ println("RETRY: probing config node server"); throw x }
+          .collect { case StatusCodes.OK => println(s"==== Server is up at: [$url] ===="); true }
+          .recover { case x => println("RETRY: probing config node server"); throw x }
       }
       .runWith(Sink.head)
-      .recover { case _ ⇒ throw StreamFailedAfterMaxRetriesException(s"could not connect to: [$url]") }
+      .recover { case _ => throw StreamFailedAfterMaxRetriesException(s"could not connect to: [$url]") }
 
 }
