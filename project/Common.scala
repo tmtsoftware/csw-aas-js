@@ -13,6 +13,7 @@ object Common extends AutoPlugin {
   val detectCycles: SettingKey[Boolean] = settingKey[Boolean]("is cyclic check enabled?")
 
   override lazy val projectSettings: Seq[Setting[_]] = Seq(
+    dependencyOverrides += Libs.`akka-http-spray-json`,
     organization := "com.github.tmtsoftware.csw-js",
     organizationName := "TMT Org",
     scalaVersion := Libs.ScalaVersion,

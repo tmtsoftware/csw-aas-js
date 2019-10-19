@@ -39,7 +39,7 @@ trait JsConfigServer {
       ) { () =>
         val statusF = Http().singleRequest(HttpRequest(uri = url)).map(_.status)
         Source
-          .fromFuture(statusF)
+          .future(statusF)
           .collect { case StatusCodes.OK => println(s"==== Server is up at: [$url] ===="); true }
           .recover { case x => println("RETRY: probing config node server"); throw x }
       }
