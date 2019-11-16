@@ -51,7 +51,7 @@ trait CswSetup {
 
   def shutdown(): Unit = {
     deleteServerFiles()
-    await(Http(untypedSystem).shutdownAllConnectionPools())
+    await(Http().shutdownAllConnectionPools())
     configServer.foreach(terminateHttpServerBinding)
     terminateHttpServerBinding(locationServerBinding)
     coordShutdown(actorRuntime.shutdown)
