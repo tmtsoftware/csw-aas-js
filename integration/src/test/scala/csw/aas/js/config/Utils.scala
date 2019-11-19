@@ -2,8 +2,6 @@ package csw.aas.js.config
 
 import java.io.File
 
-import akka.Done
-import akka.actor.CoordinatedShutdown.{Reason, UnknownReason}
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.Http.ServerBinding
 
@@ -15,8 +13,6 @@ object Utils {
   val defaultTimeout: FiniteDuration = 10.minutes
 
   def await[T](f: Future[T]): T = Await.result(f, defaultTimeout)
-
-  def coordShutdown(f: Reason => Future[Done]): Done = await(f.apply(UnknownReason))
 
   def terminateHttpServerBinding(binding: ServerBinding): Http.HttpTerminated = await(binding.terminate(defaultTimeout))
 

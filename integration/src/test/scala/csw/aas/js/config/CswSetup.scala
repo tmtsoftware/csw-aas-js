@@ -7,7 +7,7 @@ import akka.actor.typed.scaladsl.adapter.TypedActorSystemOps
 import akka.actor.typed.{ActorSystem, SpawnProtocol}
 import akka.http.scaladsl.Http
 import csw.aas.core.deployment.AuthServiceLocation
-import csw.aas.js.config.Utils.{await, coordShutdown, terminateHttpServerBinding}
+import csw.aas.js.config.Utils.{await, terminateHttpServerBinding}
 import csw.config.server.{Settings, ServerWiring => ConfigServerWiring}
 import csw.location.server.commons.ClusterAwareSettings
 import csw.location.server.internal.{ServerWiring => LocationServerWiring}
@@ -54,7 +54,7 @@ trait CswSetup {
     await(Http().shutdownAllConnectionPools())
     configServer.foreach(terminateHttpServerBinding)
     terminateHttpServerBinding(locationServerBinding)
-    coordShutdown(actorRuntime.shutdown)
+    await(actorRuntime.shutdown())
   }
 
   private def deleteServerFiles(): Unit = {
