@@ -6,7 +6,7 @@ object Libs {
   val ScalaVersion   = "2.13.0"
   val AcyclicVersion = "0.2.0"
 
-  val `scalatest` = dep("org.scalatest" %%% "scalatest" % "3.0.8") //Apache License 2.0
+  val `scalatest` = dep("org.scalatest" %%% "scalatest" % "3.1.0") //Apache License 2.0
   val `acyclic`   = "com.lihaoyi" %% "acyclic" % AcyclicVersion % Provided //MIT License
 
   val `selenium-java`        = "org.seleniumhq.selenium"                  % "selenium-java"         % "3.141.59"
