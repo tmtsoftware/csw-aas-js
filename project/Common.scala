@@ -1,4 +1,3 @@
-import Libs._
 import org.scalafmt.sbt.ScalafmtPlugin.autoImport.scalafmtOnCompile
 import sbt.Keys._
 import sbt._
@@ -32,8 +31,7 @@ object Common extends AutoPlugin {
       "-deprecation",
       "-Xlint",
 //      "-Yno-adapted-args",
-      "-Ywarn-dead-code",
-      if (cycleCheckEnabled && detectCycles.value) "-P:acyclic:force" else ""
+      "-Ywarn-dead-code"
     ),
     javacOptions in (Compile, doc) ++= Seq("-Xdoclint:none"),
     version := {
@@ -45,11 +43,9 @@ object Common extends AutoPlugin {
     isSnapshot := !sys.props.get("prod.publish").contains("true"),
     fork := true,
     detectCycles := true,
-    libraryDependencies += `acyclic`,
     autoCompilerPlugins := true,
     cancelable in Global := true, // allow ongoing test(or any task) to cancel with ctrl + c and still remain inside sbt
     if (formatOnCompile) scalafmtOnCompile := true else scalafmtOnCompile := false,
-    addCompilerPlugin("com.lihaoyi" %% "acyclic" % Libs.AcyclicVersion)
   )
 
   private def formatOnCompile = sys.props.get("format.on.compile") match {
