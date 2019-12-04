@@ -6,6 +6,6 @@ export const AASConfig = {
 
 export const Config = {
   'location-server-url': 'http://localhost:7654',
-  'AAS-server-name': 'AAS-service-http',
+  'AAS-server-name': 'csw.AAS-service-http',
   'AAS-server-url': 'http://localhost:8081/auth',
 }
