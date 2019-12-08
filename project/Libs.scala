@@ -5,7 +5,7 @@ import sbt._
 object Libs {
   val ScalaVersion = "2.13.1"
 
-  val `scalatest` = dep("org.scalatest" %%% "scalatest" % "3.0.8") //Apache License 2.0
+  val `scalatest` = dep("org.scalatest" %%% "scalatest" % "3.1.0") //Apache License 2.0
 
   val `selenium-java`        = "org.seleniumhq.selenium"                  % "selenium-java"         % "3.141.59"
   val `embedded-keycloak`    = "com.github.tmtsoftware.embedded-keycloak" %% "embedded-keycloak"    % "65e273d"
