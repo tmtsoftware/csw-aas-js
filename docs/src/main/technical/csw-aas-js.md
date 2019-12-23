@@ -19,13 +19,11 @@ Core implementation of csw-aas-js uses
 Typescript which compiles typescrit files to JavaScript. `tsc` picks up configurations from `tsconfig.json` file which 
 is at root level of project. `tsconfig.json` allows to configure multiple compiler options. Please refer 
 [this](https://www.typescriptlang.org/docs/handbook/compiler-options.html) for details of compiler options. 
-`csw-aas-js` is bundled as ES6 module using [rollup bundler](https://rollupjs.org/guide/en). Rollup statically analyzes 
-the code being imported, and will exclude anything that isn't actually used. It bundles small pieces of code and creates
-one javascript module in specifies format. In case of `csw-aas-js` it creates `index.es.js` ES6 module. Along with `index.es.js`,
-`csw-aas-js` also bundles type declaration files which provide typings for react components exported by library. `package.json`
-points to `index.es.js` as a entry point for library and `index.d.ts` as types. This will help `csw-aas-js` library users
-to know type signatures of components. e.g. type signature for react component props, api signatures. `csw-aas-js` can be
-seamlessly consumed by applications written ES6 or Typescript. 
+`npm run build` command will run `tsc` which will produce outputs (.js and .d.ts). `.d.ts` files are the type declaration files 
+which provide typings for react components exported by library. `package.json` points to `index.js` as a entry point for library 
+and `index.d.ts` as types. This will help `csw-aas-js` library users to know type signatures of components. e.g. type 
+signature for react component props, api signatures. `csw-aas-js` can be seamlessly consumed by applications written ES6 
+or Typescript. 
 
 ## Keycloak
 
