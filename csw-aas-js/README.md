@@ -11,19 +11,26 @@ npm install csw-aas-js
 ```
 
 ## Usage
+`csw-aas-js` exposes multiple react components which can be used to secure react application. Usage of `Login`
+component is shown below:
 
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'csw-aas-js'
+import {Login} from 'csw-aas-js'
 
 class Example extends Component {
   render() {
-    return <MyComponent />
+    return <Login />
   }
 }
 ```
+For details please refer Documentation section.
 
 ## License
 
 Apache Licence Version 2.0 © [TMT Software](https://github.com/tmtsoftware/csw)
+
+## Documentation
+
+For documentation please refer this [link](https://tmtsoftware.github.io/csw-js/1.0.0/)

@@ -28,4 +28,4 @@ csw-aas-js is a library written in typescript. It provides react components whic
 authentication and authorization for javascript react application.
 
 ### Documentation
-- Reference paradox documentation: https://tmtsoftware.github.io/csw-js/0.5.2/
+- Reference paradox documentation: https://tmtsoftware.github.io/csw-js/1.0.0/
