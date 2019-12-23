@@ -9,8 +9,8 @@ import akka.http.scaladsl.Http
 import csw.aas.core.deployment.AuthServiceLocation
 import csw.aas.js.config.Utils.{await, terminateHttpServerBinding}
 import csw.config.server.{Settings, ServerWiring => ConfigServerWiring}
-import csw.location.server.commons.ClusterAwareSettings
-import csw.location.server.internal.{ServerWiring => LocationServerWiring}
+import csw.location.impl.commons.ClusterAwareSettings
+import csw.location.impl.internal.{ServerWiring => LocationServerWiring}
 import org.tmt.embedded_keycloak.impl.StopHandle
 import org.tmt.embedded_keycloak.{EmbeddedKeycloak, Settings => KeycloakSettings}
 
@@ -18,14 +18,13 @@ import scala.concurrent.ExecutionContext
 
 trait CswSetup {
 
-  private val locationWiring        = LocationServerWiring.make(ClusterAwareSettings.onPort(5555).joinLocal(5555))
+  private val locationWiring        = LocationServerWiring.make(ClusterAwareSettings.onPort(5555).joinLocal(5555), "csw-location-server")
   private val locationServerBinding = await(locationWiring.locationHttpService.start())
 
   import locationWiring._
-  import actorRuntime._
 //  implicit val _system: ActorSystem[SpawnProtocol.Command] = locationWiring.actorSystem
   implicit val unTypedSystem: actor.ActorSystem = locationWiring.actorSystem.toClassic
-  implicit val _ec: ExecutionContext            = ec
+  implicit val _ec: ExecutionContext            = actorRuntime.ec
 
   lazy val configWiring: ConfigServerWiring = new ConfigServerWiring {
     override lazy val actorSystem: ActorSystem[SpawnProtocol.Command] = locationWiring.actorSystem
