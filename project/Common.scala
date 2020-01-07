@@ -37,7 +37,7 @@ object Common extends AutoPlugin {
     version := {
       sys.props.get("prod.publish") match {
         case Some("true") => version.value
-        case _            => "0.1-SNAPSHOT"
+        case _            => "0.1.0-SNAPSHOT"
       }
     },
     isSnapshot := !sys.props.get("prod.publish").contains("true"),
@@ -51,10 +51,5 @@ object Common extends AutoPlugin {
   private def formatOnCompile = sys.props.get("format.on.compile") match {
     case Some("false") => false
     case _             => true
-  }
 
-  private def cycleCheckEnabled = sys.props.get("check.cycles") match {
-    case Some("false") => false
-    case _             => true
-  }
 }
