@@ -20,19 +20,19 @@ object Common extends AutoPlugin {
     homepage := Some(url("https://github.com/tmtsoftware/csw-js")),
     resolvers += "jitpack" at "https://jitpack.io",
     scmInfo := Some(
-      ScmInfo(url("https://github.com/tmtsoftware/csw-js"), "git@github.com:tmtsoftware/csw-js.git")
-    ),
+        ScmInfo(url("https://github.com/tmtsoftware/csw-js"), "git@github.com:tmtsoftware/csw-js.git")
+      ),
     licenses := Seq(("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0"))),
     scalacOptions ++= Seq(
-      "-encoding",
-      "UTF-8",
-      "-feature",
-      "-unchecked",
-      "-deprecation",
-      "-Xlint",
+        "-encoding",
+        "UTF-8",
+        "-feature",
+        "-unchecked",
+        "-deprecation",
+        "-Xlint",
 //      "-Yno-adapted-args",
-      "-Ywarn-dead-code"
-    ),
+        "-Ywarn-dead-code"
+      ),
     javacOptions in (Compile, doc) ++= Seq("-Xdoclint:none"),
     version := {
       sys.props.get("prod.publish") match {
@@ -45,11 +45,12 @@ object Common extends AutoPlugin {
     detectCycles := true,
     autoCompilerPlugins := true,
     cancelable in Global := true, // allow ongoing test(or any task) to cancel with ctrl + c and still remain inside sbt
-    if (formatOnCompile) scalafmtOnCompile := true else scalafmtOnCompile := false,
+    if (formatOnCompile) scalafmtOnCompile := true else scalafmtOnCompile := false
   )
 
   private def formatOnCompile = sys.props.get("format.on.compile") match {
     case Some("false") => false
     case _             => true
+  }
 
 }
