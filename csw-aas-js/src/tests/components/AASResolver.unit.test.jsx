@@ -1,4 +1,4 @@
-import { resolveAAS } from '../../components/AASResolver'
+import {resolveAAS} from '../../components/AASResolver'
 
 // DEOPSCSW-630 - Javascript adapter for AAS
 // DEOPSCSW-631 - React layer for javascript adapter for AAS
@@ -9,20 +9,18 @@ describe('<AASResolver />', () => {
       status: 200,
       json: jest.fn().mockImplementation(() => {
         return [{
-          HttpLocation: {
-            uri: "http://somehost:someport"
-          }
-
+          _type: "HttpLocation",
+          uri: "http://somehost:someport"
         }]
       }),
-    }
+    };
 
     window.fetch = jest.fn().mockImplementation(() =>
       Promise.resolve(mockResponse)
     );
 
-    const url = await resolveAAS()
-    expect(window.fetch).toHaveBeenCalledTimes(1)
+    const url = await resolveAAS();
+    expect(window.fetch).toHaveBeenCalledTimes(1);
     expect(url).toBe('http://somehost:someport')
   })
-})
+});
