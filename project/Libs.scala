@@ -9,7 +9,7 @@ object Libs {
 
   val `selenium-java`        = "org.seleniumhq.selenium"                  % "selenium-java"         % "3.141.59"
   val `embedded-keycloak`    = "com.github.tmtsoftware.embedded-keycloak" %% "embedded-keycloak"    % "65e273d"
-  val `webdrivermanager`     = "io.github.bonigarcia"                     % "webdrivermanager"      % "3.7.1"
+  val `webdrivermanager`     = "io.github.bonigarcia"                     % "webdrivermanager"      % "3.8.1"
   val `akka-http-spray-json` = "com.typesafe.akka"                        %% "akka-http-spray-json" % "10.1.11"
 
   val `scala-async` = dep("org.scala-lang.modules" %% "scala-async"  % "0.10.0")
