@@ -21,7 +21,7 @@ object Keycloak {
       "csw-config-server",
       "bearer-only",
       passwordGrantEnabled = false,
-      authorizationEnabled = true,
+      authorizationEnabled = false,
       clientRoles = Set(configAdmin)
     )
 
