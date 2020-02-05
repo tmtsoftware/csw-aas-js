@@ -6,6 +6,23 @@ Npm module published for csw-aas-js can be found [here](https://www.npmjs.com/pa
 
 All notable changes to this project will be documented in this file.
 
+## [CSW-AAS-JS v1.1.0-RC1] - 2020-02-04
+
+### csw-aas-js - Typescript adapter for authentication and authorization v1.1.0-RC1
+This is release candidate 1 of the csw-aas-js npm module version v1.1.0
+This version is compatible with `CSW` version v1.1.0-RC1
+
+### Changes
+- JSON contracts for location service changed. 
+Revised JSON contract can be found [here](https://github.com/tmtsoftware/tmtsoftware.github.io/tree/master/csw/1.1.0-RC1/contracts/location-service)
+
+### Version upgrades
+- Keycloak-js upgrade to 8.0.1
+- Scala version upgrade to 2.13.1
+- embedded-keyclock upgrade to 25558ff2
+- SBT version upgrade to 1.3.7
+
+
 ## [CSW-AAS-JS v1.0.0] - 2019-08-30
 
 ### csw-aas-js - Typescript adapter for authentication and authorization v1.0.0
