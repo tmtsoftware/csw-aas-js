@@ -20,7 +20,7 @@ Revised JSON contract can be found [here](https://github.com/tmtsoftware/tmtsoft
 - Keycloak-js upgrade to 8.0.1
 - Scala version upgrade to 2.13.1
 - embedded-keyclock upgrade to 25558ff2
-- SBT version upgrade to 1.3.6
+- SBT version upgrade to 1.3.7
 
 
 ## [CSW-AAS-JS v1.0.0] - 2019-08-30
