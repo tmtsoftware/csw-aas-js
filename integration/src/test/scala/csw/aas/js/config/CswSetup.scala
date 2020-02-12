@@ -18,7 +18,7 @@ import scala.concurrent.ExecutionContext
 
 trait CswSetup {
 
-  private val locationWiring        = LocationServerWiring.make(ClusterAwareSettings.onPort(5555).joinLocal(5555))
+  private val locationWiring        = LocationServerWiring.make(ClusterAwareSettings.onPort(5555).joinLocal(5555), enableAuth = false)
   private val locationServerBinding = await(locationWiring.locationHttpService.start())
 
   import locationWiring._
