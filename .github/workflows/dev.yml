@@ -41,3 +41,10 @@ jobs:
 
       - name: test_it
         run: sbt clean compile test
+
+      - name: Notify slack
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        uses: pullreminders/slack-action@master
+        with:
+          args: '{\"channel\":\"#csw-build\",\"text\":\"Test\"}'
