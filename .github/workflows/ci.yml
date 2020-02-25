@@ -9,8 +9,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: olafurpg/setup-scala@v5
-          with:
-            java-version: adopt@1.11
+        with:
+          java-version: adopt@1.11
       - uses: actions/setup-node@v1
         with:
           node-version: '10.x'
