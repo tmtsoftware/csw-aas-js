@@ -1,0 +1,43 @@
+name: CI
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: olafurpg/setup-scala@v5
+          with:
+            java-version: adopt@1.11
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+          registry-url: 'https://registry.npmjs.org'
+      - name: install
+        run: cd csw-aas-js && npm install
+
+      - name: lint
+        run: cd csw-aas-js && npm run lint
+
+      - name: test
+        run: cd csw-aas-js && npm test
+
+      - name: build
+        run: cd csw-aas-js && npm run build
+
+      - name: pre-build config app
+        run: rm -rf csw-aas-js-examples/config-app/node_modules csw-aas-js-examples/config-app/package-lock.json
+
+      - name: build config app
+        run: cd csw-aas-js-examples/config-app && npm run config
+
+      - name: pre-build example app
+        run: rm -rf csw-aas-js-examples/example-app/node_modules csw-aas-js-examples/example-app/package-lock.json
+
+      - name: build example app
+        run: cd csw-aas-js-examples/example-app && npm run example
+
+      - name: test_it
+        run: sbt clean compile test
