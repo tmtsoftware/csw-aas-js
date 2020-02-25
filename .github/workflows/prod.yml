@@ -1,0 +1,25 @@
+name: CI
+on:
+  push:
+    tags:
+      - '*'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: olafurpg/setup-scala@v5
+        with:
+          java-version: adopt@1.11
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+          registry-url: 'https://npm.pkg.github.com'
+      - name: Github Release
+          run: sbt -Dprod.publish=true githubRelease
+
+      - name: Docs Publish
+        run: sbt -Dprod.publish=true clean ghpagesPushSite
+
+      - name: publish
+        run: cd csw-aas-js && npm publish
