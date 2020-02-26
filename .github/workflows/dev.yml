@@ -45,7 +45,7 @@ jobs:
       - name: set status
         id: success
         run: |
-            if [[ ${{job.status}} == success ]]
+            if [[ ${{job.status}} == Success ]]
             then
             echo ::set-output name=status_icon::'white_check_mark'
             echo ::set-output name=build_status::'SUCCESS'
