@@ -1,4 +1,4 @@
-name: CI
+name: csw-js-dev-build
 on:
   push:
     branches:
@@ -42,9 +42,20 @@ jobs:
       - name: test_it
         run: sbt clean compile test
 
+      - name: set status
+        id: success
+        run: |
+            if [[ ${{job.status}} == success ]]
+            then
+            echo ::set-output name=status_icon::'white_check_mark'
+            echo ::set-output name=build_status::'SUCCESS'
+            else
+            echo ::set-output name=status_icon::'x'
+            echo ::set-output name=build_status::'FAILURE'
+            fi
       - name: Notify slack
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         uses: pullreminders/slack-action@master
         with:
-          args: '{\"channel\":\"#csw-build\",\"text\":\"Test\"}'
+          args: '{\"channel\":\"#csw-build\",\"text\":\":${{ steps.success.outputs.status_icon }}: ${{ steps.success.outputs.build_status }} :: event ${{github.event_name}} to repo ${{github.repository}} \n Job => ${{github.workflow}} [${{github.run_number}}] /n https://github.com/${{github.repository}}/runs/${{github.run_id}}\"}'
