@@ -13,6 +13,7 @@ As a consumer of this project, you need not to be worried about this. You will a
 
 | csw-js | csw |
 |--------|------|
+| v2.0.0-RC3 | v2.0.0-RC3 |
 | v2.0.0-RC2 | v2.0.0-RC2 |
 | v2.0.0-RC1 | v2.0.0-RC1 |
 | v1.1.0-RC1 | v1.0.0-RC1 |

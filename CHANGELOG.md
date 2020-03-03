@@ -6,6 +6,11 @@ Npm module published for csw-aas-js can be found [here](https://www.npmjs.com/pa
 
 All notable changes to this project will be documented in this file.
 
+## [CSW-AAS-JS v2.0.0-RC3] - 2020-03-03
+
+This is the third release candidate of `Second` major release of the csw-aas-js npm module version v2.0.0
+This version is compatible with `CSW` version v2.0.0-RC3
+
 ## [CSW-AAS-JS v2.0.0-RC2] - 2020-02-26
 
 This is the second release candidate of `Second` major release of the csw-aas-js npm module version v2.0.0

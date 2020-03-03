@@ -11,10 +11,10 @@
 
 ## Steps to release
 
-1. Update release notes (`notes/<version>.markdown`)
+1. Add release notes (`notes/<version>.markdown`)
 2. Update top-level `CHANGELOG.md`
 3. Update top-level `README.md`
-4. Check if `csw-aas-js-dev` pipeline is green
-5. Check keycloak version of `csw` and `csw-aas-js` is same
-6. Update `VERSION` number in `csw-aas-js/package.json`
+4. Update `VERSION` number in `csw-aas-js/package.json`
+5. Check if `csw-aas-js-dev` pipeline is green
+6. Check keycloak version of `csw` and `csw-aas-js` is same
 7. Run `csw-aas-js-prod` pipeline by providing `VERSION` number and compatible `CSW_VERSION` number.
