@@ -43,6 +43,7 @@ jobs:
         run: sbt clean compile test
 
       - name: set status
+        if: always()
         id: success
         run: |
             if [[ ${{job.status}} == Success ]]
@@ -54,6 +55,7 @@ jobs:
             echo ::set-output name=build_status::'FAILURE'
             fi
       - name: Notify slack
+        if: always()
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         uses: pullreminders/slack-action@master
