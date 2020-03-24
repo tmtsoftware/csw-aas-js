@@ -60,4 +60,4 @@ jobs:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         uses: pullreminders/slack-action@master
         with:
-          args: '{\"channel\":\"#csw-build\",\"text\":\":${{ steps.success.outputs.status_icon }}: ${{ steps.success.outputs.build_status }} :: event ${{github.event_name}} to repo ${{github.repository}} \n Job => ${{github.workflow}} [${{github.run_number}}] \n https://github.com/${{github.repository}}/runs/${{github.run_id}}\"}'
+          args: '{\"channel\":\"#csw-build\",\"text\":\":${{ steps.success.outputs.status_icon }}: ${{ steps.success.outputs.build_status }} :: event ${{github.event_name}} to repo ${{github.repository}} \n Job => ${{github.workflow}} [${{github.run_number}}] \n https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}\"}'
