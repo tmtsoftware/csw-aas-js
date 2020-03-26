@@ -18,7 +18,10 @@ object Common extends AutoPlugin {
     scalaVersion := Libs.ScalaVersion,
     concurrentRestrictions in Global += Tags.limit(Tags.All, 1),
     homepage := Some(url("https://github.com/tmtsoftware/csw-js")),
-    resolvers += "jitpack" at "https://jitpack.io",
+    resolvers ++= Seq(
+      "jitpack" at "https://jitpack.io",
+      Resolver.bintrayRepo("lonelyplanet", "maven")
+    ),
     scmInfo := Some(
         ScmInfo(url("https://github.com/tmtsoftware/csw-js"), "git@github.com:tmtsoftware/csw-js.git")
       ),

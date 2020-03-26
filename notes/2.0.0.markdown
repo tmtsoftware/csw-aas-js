@@ -1,6 +1,6 @@
 ## csw-aas-js - Typescript adapter for authentication and authorization v2.0.0
 
-This is release v2.0.0 of the csw-aas-js npm module. This is the second major release. 
+This is release v2.0.0 of the csw-aas-js npm module. 
 
 See [CHANGELOG.md](CHANGELOG.md) for details of all releases.
 
