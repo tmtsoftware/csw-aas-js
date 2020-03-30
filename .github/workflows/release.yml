@@ -1,0 +1,98 @@
+name: Release
+
+on:
+  push:
+    branches-ignore:
+      - "**"
+
+# on:
+#   release:
+#   push:
+#     tags:
+#       - "**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: olafurpg/setup-scala@v5
+        with:
+          java-version: adopt@1.11
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Check AAS
+        working-directory: ./csw-aas-js
+        run: |
+          npm install
+          npm run lint
+          npm run build
+          npm test
+
+      - name: Check Config App
+        working-directory: ./csw-aas-js-examples/config-app
+        run: |
+          rm -rf node_modules package-lock.json
+          npm run config
+
+      - name: Check Example App
+        working-directory: ./csw-aas-js-examples/example-app
+        run: |
+          rm -rf node_modules package-lock.json
+          npm run example
+
+      - name: Selenium Test
+        run: sbt clean test
+
+  github-release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: olafurpg/setup-scala@v5
+        with:
+          java-version: adopt@1.11
+      - run: sbt -Dprod.publish=true githubRelease
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_RELEASE }}
+      - run: sbt -Dprod.publish=true clean ghpagesPushSite
+
+  npm-publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+          registry-url: https://registry.npmjs.org/
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  slack-notify:
+    needs: [build, github-release, npm-publish]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build Status
+        id: build_status
+        run: |
+          if [[ ${{job.status}} == Success ]]
+          then
+          echo ::set-output name=status_icon::'white_check_mark'
+          echo ::set-output name=build_status::'SUCCESS'
+          else
+          echo ::set-output name=status_icon::'x'
+          echo ::set-output name=build_status::'FAILURE'
+          fi
+
+      - name: Notify slack
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        uses: pullreminders/slack-action@master
+        with:
+          args: '{\"channel\":\"#csw-prod-release\",\"text\":\":${{ steps.build_status.outputs.status_icon }}: ${{ steps.build_status.outputs.build_status }}:Job ${{ github.event.repository.name }}:${{github.workflow}} \n https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}\"}'
