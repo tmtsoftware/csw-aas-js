@@ -6,7 +6,7 @@ on:
       - "v*"
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -33,38 +33,21 @@ jobs:
       - name: Selenium Test
         run: sbt clean test
 
-  github-release:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: olafurpg/setup-scala@v5
-        with:
-          java-version: adopt@1.11
-      - run: sbt -Dprod.publish=true githubRelease
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_RELEASE }}
-      - run: sbt -Dprod.publish=true clean ghpagesPushSite
-
-  npm-publish:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: "13.x"
-          registry-url: https://registry.npmjs.org/
-      - run: npm publish
+      - name: NPM Publish
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  slack-notify:
-    needs: [build, github-release, npm-publish]
-    if: always()
-    runs-on: ubuntu-latest
-    steps:
+      - name: Github Release
+        run: sbt -Dprod.publish=true githubRelease
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_RELEASE }}
+
+      - name: Docs Publish
+        run: sbt -Dprod.publish=true clean ghpagesPushSite
+
       - name: Build Status
+        if: always()
         id: build_status
         run: |
           if [[ ${{job.status}} == Success ]]
@@ -77,6 +60,7 @@ jobs:
           fi
 
       - name: Notify slack
+        if: always()
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         uses: pullreminders/slack-action@master
