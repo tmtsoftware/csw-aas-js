@@ -18,6 +18,12 @@ jobs:
           node-version: "13.x"
           registry-url: "https://registry.npmjs.org"
 
+      - name: Check AAS
+        working-directory: ./csw-aas-js
+        run: |
+          npm ci
+          npm run build
+
       - name: Check Config App
         working-directory: ./csw-aas-js-examples/config-app
         run: |
