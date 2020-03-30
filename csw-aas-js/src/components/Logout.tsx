@@ -7,10 +7,8 @@ import { AuthContext } from './context/AuthContext'
 const Logout = () => {
   const { logout } = useContext(AuthContext)
   return (
-    <button
-      id='aas-logout'
-      // Call to this.props.logout method is responsible for logging out.
-      onClick={logout}>
+    // Call to this.props.logout method is responsible for logging out.
+    <button id='aas-logout' onClick={logout}>
       Logout
     </button>
   )

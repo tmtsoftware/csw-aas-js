@@ -19,14 +19,15 @@ const ConfigApp = () => {
         </BrowserRouter>
         <ListConfig />
         <GetConfig />
-        {// #create-config-component
-        <ClientRole
-          clientRole='admin'
-          client='csw-config-server'
-          error={<ConfigError />}>
-          <CreateConfig />
-        </ClientRole>
-        // #create-config-component
+        {
+          // #create-config-component
+          <ClientRole
+            clientRole='admin'
+            client='csw-config-server'
+            error={<ConfigError />}>
+            <CreateConfig />
+          </ClientRole>
+          // #create-config-component
         }
       </AuthContextProvider>
     </div>

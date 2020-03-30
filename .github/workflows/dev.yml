@@ -1,4 +1,4 @@
-name: Dev
+name: dev
 
 on:
   push:
@@ -31,13 +31,21 @@ jobs:
 
       - uses: actions/setup-node@v1
         with:
-          node-version: "12.x"
+          node-version: "13.x"
           registry-url: "https://registry.npmjs.org"
+
+      - name: Cache ~/.npm
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Build - AAS
         working-directory: ./csw-aas-js
         run: |
-          npm install
+          npm ci
           npm run lint 
           npm run build
 
@@ -48,14 +56,14 @@ jobs:
       - name: Build - Config App
         working-directory: ./csw-aas-js-examples/config-app
         run: |
-          rm -rf node_modules package-lock.json
-          npm run config
+          npm ci
+          npm run build
 
       - name: Build - Example App
         working-directory: ./csw-aas-js-examples/example-app
         run: |
-          rm -rf node_modules package-lock.json
-          npm run example
+          npm ci
+          npm run build
 
       - name: Selenium Test
         run: sbt clean test

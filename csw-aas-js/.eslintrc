@@ -11,7 +11,7 @@
     "es6": true,
     "jest": true
   },
-  "plugins": ["react", "react-hooks","@typescript-eslint"],
+  "plugins": ["react", "react-hooks", "@typescript-eslint"],
   "parserOptions": {
     "sourceType": "module",
     "project": "./tsconfig.json"
@@ -21,6 +21,7 @@
     "comma-dangle": "off",
     "space-before-function-paren": "off",
     "react/jsx-boolean-value": 0,
-    "react-hooks/rules-of-hooks": "error"
+    "react-hooks/rules-of-hooks": "error",
+    "@typescript-eslint/no-empty-function": "off"
   }
 }

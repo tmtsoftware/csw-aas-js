@@ -7,10 +7,8 @@ import { AuthContext } from './context/AuthContext'
 const Login = () => {
   const { login } = useContext(AuthContext)
   return (
-    <button
-      id='aas-login'
-      // Call to props.login method is responsible for resolving and instantiating AAS server
-      onClick={login}>
+    // Call to props.login method is responsible for resolving and instantiating AAS server
+    <button id='aas-login' onClick={login}>
       Login
     </button>
   )

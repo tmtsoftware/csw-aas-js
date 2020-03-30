@@ -6,7 +6,7 @@
   "dependencies": {
     "react": "file:../../csw-aas-js/node_modules/react",
     "react-dom": "file:../../csw-aas-js/node_modules/react-dom",
-    "react-scripts": "^2.1.8",
+    "react-scripts": "^3.4.1",
     "csw-aas-js": "file:../../csw-aas-js"
   },
   "scripts": {
@@ -25,9 +25,9 @@
   ],
   "devDependencies": {
     "babel-eslint": "^10.0.1",
-    "eslint-plugin-react": "^7.12.4",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-config-standard-react": "^7.0.2",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-config-standard-react": "^9.2.0",
+    "eslint-plugin-react": "^7.19.0",
     "react-router-dom": "^5.0.0"
   }
 }

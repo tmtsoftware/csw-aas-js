@@ -1,4 +1,4 @@
-import {AASConfig, Config} from '../config/configs'
+import { AASConfig, Config } from '../config/configs'
 import KeyCloak, {
   KeycloakError,
   KeycloakInstance,
@@ -8,8 +8,8 @@ import KeyCloak, {
   KeycloakRoles,
   KeycloakTokenParsed,
 } from 'keycloak-js'
-import {resolveAAS} from './AASResolver'
-import {AuthContextConfig} from './context/AuthContextProvider'
+import { resolveAAS } from './AASResolver'
+import { AuthContextConfig } from './context/AuthContextProvider'
 
 export interface Auth {
   logout: (options?: any) => KeycloakPromise<void, void>
@@ -63,7 +63,7 @@ class AuthStore {
    */
   public authenticate = (
     config: AuthContextConfig,
-    url: string ,
+    url: string,
     redirect: boolean,
   ): AuthenticateResult => {
     console.info('instantiating AAS')
@@ -98,7 +98,7 @@ class AuthStore {
    * @return url string which is AAS server url
    */
   public getAASUrl: () => Promise<string> = async () => {
-    let url = await resolveAAS()
+    const url = await resolveAAS()
     return url || Config['AAS-server-url']
   }
 }
