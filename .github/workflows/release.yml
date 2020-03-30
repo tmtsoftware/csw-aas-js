@@ -39,7 +39,7 @@ jobs:
       - name: Selenium Test
         run: sbt clean test
         env:
-          CSW_VERSION: "02423fd05c"
+          CSW_VERSION: "50b46f322f"
 
       - name: NPM Publish
         run: npm publish
