@@ -22,13 +22,13 @@ jobs:
         working-directory: ./csw-aas-js-examples/config-app
         run: |
           npm ci
-          npm run config
+          npm run build
 
       - name: Check Example App
         working-directory: ./csw-aas-js-examples/example-app
         run: |
           npm ci
-          npm run example
+          npm run build
 
       - name: Selenium Test
         run: sbt clean test
