@@ -83,4 +83,4 @@ jobs:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         uses: pullreminders/slack-action@master
         with:
-          args: '{\"channel\":\"#csw-prod-release\", \"attachments\": [ { \"title\":\"${{ steps.status.outputs.title }}\", \"text\": \"Job ${{ github.event.repository.name }} : ${{ github.workflow }} : ${{ github.ref }} \n https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}\", \"color\": \"${{ steps.status.outputs.color }}\" } ]}'
+          args: '{\"channel\":\"#csw-prod-release\", \"attachments\": [ { \"title\":\"${{ steps.status.outputs.title }}\", \"text\": \"[ ${{ github.event.repository.name }} ] : [ ${{ github.workflow }} ] : [ ${{ github.ref }} ] \n https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}\", \"color\": \"${{ steps.status.outputs.color }}\" } ]}'
