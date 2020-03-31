@@ -66,7 +66,7 @@ jobs:
           npm run build
 
       - name: Selenium Test
-        run: sbt clean test -Dsbt.color=true
+        run: sbt clean test
 
       - name: Build Status
         if: always()
@@ -87,4 +87,4 @@ jobs:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         uses: pullreminders/slack-action@master
         with:
-          args: '{\"channel\":\"#csw-build\",\"text\":\":${{ steps.build_status.outputs.status_icon }}: ${{ steps.build_status.outputs.build_status }}: Job ${{ github.event.repository.name }}:${{github.workflow}}:${GITHUB_REF##*/} \n github.com/${{github.repository}}/actions/runs/${{github.run_id}}\"}'
+          args: '{\"channel\":\"#csw-build\",\"text\":\":${{ steps.build_status.outputs.status_icon }}: ${{ steps.build_status.outputs.build_status }}: Job ${{ github.event.repository.name }}:${{github.workflow}}:${{github.ref}} \n github.com/${{github.repository}}/actions/runs/${{github.run_id}}\"}'
