@@ -53,7 +53,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_RELEASE }}
 
       - name: Docs Publish
-        run: sbt -Dprod.publish=true clean ghpagesPushSite
+        run: |
+          echo 'echo $GITHUB_RELEASE' > /tmp/.git-askpass
+          chmod +x /tmp/.git-askpass
+          git config --global user.email "actions@github.com"
+          git config --global user.name "Github Action"
+          sbt -Dprod.publish=true clean ghpagesPushSite
+
+        env:
+          GITHUB_RELEASE: ${{ secrets.GITHUB_RELEASE }}
+          GIT_ASKPASS: /tmp/.git-askpass
 
       - name: Build Status
         if: always()
@@ -74,4 +83,4 @@ jobs:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
         uses: pullreminders/slack-action@master
         with:
-          args: '{\"channel\":\"#csw-prod-release\",\"text\":\":${{ steps.build_status.outputs.status_icon }}: ${{ steps.build_status.outputs.build_status }}:Job ${{ github.event.repository.name }}:${{github.workflow}} \n https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}\"}'
+          args: '{\"channel\":\"#csw-prod-release\",\"text\":\":${{ steps.build_status.outputs.status_icon }}: ${{ steps.build_status.outputs.build_status }}:Job ${{ github.event.repository.name }}:${{github.workflow}}:${GITHUB_REF##*/} \n github.com/${{github.repository}}/actions/runs/${{github.run_id}}\"}'
