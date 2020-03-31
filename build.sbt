@@ -23,7 +23,7 @@ lazy val docs = project
   .enablePlugins(DocsPlugin)
   .disablePlugins(SbtGithubReleasePlugin)
   .settings(
-    docsRepo := "git@github.com:tmtsoftware/tmtsoftware.github.io.git",
+    docsRepo := "https://github.com/tmtsoftware/tmtsoftware.github.io.git",
     docsParentDir := "csw-js",
     gitCurrentRepo := "https://github.com/tmtsoftware/csw-js"
   )
