@@ -41,11 +41,11 @@ jobs:
         env:
           CSW_VERSION: "50b46f322f"
 
-      - name: NPM Publish
-        working-directory: ./csw-aas-js
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # - name: NPM Publish
+      #   working-directory: ./csw-aas-js
+      #   run: npm publish
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Github Release
         run: sbt -Dprod.publish=true githubRelease
