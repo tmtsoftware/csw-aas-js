@@ -8,4 +8,4 @@
 1. Check if `dev` pipeline is green
 1. Check keycloak version of `csw` and `csw-aas-js` is same
 1. Run `release.sh $VERSION$` script by providing version number argument (This triggers release workflow)
-    Note: `PROD=true` environment varibale needs to be set before running `release.sh`
+    Note: `PROD=true` environment variable needs to be set before running `release.sh`
