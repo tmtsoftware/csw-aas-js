@@ -4,7 +4,7 @@ object Dependencies {
 
   val Integration = Def.setting(
     Seq(
-      Libs.`scalatest`.value    % Test,
+      Libs.`scalatest`          % Test,
       Libs.`selenium-java`      % Test,
       CSW.`csw-location-server` % Test,
       CSW.`csw-config-server`   % Test,
