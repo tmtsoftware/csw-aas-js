@@ -5,7 +5,7 @@ object Libs {
 
   val `scalatest`            = "org.scalatest"                            %% "scalatest"            % "3.0.8" //Apache License 2.0
   val `selenium-java`        = "org.seleniumhq.selenium"                  % "selenium-java"         % "3.141.59"
-  val `embedded-keycloak`    = "com.github.tmtsoftware.embedded-keycloak" %% "embedded-keycloak"    % "e81784b"
+  val `embedded-keycloak`    = "com.github.tmtsoftware.embedded-keycloak" %% "embedded-keycloak"    % "v0.1.7"
   val `webdrivermanager`     = "io.github.bonigarcia"                     % "webdrivermanager"      % "3.8.1"
   val `akka-http-spray-json` = "com.typesafe.akka"                        %% "akka-http-spray-json" % "10.1.11"
 }
