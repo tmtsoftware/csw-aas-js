@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import IOOperationComponent from './IOOperationComponent'
 import { sPost } from './Client'
 import { AuthContext } from 'csw-aas-js'
+import {configResolver} from "./ConfigResolver";
 
 const CreateConfig = () => {
   const [response, setResponse] = useState(null)
@@ -13,12 +14,14 @@ const CreateConfig = () => {
 
   const callBack = res => setResponse(res)
 
-  const createConfig = (input, token) => {
+  const createConfig = async (input, token) => {
+
+    const configURL = await configResolver.getConfigUrl()
     sPost(
-      `http://localhost:5000/config/${input}?comment="Sample commit message"`,
-      callBack,
-      token,
-      fileContent,
+        `${configURL}config/${input}?comment="Sample commit message"`,
+        callBack,
+        token,
+        fileContent,
     )
   }
 
