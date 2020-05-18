@@ -1,15 +1,15 @@
 import { TMTAuth } from '../../components/Auth'
 import KeyCloak from 'keycloak-js'
-import { resolveAAS } from '../../components/AASResolver'
+import { ServiceResolver } from '../../components/ServiceResolver'
 
 jest.mock('keycloak-js')
 
-jest.mock('../../components/AASResolver')
+jest.mock('../../components/ServiceResolver')
 
 // DEOPSCSW-630 - Javascript adapter for AAS
 describe('<TMTAuth />', () => {
   beforeEach(() => {
-    resolveAAS.mockClear()
+    ServiceResolver.mockClear()
   })
 
   it('should create TMTAuth instance', () => {
@@ -70,20 +70,20 @@ describe('<TMTAuth />', () => {
   })
 
   it('should getAASUrl from location service', async () => {
-    resolveAAS.mockReturnValue(Promise.resolve('http://AAS_IP:AAS_Port/auth'))
+    ServiceResolver.mockReturnValue(Promise.resolve('http://AAS_IP:AAS_Port/auth'))
 
     const url = await TMTAuth.getAASUrl()
 
-    expect(resolveAAS).toHaveBeenCalledTimes(1)
+    expect(ServiceResolver).toHaveBeenCalledTimes(1)
     expect(url).toBe('http://AAS_IP:AAS_Port/auth')
   })
 
   it('should getAASUrl from config', async () => {
-    resolveAAS.mockReturnValue(Promise.resolve(null))
+    ServiceResolver.mockReturnValue(Promise.resolve(null))
 
     const url = await TMTAuth.getAASUrl()
 
-    expect(resolveAAS).toHaveBeenCalledTimes(1)
+    expect(ServiceResolver).toHaveBeenCalledTimes(1)
     expect(url).toBe('http://localhost:8081/auth')
   })
 })

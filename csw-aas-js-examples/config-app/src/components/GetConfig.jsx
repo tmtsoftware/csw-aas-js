@@ -1,5 +1,7 @@
 import React from 'react'
 import IOOperationComponent from './IOOperationComponent'
+import {ServiceResolver} from "csw-aas-js";
+import {Config} from "../config/configs";
 
 const GetConfig = () => {
   const downloadURI = uri => {
@@ -12,7 +14,8 @@ const GetConfig = () => {
 
   const getConfig = async input => {
     console.log(input)
-    downloadURI(`http://localhost:5000/config/${input}`)
+    const configURL = await ServiceResolver(Config['Config-server-name']) || Config['Config-server-url']
+    downloadURI(`${configURL}config/${input}`)
   }
 
   return (

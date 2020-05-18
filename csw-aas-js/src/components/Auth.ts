@@ -8,7 +8,7 @@ import KeyCloak, {
   KeycloakRoles,
   KeycloakTokenParsed,
 } from 'keycloak-js'
-import { resolveAAS } from './AASResolver'
+import {ServiceResolver} from "./ServiceResolver";
 import { AuthContextConfig } from './context/AuthContextProvider'
 
 export interface Auth {
@@ -98,7 +98,7 @@ class AuthStore {
    * @return url string which is AAS server url
    */
   public getAASUrl: () => Promise<string> = async () => {
-    const url = await resolveAAS()
+    const url = await ServiceResolver(Config['AAS-server-name'])
     return url || Config['AAS-server-url']
   }
 }
