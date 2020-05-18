@@ -22,27 +22,27 @@ const ConfigApp = () => {
   }, []);
 
   return (
-    <div className='row card col s12 m7'>
-      <AuthContextProvider config={AppConfig}>
-        <BrowserRouter>
-          <div>
-            <NavComponent />
-          </div>
-        </BrowserRouter>
-        <ListConfig configURL={configURL}/>
-        <GetConfig configURL={configURL}/>
-        {
-          // #create-config-component
-          <ClientRole
-            clientRole='admin'
-            client='csw-config-server'
-            error={<ConfigError />}>
-            <CreateConfig configURL={configURL}/>
-          </ClientRole>
-          // #create-config-component
-        }
-      </AuthContextProvider>
-    </div>
+      <div className='row card col s12 m7'>
+        <AuthContextProvider config={AppConfig}>
+          <BrowserRouter>
+            <div>
+              <NavComponent/>
+            </div>
+          </BrowserRouter>
+          <ListConfig configURL={configURL}/>
+          <GetConfig configURL={configURL}/>
+          {
+            // #create-config-component
+            <ClientRole
+                clientRole='admin'
+                client='csw-config-server'
+                error={<ConfigError/>}>
+              <CreateConfig configURL={configURL}/>
+            </ClientRole>
+            // #create-config-component
+          }
+        </AuthContextProvider>
+      </div>
   )
 }
 

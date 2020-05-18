@@ -5,10 +5,10 @@ import {Config} from '../config/configs'
  *
  * @returns Service url if resolved from location service else return null
  */
-export const ServiceResolver: (serviceName:string) => Promise<string | null> = async (serviceName:string) => {
+export const ServiceResolver: (serviceName: string) => Promise<string | null> = async (serviceName: string) => {
 
   const locationServerURL = `${Config['location-server-url']}/post-endpoint`
-  const serviceNameSplit = serviceName.split("-",3)
+  const serviceNameSplit = serviceName.split("-", 3)
 
   const resolveRequest = {
     _type: 'Resolve',

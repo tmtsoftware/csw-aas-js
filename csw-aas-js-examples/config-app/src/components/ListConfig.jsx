@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import IOOperationComponent from './IOOperationComponent'
 
 const ListConfig = ({configURL}) => {
@@ -13,14 +13,14 @@ const ListConfig = ({configURL}) => {
   }
 
   return (
-    <IOOperationComponent
-      txtId='list-config'
-      btnId='list-config'
-      componentNameProp='List Config'
-      operation='List'
-      output={response}
-      api={listConfig}
-    />
+      <IOOperationComponent
+          txtId='list-config'
+          btnId='list-config'
+          componentNameProp='List Config'
+          operation='List'
+          output={response}
+          api={listConfig}
+      />
   )
 }
 

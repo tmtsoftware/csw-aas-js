@@ -16,14 +16,14 @@ const GetConfig = ({configURL}) => {
   }
 
   return (
-    <IOOperationComponent
-      txtId='get-config'
-      btnId='get-config'
-      componentNameProp='Get Config'
-      operation='Get'
-      output={null}
-      api={getConfig}
-    />
+      <IOOperationComponent
+          txtId='get-config'
+          btnId='get-config'
+          componentNameProp='Get Config'
+          operation='Get'
+          output={null}
+          api={getConfig}
+      />
   )
 }
 
