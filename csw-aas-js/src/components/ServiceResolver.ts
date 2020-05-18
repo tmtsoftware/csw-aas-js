@@ -1,4 +1,4 @@
-import { Config } from '../config/configs'
+import {Config} from '../config/configs'
 
 /**
  * Utility method responsible for resolving a service using location service
@@ -32,7 +32,11 @@ export const ServiceResolver: (serviceName:string) => Promise<string | null> = a
 
   if (response.status === 200) {
     const jsonResponse = await response.json()
-    return jsonResponse[0].uri
+    try {
+      return jsonResponse[0].uri
+    } catch (err) {
+      console.log(err)
+    }
   }
   return null
 }
