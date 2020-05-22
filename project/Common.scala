@@ -12,30 +12,28 @@ object Common extends AutoPlugin {
   val detectCycles: SettingKey[Boolean] = settingKey[Boolean]("is cyclic check enabled?")
 
   override lazy val projectSettings: Seq[Setting[_]] = Seq(
-    dependencyOverrides += Libs.`akka-http-spray-json`,
     organization := "com.github.tmtsoftware.csw-js",
     organizationName := "TMT Org",
     scalaVersion := Libs.ScalaVersion,
     concurrentRestrictions in Global += Tags.limit(Tags.All, 1),
     homepage := Some(url("https://github.com/tmtsoftware/csw-js")),
     resolvers ++= Seq(
-      "jitpack" at "https://jitpack.io",
-      Resolver.bintrayRepo("lonelyplanet", "maven")
+      "jitpack" at "https://jitpack.io"
     ),
     scmInfo := Some(
-        ScmInfo(url("https://github.com/tmtsoftware/csw-js"), "git@github.com:tmtsoftware/csw-js.git")
-      ),
+      ScmInfo(url("https://github.com/tmtsoftware/csw-js"), "git@github.com:tmtsoftware/csw-js.git")
+    ),
     licenses := Seq(("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0"))),
     scalacOptions ++= Seq(
-        "-encoding",
-        "UTF-8",
-        "-feature",
-        "-unchecked",
-        "-deprecation",
-        "-Xlint",
+      "-encoding",
+      "UTF-8",
+      "-feature",
+      "-unchecked",
+      "-deprecation",
+      "-Xlint",
 //      "-Yno-adapted-args",
-        "-Ywarn-dead-code"
-      ),
+      "-Ywarn-dead-code"
+    ),
     javacOptions in (Compile, doc) ++= Seq("-Xdoclint:none"),
     version := {
       sys.props.get("prod.publish") match {
