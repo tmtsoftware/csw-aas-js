@@ -1,51 +1,53 @@
-import React, { useState, useContext } from 'react'
+import React, {useContext, useState} from 'react'
 import IOOperationComponent from './IOOperationComponent'
-import { sPost } from './Client'
-import { AuthContext } from 'csw-aas-js'
+import {sPost} from './Client'
+import {AuthContext} from 'csw-aas-js'
 
-const CreateConfig = () => {
+const CreateConfig = ({configURL}) => {
   const [response, setResponse] = useState(null)
   const [fileContent, setsetFileContent] = useState('')
 
   // #use-auth-context
-  const { auth } = useContext(AuthContext)
+  const {auth} = useContext(AuthContext)
   // #use-auth-context
 
   const callBack = res => setResponse(res)
 
-  const createConfig = (input, token) => {
+  const createConfig = async (input, token) => {
+
+
     sPost(
-      `http://localhost:5000/config/${input}?comment="Sample commit message"`,
-      callBack,
-      token,
-      fileContent,
+        `${configURL}config/${input}?comment="Sample commit message"`,
+        callBack,
+        token,
+        fileContent,
     )
   }
 
   const updateFileContent = event => setsetFileContent(event.target.value)
 
   return (
-    <div className='card-panel hoverable'>
-      <IOOperationComponent
-        txtId='file-path'
-        btnId='create-config'
-        token={auth.token}
-        componentNameProp='Create Config'
-        operation='Create Config'
-        output={response}
-        api={createConfig}
-      />
       <div className='card-panel hoverable'>
-        File Content
-        <span>
+        <IOOperationComponent
+            txtId='file-path'
+            btnId='create-config'
+            token={auth.token}
+            componentNameProp='Create Config'
+            operation='Create Config'
+            output={response}
+            api={createConfig}
+        />
+        <div className='card-panel hoverable'>
+          File Content
+          <span>
           <textarea
-            id='file-content-txt-area'
-            value={fileContent}
-            onChange={updateFileContent}
+              id='file-content-txt-area'
+              value={fileContent}
+              onChange={updateFileContent}
           />
         </span>
+        </div>
       </div>
-    </div>
   )
 }
 

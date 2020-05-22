@@ -1,4 +1,4 @@
-import { AASConfig, Config } from '../config/configs'
+import {AASConfig, Config} from '../config/configs'
 import KeyCloak, {
   KeycloakError,
   KeycloakInstance,
@@ -8,8 +8,8 @@ import KeyCloak, {
   KeycloakRoles,
   KeycloakTokenParsed,
 } from 'keycloak-js'
-import { resolveAAS } from './AASResolver'
-import { AuthContextConfig } from './context/AuthContextProvider'
+import {ServiceResolver} from "./ServiceResolver";
+import {AuthContextConfig} from './context/AuthContextProvider'
 
 export interface Auth {
   logout: (options?: any) => KeycloakPromise<void, void>
@@ -67,17 +67,17 @@ class AuthStore {
     redirect: boolean,
   ): AuthenticateResult => {
     console.info('instantiating AAS')
-    const keycloakConfig = { ...AASConfig, ...config, url }
+    const keycloakConfig = {...AASConfig, ...config, url}
     const keycloak = KeyCloak(keycloakConfig)
 
     keycloak.onTokenExpired = () => {
       keycloak
         .updateToken(0)
-        .success(function() {
+        .success(function () {
           // todo: remove console.info
           console.info('token refreshed successfully')
         })
-        .error(function() {
+        .error(function () {
           console.error(
             'Failed to refresh the token, or the session has expired',
           )
@@ -88,7 +88,7 @@ class AuthStore {
       onLoad: redirect ? 'login-required' : 'check-sso',
       flow: 'hybrid',
     })
-    return { keycloak, authenticated }
+    return {keycloak, authenticated}
   }
 
   /**
@@ -98,7 +98,7 @@ class AuthStore {
    * @return url string which is AAS server url
    */
   public getAASUrl: () => Promise<string> = async () => {
-    const url = await resolveAAS()
+    const url = await ServiceResolver(Config['AAS-server-name'])
     return url || Config['AAS-server-url']
   }
 }

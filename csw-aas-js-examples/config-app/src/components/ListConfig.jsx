@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import IOOperationComponent from './IOOperationComponent'
 
-const ListConfig = () => {
+const ListConfig = ({configURL}) => {
   const [response, setResponse] = useState('')
 
   const listConfig = async () => {
-    const response = await window.fetch(`http://localhost:5000/list`)
+    const response = await window.fetch(`${configURL}list`)
     if (response.status === 200) {
       const a = await response.json()
       setResponse(JSON.stringify(a))
@@ -13,14 +13,14 @@ const ListConfig = () => {
   }
 
   return (
-    <IOOperationComponent
-      txtId='list-config'
-      btnId='list-config'
-      componentNameProp='List Config'
-      operation='List'
-      output={response}
-      api={listConfig}
-    />
+      <IOOperationComponent
+          txtId='list-config'
+          btnId='list-config'
+          componentNameProp='List Config'
+          operation='List'
+          output={response}
+          api={listConfig}
+      />
   )
 }
 

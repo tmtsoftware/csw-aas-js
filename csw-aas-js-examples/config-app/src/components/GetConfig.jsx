@@ -1,7 +1,7 @@
 import React from 'react'
 import IOOperationComponent from './IOOperationComponent'
 
-const GetConfig = () => {
+const GetConfig = ({configURL}) => {
   const downloadURI = uri => {
     let link = document.createElement('a')
     link.href = uri
@@ -12,18 +12,18 @@ const GetConfig = () => {
 
   const getConfig = async input => {
     console.log(input)
-    downloadURI(`http://localhost:5000/config/${input}`)
+    downloadURI(`${configURL}config/${input}`)
   }
 
   return (
-    <IOOperationComponent
-      txtId='get-config'
-      btnId='get-config'
-      componentNameProp='Get Config'
-      operation='Get'
-      output={null}
-      api={getConfig}
-    />
+      <IOOperationComponent
+          txtId='get-config'
+          btnId='get-config'
+          componentNameProp='Get Config'
+          operation='Get'
+          output={null}
+          api={getConfig}
+      />
   )
 }
 
