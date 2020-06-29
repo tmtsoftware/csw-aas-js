@@ -1,6 +1,6 @@
 addSbtPlugin("com.timushev.sbt" % "sbt-updates"             % "0.5.0")
 addSbtPlugin("org.scalameta"    % "sbt-scalafmt"            % "2.3.2")
-addSbtPlugin("com.dwijnand"     % "sbt-dynver"              % "4.0.0")
+addSbtPlugin("com.dwijnand"     % "sbt-dynver"              % "4.1.0")
 addSbtPlugin("io.spray"         % "sbt-revolver"            % "0.9.1")
 addSbtPlugin("ohnosequences"    % "sbt-github-release"      % "0.7.0")
 
